@@ -1,0 +1,232 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow authenticated users to read and write all documents
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Specific rules for persons collection
+    match /persons/{personId} {
+      // All authenticated users can read profiles
+      allow read: if request.auth != null;
+      
+      // All authenticated users can create profiles
+      allow create: if request.auth != null;
+      
+      // All authenticated users can update profiles (for admin operations like role assignment)
+      allow update: if request.auth != null;
+      
+      // All authenticated users can delete profiles (admin operations)
+      allow delete: if request.auth != null;
+    }
+    
+    // Specific rules for families collection
+    match /families/{familyId} {
+      allow read, write: if request.auth != null;
+      
+      allow create: if request.auth != null 
+        && resource.data.keys().hasAll(['name', 'createdAt', 'updatedAt']);
+    }
+    
+    // Custom menu items - read for authenticated users, write for admins
+    match /custom_menu_items/{menuItemId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Roles management - read for authenticated users, write for role managers
+    match /roles/{roleId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Role activity logs - create only
+    match /role_activity_logs/{logId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+    }
+    
+    // Dashboard widgets - user-specific access
+    match /dashboard_widgets/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      match /widgets/{widgetId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // Dashboard preferences - user-specific access
+    match /dashboard_preferences/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Specific rules for workflows collection
+    match /workflows/{workflowId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null; // Admin only in production
+    }
+    
+    // Specific rules for person_workflows collection
+    match /person_workflows/{workflowInstanceId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Specific rules for activity_logs collection
+    match /activity_logs/{logId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if false; // Logs should not be modified
+    }
+
+    // Forms - authenticated users can read/write
+    match /forms/{formId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && isValidForm(request.resource.data);
+      allow update: if request.auth != null
+        && isValidForm(request.resource.data);
+      allow delete: if request.auth != null
+        && resource.data.status == 'brouillon';
+    }
+
+    // Form submissions - authenticated users can read/write, restricted by form accessibility
+    match /form_submissions/{submissionId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && isValidFormSubmission(request.resource.data);
+      allow update: if request.auth != null
+        && (resource.data.personId == request.auth.uid
+            || hasAdminAccess());
+    }
+
+    function isValidForm(data) {
+      return data.keys().hasAll(['title', 'description', 'status', 'accessibility', 'fields', 'settings', 'createdAt', 'updatedAt'])
+        && data.title is string && data.title.size() > 0
+        && data.description is string
+        && data.status in ['brouillon', 'publie', 'archive']
+        && data.accessibility in ['public', 'membres', 'groupe', 'role']
+        && data.fields is list
+        && data.settings is map
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidFormSubmission(data) {
+      return data.keys().hasAll(['formId', 'responses', 'submittedAt', 'status'])
+        && data.formId is string && data.formId.size() > 0
+        && data.responses is map
+        && data.submittedAt is timestamp
+        && data.status in ['submitted', 'processed', 'archived'];
+    }
+
+    // Form templates - read for all, write for admins
+    match /form_templates/{templateId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if request.auth != null
+        && hasAdminAccess();
+    }
+
+    // Form activity logs - Read only
+    match /form_activity_logs/{logId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+
+    // Custom pages
+    match /custom_pages/{pageId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    // Page templates
+    match /page_templates/{templateId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+    }
+
+    // Page views - For statistics
+    match /page_views/{viewId} {
+      allow create: if isAuthenticated();
+      allow read: if isAuthenticated();
+    }
+
+    // Page activity logs
+    match /page_activity_logs/{logId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+    }
+    
+    // Groups module collections
+    match /groups/{groupId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /group_members/{memberId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /group_meetings/{meetingId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /group_attendance/{attendanceId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Specific rules for absence_notifications collection
+    match /absence_notifications/{notificationId} {
+      // Members can read notifications for groups they belong to
+      allow read: if request.auth != null;
+      
+      // Members can create notifications for themselves
+      allow create: if request.auth != null 
+        && request.auth.uid == request.resource.data.personId
+        && request.resource.data.keys().hasAll(['groupId', 'meetingId', 'personId', 'reason', 'status', 'reportedAt', 'reportedBy', 'createdAt', 'updatedAt']);
+      
+      // Members can update/delete their own notifications
+      allow update, delete: if request.auth != null 
+        && (request.auth.uid == resource.data.personId || request.auth.uid == resource.data.reportedBy);
+      
+      // Group leaders can update any notification status
+      allow update: if request.auth != null;
+    }
+    
+    match /group_activity_logs/{logId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if false; // Logs should not be modified
+    }
+    
+    // Services module collections
+    match /services/{serviceId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /service_sheets/{sheetId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /teams/{teamId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /positions/{positionId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /service_assignments/{assignmentId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /person_availability/{availabilityId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /service_activity_logs/{logId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if false; // Logs should not be modified
+    }
+  }
+}

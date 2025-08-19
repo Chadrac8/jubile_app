@@ -1,0 +1,10 @@
+scripts/add_test_custom_lists.dart
+lib/pages/people_custom_lists_page.dart
+lib/modules/personnes/pages/people_custom_lists_page.dart
+lib/modules/personnes/views/people_custom_lists_page.dart
+lib/modules/personnes/views/people_custom_lists_view.dart
+lib/modules/configuration/services/custom_lists_firebase_service.dart
+lib/modules/configuration/models/custom_list_model.dart
+lib/modules/configuration/views/custom_list_builder_page.dart
+lib/modules/configuration/views/custom_lists_page.dart
+lib/modules/configuration/views/custom_lists_view.dart

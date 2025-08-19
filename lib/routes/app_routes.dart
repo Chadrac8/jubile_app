@@ -1,0 +1,1 @@
+// Ce fichier de routes a été remplacé par simple_routes.dart pour la production
