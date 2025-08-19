@@ -221,7 +221,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
       ),
       
       // Chip
@@ -267,9 +267,9 @@ class AppTheme {
       
       // TabBar
       tabBarTheme: const TabBarThemeData(
-        labelColor: AppTheme.primaryColor,
-        unselectedLabelColor: AppTheme.textTertiaryColor,
-        indicatorColor: AppTheme.primaryColor,
+        labelColor: Theme.of(context).colorScheme.primaryColor,
+        unselectedLabelColor: Theme.of(context).colorScheme.textTertiaryColor,
+        indicatorColor: Theme.of(context).colorScheme.primaryColor,
         labelStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
@@ -282,7 +282,7 @@ class AppTheme {
       
       // Dialog
       dialogTheme: const DialogThemeData(
-        backgroundColor: AppTheme.surfaceColor,
+        backgroundColor: Theme.of(context).colorScheme.surfaceColor,
         elevation: 24,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -290,11 +290,11 @@ class AppTheme {
         titleTextStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: AppTheme.textPrimaryColor,
+          color: Theme.of(context).colorScheme.textPrimaryColor,
         ),
         contentTextStyle: TextStyle(
           fontSize: 14,
-          color: AppTheme.textSecondaryColor,
+          color: Theme.of(context).colorScheme.textSecondaryColor,
         ),
       ),
       

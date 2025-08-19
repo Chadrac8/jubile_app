@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
-import '../services/reading_plan_service.dart';
+import '../../models/reading_plan.dart';
+import '../../services/reading_plan_service.dart';
 
 class ReadingPlanDetailView extends StatefulWidget {
   final ReadingPlan plan;
@@ -54,7 +54,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
                 widget.plan.name,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.surfaceColor)),
+                  color: Theme.of(context).colorScheme.surfaceColor)),
               background: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -68,7 +68,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
                   child: Icon(
                     _getCategoryIcon(widget.plan.category),
                     size: 80,
-                    color: AppTheme.surfaceColor.withOpacity(0.3)))))),
+                    color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.3)))))),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -91,7 +91,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
                       _buildInfoBadge(
                         icon: Icons.access_time,
                         label: '${widget.plan.estimatedReadingTime}min/jour',
-                        color: AppTheme.successColor),
+                        color: Theme.of(context).colorScheme.successColor),
                       _buildInfoBadge(
                         icon: Icons.signal_cellular_alt,
                         label: _getDifficultyLabel(widget.plan.difficulty),
@@ -298,7 +298,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.primary,
-          foregroundColor: AppTheme.surfaceColor,
+          foregroundColor: Theme.of(context).colorScheme.surfaceColor,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16))),
@@ -308,7 +308,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
                 height: 20,
                 width: 20,
                 child: CircularProgressIndicator(
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   strokeWidth: 2))
             : Text(
                 'Commencer ce plan',
@@ -325,7 +325,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.secondary,
-          foregroundColor: AppTheme.surfaceColor,
+          foregroundColor: Theme.of(context).colorScheme.surfaceColor,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16))),
@@ -352,7 +352,7 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Plan "${widget.plan.name}" commencé !'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         
         widget.onStartPlan?.call();
         Navigator.pop(context);
@@ -402,13 +402,13 @@ class _ReadingPlanDetailViewState extends State<ReadingPlanDetailView> {
   Color _getDifficultyColor(String difficulty) {
     switch (difficulty) {
       case 'beginner':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'intermediate':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'advanced':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       default:
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
     }
   }
 

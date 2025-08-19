@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/group_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class GroupMemberAttendanceStats extends StatefulWidget {
   final Map<String, PersonAttendanceStats> memberAttendance;
@@ -147,7 +147,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
@@ -157,7 +157,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
         children: [
           Icon(
             Icons.people_alt,
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
             size: 24,
           ),
           const SizedBox(width: 12),
@@ -168,7 +168,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
                 Text(
                   'Assiduité des membres',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -176,7 +176,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
                 Text(
                   '${widget.memberAttendance.length} membres',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -270,20 +270,20 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
               Icon(
                 Icons.search_off,
                 size: 48,
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
               const SizedBox(height: 16),
               Text(
                 'Aucun membre trouvé',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Essayez de modifier les filtres',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ),
             ],
@@ -301,7 +301,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        border: Border.all(color: AppTheme.backgroundColor),
+        border: Border.all(color: Theme.of(context).colorScheme.backgroundColor),
         borderRadius: BorderRadius.circular(8),
       ),
       child: ExpansionTile(
@@ -348,13 +348,13 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: AppTheme.errorColor.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.errorColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       '${member.consecutiveAbsences} absences',
                       style: TextStyle(
-                        color: AppTheme.errorColor,
+                        color: Theme.of(context).colorScheme.errorColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
@@ -367,7 +367,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
             Text(
               '${member.presentCount}/${member.totalMeetings} présences',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ],
@@ -387,20 +387,20 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
                   'Présences',
                   member.presentCount.toString(),
                   Icons.check_circle,
-                  color: AppTheme.successColor,
+                  color: Theme.of(context).colorScheme.successColor,
                 ),
                 _buildDetailRow(
                   'Absences',
                   member.absentCount.toString(),
                   Icons.cancel,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 if (member.consecutiveAbsences > 0)
                   _buildDetailRow(
                     'Absences consécutives',
                     member.consecutiveAbsences.toString(),
                     Icons.warning,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                   ),
                 if (member.lastAttendance != null)
                   _buildDetailRow(
@@ -426,13 +426,13 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
           Icon(
             icon,
             size: 16,
-            color: color ?? AppTheme.textSecondaryColor,
+            color: color ?? Theme.of(context).colorScheme.textSecondaryColor,
           ),
           const SizedBox(width: 8),
           Text(
             '$label: ',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
           Text(
@@ -460,7 +460,7 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
         const SizedBox(height: 8),
         LinearProgressIndicator(
           value: member.attendanceRate,
-          backgroundColor: AppTheme.backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.backgroundColor,
           valueColor: AlwaysStoppedAnimation<Color>(member.attendanceColor),
           minHeight: 8,
         ),
@@ -517,10 +517,10 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
                 sections: attendanceRanges.entries.map((entry) {
                   final index = attendanceRanges.keys.toList().indexOf(entry.key);
                   final colors = [
-                    AppTheme.successColor,
-                    AppTheme.warningColor,
-                    AppTheme.tertiaryColor,
-                    AppTheme.errorColor,
+                    Theme.of(context).colorScheme.successColor,
+                    Theme.of(context).colorScheme.warningColor,
+                    Theme.of(context).colorScheme.tertiaryColor,
+                    Theme.of(context).colorScheme.errorColor,
                   ];
                   
                   return PieChartSectionData(
@@ -547,10 +547,10 @@ class _GroupMemberAttendanceStatsState extends State<GroupMemberAttendanceStats>
             children: attendanceRanges.entries.map((entry) {
               final index = attendanceRanges.keys.toList().indexOf(entry.key);
               final colors = [
-                AppTheme.successColor,
-                AppTheme.warningColor,
-                AppTheme.tertiaryColor,
-                AppTheme.errorColor,
+                Theme.of(context).colorScheme.successColor,
+                Theme.of(context).colorScheme.warningColor,
+                Theme.of(context).colorScheme.tertiaryColor,
+                Theme.of(context).colorScheme.errorColor,
               ];
               
               return Row(

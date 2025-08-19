@@ -3,7 +3,7 @@ import '../models/group_model.dart';
 import '../models/person_model.dart';
 import '../services/groups_firebase_service.dart';
 import '../services/firebase_service.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 class GroupMembersList extends StatefulWidget {
   final GroupModel group;

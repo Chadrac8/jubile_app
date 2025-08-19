@@ -3,7 +3,7 @@ import '../models/prayer_model.dart';
 import '../services/prayers_firebase_service.dart';
 import '../widgets/prayer_card.dart';
 import '../widgets/prayer_search_filter_bar.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../auth/auth_service.dart';
 import 'prayer_form_page.dart';
 import 'prayer_detail_page.dart';
@@ -131,7 +131,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
               children: [
                 Icon(
                   Icons.pan_tool,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 24,
                 ),
                 const SizedBox(width: 8),
@@ -160,7 +160,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
                     'Total',
                     '${_stats!.totalPrayers}',
                     Icons.pan_tool,
-                    AppTheme.primaryColor,
+                    Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
                 Expanded(
@@ -271,11 +271,11 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           decoration: BoxDecoration(
             color: isSelected 
-                ? AppTheme.primaryColor.withOpacity(0.1)
+                ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(20),
             border: isSelected 
-                ? Border.all(color: AppTheme.primaryColor, width: 1)
+                ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 1)
                 : null,
           ),
           child: Row(
@@ -285,7 +285,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
                 icon,
                 size: 16,
                 color: isSelected 
-                    ? AppTheme.primaryColor 
+                    ? Theme.of(context).colorScheme.primaryColor 
                     : Colors.grey,
               ),
               const SizedBox(width: 4),
@@ -296,7 +296,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
                     fontSize: 12,
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                     color: isSelected 
-                        ? AppTheme.primaryColor 
+                        ? Theme.of(context).colorScheme.primaryColor 
                         : Colors.grey,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -341,7 +341,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
       appBar: AppBar(
         title: const Text('Mur de Prière'),
         elevation: 0,
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
       ),
       body: Column(
@@ -463,7 +463,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
                             icon: const Icon(Icons.add),
                             label: const Text('Créer une prière'),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppTheme.primaryColor,
+                              backgroundColor: Theme.of(context).colorScheme.primaryColor,
                               foregroundColor: Colors.white,
                             ),
                           ),
@@ -548,7 +548,7 @@ class _MemberPrayerWallPageState extends State<MemberPrayerWallPage>
         child: FloatingActionButton(
           onPressed: () => _navigateToPrayerForm(),
           tooltip: 'Ajouter une prière',
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           child: const Icon(Icons.add, color: Colors.white),
         ),
       ),

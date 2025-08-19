@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
-import '../models/bible_study.dart';
+import '../../models/bible_study.dart';
 
 class BibleStudyFormView extends StatefulWidget {
   final BibleStudy? study;
@@ -120,7 +120,7 @@ class _BibleStudyFormViewState extends State<BibleStudyFormView>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600),
               tabs: const [
@@ -481,14 +481,14 @@ class _BibleStudyFormViewState extends State<BibleStudyFormView>
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                     borderRadius: BorderRadius.circular(8)),
                   child: Text(
                     'POPULAIRE',
                     style: GoogleFonts.inter(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.surfaceColor))),
+                      color: Theme.of(context).colorScheme.surfaceColor))),
             ]),
           
           const SizedBox(height: 16),
@@ -780,7 +780,7 @@ class _BibleStudyFormViewState extends State<BibleStudyFormView>
                   ? 'Étude créée avec succès' 
                   : 'Étude mise à jour avec succès'
             ),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         
         widget.onSaved?.call();
         Navigator.pop(context);

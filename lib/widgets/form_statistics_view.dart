@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/form_model.dart';
 import '../services/forms_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormStatisticsView extends StatefulWidget {
   final FormModel form;
@@ -55,7 +55,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors du chargement des statistiques: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -66,7 +66,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
     if (_isLoading) {
       return const Center(
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+          valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
         ),
       );
     }
@@ -79,7 +79,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
             Icon(
               Icons.error_outline,
               size: 64,
-              color: AppTheme.errorColor,
+              color: Theme.of(context).colorScheme.errorColor,
             ),
             const SizedBox(height: 16),
             Text(
@@ -132,12 +132,12 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
                     Icons.analytics,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -163,25 +163,25 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                   'Total soumissions',
                   _statistics!.realSubmissions.toString(),
                   Icons.inbox,
-                  AppTheme.primaryColor,
+                  Theme.of(context).colorScheme.primaryColor,
                 ),
                 _buildStatCard(
                   'Soumissions traitées',
                   _statistics!.processedSubmissions.toString(),
                   Icons.check_circle,
-                  AppTheme.successColor,
+                  Theme.of(context).colorScheme.successColor,
                 ),
                 _buildStatCard(
                   'Taux de traitement',
                   '${(_statistics!.processedRate * 100).toInt()}%',
                   Icons.trending_up,
-                  AppTheme.secondaryColor,
+                  Theme.of(context).colorScheme.secondaryColor,
                 ),
                 _buildStatCard(
                   'Soumissions de test',
                   _statistics!.testSubmissions.toString(),
                   Icons.science,
-                  AppTheme.warningColor,
+                  Theme.of(context).colorScheme.warningColor,
                 ),
               ],
             ),
@@ -222,7 +222,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
           Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -251,12 +251,12 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.secondaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
                     Icons.show_chart,
-                    color: AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondaryColor,
                     size: 20,
                   ),
                 ),
@@ -306,7 +306,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                               child: Text(
                                 '${date.day}/${date.month}',
                                 style: const TextStyle(
-                                  color: AppTheme.textTertiaryColor,
+                                  color: Theme.of(context).colorScheme.textTertiaryColor,
                                   fontSize: 10,
                                 ),
                               ),
@@ -324,7 +324,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                           return Text(
                             value.toInt().toString(),
                             style: const TextStyle(
-                              color: AppTheme.textTertiaryColor,
+                              color: Theme.of(context).colorScheme.textTertiaryColor,
                               fontSize: 10,
                             ),
                           );
@@ -347,8 +347,8 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                       isCurved: true,
                       gradient: LinearGradient(
                         colors: [
-                          AppTheme.primaryColor,
-                          AppTheme.secondaryColor,
+                          Theme.of(context).colorScheme.primaryColor,
+                          Theme.of(context).colorScheme.secondaryColor,
                         ],
                       ),
                       barWidth: 3,
@@ -358,8 +358,8 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                         show: true,
                         gradient: LinearGradient(
                           colors: [
-                            AppTheme.primaryColor.withOpacity(0.3),
-                            AppTheme.primaryColor.withOpacity(0.1),
+                            Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
+                            Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -405,12 +405,12 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.warningColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
                     Icons.pie_chart,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                     size: 20,
                   ),
                 ),
@@ -435,7 +435,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                         centerSpaceRadius: 40,
                         sections: [
                           PieChartSectionData(
-                            color: AppTheme.warningColor,
+                            color: Theme.of(context).colorScheme.warningColor,
                             value: (_statistics!.totalSubmissions - _statistics!.processedSubmissions - _statistics!.archivedSubmissions).toDouble(),
                             title: 'Soumis',
                             radius: 50,
@@ -446,7 +446,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                             ),
                           ),
                           PieChartSectionData(
-                            color: AppTheme.successColor,
+                            color: Theme.of(context).colorScheme.successColor,
                             value: _statistics!.processedSubmissions.toDouble(),
                             title: 'Traités',
                             radius: 50,
@@ -457,7 +457,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                             ),
                           ),
                           PieChartSectionData(
-                            color: AppTheme.textTertiaryColor,
+                            color: Theme.of(context).colorScheme.textTertiaryColor,
                             value: _statistics!.archivedSubmissions.toDouble(),
                             title: 'Archivés',
                             radius: 50,
@@ -477,17 +477,17 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                     children: [
                       _buildLegendItem(
                         'Soumis',
-                        AppTheme.warningColor,
+                        Theme.of(context).colorScheme.warningColor,
                         _statistics!.totalSubmissions - _statistics!.processedSubmissions - _statistics!.archivedSubmissions,
                       ),
                       _buildLegendItem(
                         'Traités',
-                        AppTheme.successColor,
+                        Theme.of(context).colorScheme.successColor,
                         _statistics!.processedSubmissions,
                       ),
                       _buildLegendItem(
                         'Archivés',
-                        AppTheme.textTertiaryColor,
+                        Theme.of(context).colorScheme.textTertiaryColor,
                         _statistics!.archivedSubmissions,
                       ),
                     ],
@@ -550,12 +550,12 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.tertiaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.tertiaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
                     Icons.analytics,
-                    color: AppTheme.tertiaryColor,
+                    color: Theme.of(context).colorScheme.tertiaryColor,
                     size: 20,
                   ),
                 ),
@@ -594,10 +594,10 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.backgroundColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.textTertiaryColor.withOpacity(0.3),
+          color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
         ),
       ),
       child: Column(
@@ -608,7 +608,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
               Icon(
                 _getFieldIcon(field.type),
                 size: 18,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -622,7 +622,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
               Text(
                 '$totalResponses réponses',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
               ),
             ],
@@ -659,7 +659,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
                   LinearProgressIndicator(
                     value: count / totalResponses,
                     backgroundColor: Colors.grey.shade300,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                    valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
                   ),
                 ],
               ),
@@ -669,7 +669,7 @@ class _FormStatisticsViewState extends State<FormStatisticsView>
             Text(
               '+${responses.length - 5} autres réponses',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
                 fontStyle: FontStyle.italic,
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/event_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class EventCalendarView extends StatefulWidget {
   final List<EventModel> events;
@@ -68,11 +68,11 @@ class _EventCalendarViewState extends State<EventCalendarView> {
 
   Color _getEventColor(EventModel event) {
     switch (event.status) {
-      case 'publie': return AppTheme.successColor;
-      case 'brouillon': return AppTheme.warningColor;
-      case 'archive': return AppTheme.textTertiaryColor;
-      case 'annule': return AppTheme.errorColor;
-      default: return AppTheme.primaryColor;
+      case 'publie': return Theme.of(context).colorScheme.successColor;
+      case 'brouillon': return Theme.of(context).colorScheme.warningColor;
+      case 'archive': return Theme.of(context).colorScheme.textTertiaryColor;
+      case 'annule': return Theme.of(context).colorScheme.errorColor;
+      default: return Theme.of(context).colorScheme.primaryColor;
     }
   }
 
@@ -114,7 +114,7 @@ class _EventCalendarViewState extends State<EventCalendarView> {
         
         // Jours de la semaine
         Container(
-          color: AppTheme.backgroundColor,
+          color: Theme.of(context).colorScheme.backgroundColor,
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             children: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].map((day) {
@@ -124,7 +124,7 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               );
@@ -176,12 +176,12 @@ class _EventCalendarViewState extends State<EventCalendarView> {
       child: Container(
         decoration: BoxDecoration(
           color: isToday 
-              ? AppTheme.primaryColor.withOpacity(0.1)
+              ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1)
               : Colors.white,
           borderRadius: BorderRadius.circular(8),
           border: isToday 
-              ? Border.all(color: AppTheme.primaryColor, width: 2)
-              : Border.all(color: AppTheme.backgroundColor),
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
+              : Border.all(color: Theme.of(context).colorScheme.backgroundColor),
         ),
         child: Column(
           children: [
@@ -194,8 +194,8 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
                     color: isCurrentMonth 
-                        ? (isToday ? AppTheme.primaryColor : AppTheme.textPrimaryColor)
-                        : AppTheme.textTertiaryColor,
+                        ? (isToday ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textPrimaryColor)
+                        : Theme.of(context).colorScheme.textTertiaryColor,
                   ),
                 ),
               ),
@@ -244,7 +244,7 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                                 child: Text(
                                   '+${events.length - 3}',
                                   style: TextStyle(
-                                    color: AppTheme.textSecondaryColor,
+                                    color: Theme.of(context).colorScheme.textSecondaryColor,
                                     fontSize: 8,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -286,7 +286,7 @@ class _EventCalendarViewState extends State<EventCalendarView> {
               height: 4,
               margin: const EdgeInsets.symmetric(vertical: 12),
               decoration: BoxDecoration(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -307,7 +307,7 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                   Text(
                     '${events.length} événement${events.length > 1 ? 's' : ''}',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -337,10 +337,10 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: AppTheme.backgroundColor,
+                        color: Theme.of(context).colorScheme.backgroundColor,
                         borderRadius: BorderRadius.circular(12),
                         border: isSelected
-                            ? Border.all(color: AppTheme.primaryColor, width: 2)
+                            ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
                             : null,
                       ),
                       child: Row(
@@ -376,27 +376,27 @@ class _EventCalendarViewState extends State<EventCalendarView> {
                                     Icon(
                                       Icons.access_time,
                                       size: 14,
-                                      color: AppTheme.textSecondaryColor,
+                                      color: Theme.of(context).colorScheme.textSecondaryColor,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
                                       _formatTime(event.startDate),
                                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                        color: AppTheme.textSecondaryColor,
+                                        color: Theme.of(context).colorScheme.textSecondaryColor,
                                       ),
                                     ),
                                     const SizedBox(width: 12),
                                     Icon(
                                       Icons.location_on,
                                       size: 14,
-                                      color: AppTheme.textSecondaryColor,
+                                      color: Theme.of(context).colorScheme.textSecondaryColor,
                                     ),
                                     const SizedBox(width: 4),
                                     Expanded(
                                       child: Text(
                                         event.location,
                                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                          color: AppTheme.textSecondaryColor,
+                                          color: Theme.of(context).colorScheme.textSecondaryColor,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,

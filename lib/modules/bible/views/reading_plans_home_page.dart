@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
-import '../services/reading_plan_service.dart';
+import '../../models/reading_plan.dart';
+import '../../services/reading_plan_service.dart';
 import 'reading_plan_detail_view.dart';
 import 'active_reading_plan_view.dart';
 
@@ -112,7 +112,7 @@ class _ReadingPlansHomePageState extends State<ReadingPlansHomePage>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600),
               tabs: const [
@@ -178,7 +178,7 @@ class _ReadingPlansHomePageState extends State<ReadingPlansHomePage>
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
-                foregroundColor: AppTheme.surfaceColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16))),
@@ -299,14 +299,14 @@ class _ReadingPlansHomePageState extends State<ReadingPlansHomePage>
                                   horizontal: 8,
                                   vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.warningColor.withOpacity(0.2),
+                                  color: Theme.of(context).colorScheme.warningColor.withOpacity(0.2),
                                   borderRadius: BorderRadius.circular(8)),
                                 child: Text(
                                   'Populaire',
                                   style: GoogleFonts.inter(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
-                                    color: AppTheme.warningColor))),
+                                    color: Theme.of(context).colorScheme.warningColor))),
                           ]),
                         const SizedBox(height: 4),
                         Text(
@@ -418,7 +418,7 @@ class _ReadingPlansHomePageState extends State<ReadingPlansHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Plan "${plan.name}" commencé !'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         _tabController.animateTo(0); // Aller à l'onglet "Actuel"
       }
     } catch (e) {

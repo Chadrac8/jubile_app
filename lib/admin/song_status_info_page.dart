@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 /// Page d'information sur les statuts des chants
 class SongStatusInfoPage extends StatelessWidget {
@@ -60,7 +60,7 @@ class SongStatusInfoPage extends StatelessWidget {
                 'Idéal pour les chants en cours de création ou révision',
                 'Ne s\'affiche pas dans la vue membre standard',
               ],
-              AppTheme.warningColor,
+              Theme.of(context).colorScheme.warningColor,
               Icons.edit_note),
             
             const SizedBox(height: 16),
@@ -74,7 +74,7 @@ class SongStatusInfoPage extends StatelessWidget {
                 'Peut être utilisé lors des services',
                 'Recommandé pour les chants finalisés',
               ],
-              AppTheme.successColor,
+              Theme.of(context).colorScheme.successColor,
               Icons.publish),
             
             const SizedBox(height: 16),
@@ -102,7 +102,7 @@ class SongStatusInfoPage extends StatelessWidget {
                 'Peut être restauré si nécessaire',
                 'Idéal pour les chants obsolètes ou saisonniers',
               ],
-              AppTheme.textTertiaryColor,
+              Theme.of(context).colorScheme.textTertiaryColor,
               Icons.archive),
             
             const SizedBox(height: 24),
@@ -111,22 +111,22 @@ class SongStatusInfoPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.successColor,
+                color: Theme.of(context).colorScheme.successColor,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.successColor)),
+                border: Border.all(color: Theme.of(context).colorScheme.successColor)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.lightbulb, color: AppTheme.successColor),
+                      Icon(Icons.lightbulb, color: Theme.of(context).colorScheme.successColor),
                       const SizedBox(width: 8),
                       Text(
                         'Bonnes pratiques',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.successColor)),
+                          color: Theme.of(context).colorScheme.successColor)),
                     ]),
                   const SizedBox(height: 12),
                   _buildPracticeItem('Utilisez "Draft" pour préparer de nouveaux chants'),
@@ -198,7 +198,7 @@ class SongStatusInfoPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: color,
                   borderRadius: BorderRadius.circular(8)),
-                child: Icon(icon, color: AppTheme.surfaceColor)),
+                child: Icon(icon, color: Theme.of(context).colorScheme.surfaceColor)),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -214,7 +214,7 @@ class SongStatusInfoPage extends StatelessWidget {
                       subtitle,
                       style: TextStyle(
                         fontSize: 14,
-                        color: AppTheme.textTertiaryColor)),
+                        color: Theme.of(context).colorScheme.textTertiaryColor)),
                   ])),
             ]),
           const SizedBox(height: 12),
@@ -239,7 +239,7 @@ class SongStatusInfoPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.arrow_right, color: AppTheme.successColor),
+          Icon(Icons.arrow_right, color: Theme.of(context).colorScheme.successColor),
           const SizedBox(width: 8),
           Expanded(
             child: Text(text, style: const TextStyle(fontSize: 14))),
@@ -267,7 +267,7 @@ class SongStatusInfoPage extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 13,
-                    color: AppTheme.textTertiaryColor)),
+                    color: Theme.of(context).colorScheme.textTertiaryColor)),
               ])),
         ]));
   }

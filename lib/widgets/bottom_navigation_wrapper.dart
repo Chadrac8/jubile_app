@@ -8,7 +8,7 @@ import '../services/app_config_firebase_service.dart';
 
 import '../services/firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 import '../pages/member_dashboard_page.dart';
 import '../pages/admin/admin_dashboard_page.dart';
@@ -238,13 +238,13 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
                   padding: EdgeInsets.all(16),
                   child: Row(
                     children: [
-                      Icon(Icons.more_horiz, color: AppTheme.primaryColor),
+                      Icon(Icons.more_horiz, color: Theme.of(context).colorScheme.primaryColor),
                       SizedBox(width: 8),
                       Text(
                         'Plus de modules',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                         ),
                       ),
                     ],
@@ -307,10 +307,10 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppTheme.primaryColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
           ),
         ),
         child: Column(
@@ -319,14 +319,14 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
             Icon(
               _getIconForModule(module.iconName),
               size: 32,
-              color: AppTheme.primaryColor,
+              color: Theme.of(context).colorScheme.primaryColor,
             ),
             SizedBox(height: 8),
             Text(
               module.name,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 fontSize: 12,
               ),
               textAlign: TextAlign.center,
@@ -349,10 +349,10 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppTheme.primaryColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
           ),
         ),
         child: Column(
@@ -361,14 +361,14 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
             Icon(
               _getIconForModule(page.iconName),
               size: 32,
-              color: AppTheme.primaryColor,
+              color: Theme.of(context).colorScheme.primaryColor,
             ),
             SizedBox(height: 8),
             Text(
               page.title,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 fontSize: 12,
               ),
               textAlign: TextAlign.center,
@@ -462,7 +462,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           onPressed: _showProfileMenu,
           icon: CircleAvatar(
             radius: 16,
-            backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+            backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
             child: _currentUser?.profileImageUrl != null
                 ? ClipOval(
                     child: CachedNetworkImage(
@@ -471,7 +471,7 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
                       height: 32,
                     ),
                   )
-                : Icon(Icons.person, color: AppTheme.primaryColor),
+                : Icon(Icons.person, color: Theme.of(context).colorScheme.primaryColor),
           ),
         ),
       ],
@@ -661,8 +661,8 @@ class _BottomNavigationWrapperState extends State<BottomNavigationWrapper> {
           });
         }
       },
-      selectedItemColor: AppTheme.primaryColor,
-      unselectedItemColor: AppTheme.textSecondaryColor,
+      selectedItemColor: Theme.of(context).colorScheme.primaryColor,
+      unselectedItemColor: Theme.of(context).colorScheme.textSecondaryColor,
       items: navItems,
     );
   }
@@ -714,7 +714,7 @@ class _ProfileMenuSheet extends StatelessWidget {
                   // Photo de profil
                   CircleAvatar(
                     radius: 30,
-                    backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     child: currentUser?.profileImageUrl != null
                         ? ClipOval(
                             child: CachedNetworkImage(
@@ -724,19 +724,19 @@ class _ProfileMenuSheet extends StatelessWidget {
                               fit: BoxFit.cover,
                               placeholder: (context, url) => Icon(
                                 Icons.person,
-                                color: AppTheme.primaryColor,
+                                color: Theme.of(context).colorScheme.primaryColor,
                                 size: 30,
                               ),
                               errorWidget: (context, url, error) => Icon(
                                 Icons.person,
-                                color: AppTheme.primaryColor,
+                                color: Theme.of(context).colorScheme.primaryColor,
                                 size: 30,
                               ),
                             ),
                           )
                         : Icon(
                             Icons.person,
-                            color: AppTheme.primaryColor,
+                            color: Theme.of(context).colorScheme.primaryColor,
                             size: 30,
                           ),
                   ),
@@ -752,7 +752,7 @@ class _ProfileMenuSheet extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -760,7 +760,7 @@ class _ProfileMenuSheet extends StatelessWidget {
                           currentUser?.email ?? '',
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                         if (currentUser?.roles.isNotEmpty == true) ...[
@@ -769,7 +769,7 @@ class _ProfileMenuSheet extends StatelessWidget {
                             currentUser!.roles.join(' • '),
                             style: GoogleFonts.poppins(
                               fontSize: 12,
-                              color: AppTheme.primaryColor,
+                              color: Theme.of(context).colorScheme.primaryColor,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -783,7 +783,7 @@ class _ProfileMenuSheet extends StatelessWidget {
                     onPressed: onEditProfile,
                     icon: const Icon(
                       Icons.edit,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                     tooltip: 'Éditer mon profil',
                   ),
@@ -879,12 +879,12 @@ class _ProfileMenuSheet extends StatelessWidget {
       leading: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(
           icon,
-          color: AppTheme.primaryColor,
+          color: Theme.of(context).colorScheme.primaryColor,
           size: 20,
         ),
       ),
@@ -893,20 +893,20 @@ class _ProfileMenuSheet extends StatelessWidget {
         style: GoogleFonts.poppins(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: AppTheme.textPrimaryColor,
+          color: Theme.of(context).colorScheme.textPrimaryColor,
         ),
       ),
       subtitle: Text(
         subtitle,
         style: GoogleFonts.poppins(
           fontSize: 13,
-          color: AppTheme.textSecondaryColor,
+          color: Theme.of(context).colorScheme.textSecondaryColor,
         ),
       ),
       trailing: const Icon(
         Icons.arrow_forward_ios,
         size: 16,
-        color: AppTheme.textTertiaryColor,
+        color: Theme.of(context).colorScheme.textTertiaryColor,
       ),
       onTap: onTap,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),

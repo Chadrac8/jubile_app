@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import '../services/tasks_firebase_service.dart';
 import 'task_card.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskKanbanView extends StatefulWidget {
   final String? searchQuery;
@@ -37,9 +37,9 @@ class _TaskKanbanViewState extends State<TaskKanbanView> {
   };
   
   final Map<String, Color> _columnColors = {
-    'todo': AppTheme.primaryColor,
-    'in_progress': AppTheme.warningColor,
-    'completed': AppTheme.successColor,
+    'todo': Theme.of(context).colorScheme.primaryColor,
+    'in_progress': Theme.of(context).colorScheme.warningColor,
+    'completed': Theme.of(context).colorScheme.successColor,
   };
 
   final Map<String, IconData> _columnIcons = {
@@ -62,7 +62,7 @@ class _TaskKanbanViewState extends State<TaskKanbanView> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Tâche déplacée vers ${_columnTitles[newStatus]}'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -71,7 +71,7 @@ class _TaskKanbanViewState extends State<TaskKanbanView> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -98,7 +98,7 @@ class _TaskKanbanViewState extends State<TaskKanbanView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error, size: 64, color: AppTheme.errorColor),
+                Icon(Icons.error, size: 64, color: Theme.of(context).colorScheme.errorColor),
                 const SizedBox(height: 16),
                 Text('Erreur: ${snapshot.error}'),
                 const SizedBox(height: 16),

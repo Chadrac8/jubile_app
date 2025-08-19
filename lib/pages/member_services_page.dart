@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../models/service_model.dart';
 import '../services/services_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class MemberServicesPage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -121,7 +121,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Statut mis à jour : ${_getStatusLabel(newStatus)}'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -130,7 +130,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la mise à jour : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -149,7 +149,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
             SizedBox(height: 16),
             Text(
               'Cette fonctionnalité permet de définir vos créneaux de disponibilité pour les services.',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
           ],
         ),
@@ -180,12 +180,12 @@ class _MemberServicesPageState extends State<MemberServicesPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Mes Services'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.event_available),
@@ -241,13 +241,13 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: isSelected ? Colors.white : AppTheme.primaryColor,
+                        color: isSelected ? Colors.white : Theme.of(context).colorScheme.primaryColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         '$count',
                         style: TextStyle(
-                          color: isSelected ? AppTheme.primaryColor : Colors.white,
+                          color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.white,
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
                         ),
@@ -261,10 +261,10 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                   _selectedFilter = entry.key;
                 });
               },
-              selectedColor: AppTheme.primaryColor,
+              selectedColor: Theme.of(context).colorScheme.primaryColor,
               checkmarkColor: Colors.white,
               labelStyle: TextStyle(
-                color: isSelected ? Colors.white : AppTheme.textPrimaryColor,
+                color: isSelected ? Colors.white : Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
           );
@@ -290,7 +290,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
               'En attente',
               '$pendingCount',
               Icons.pending_actions,
-              AppTheme.warningColor,
+              Theme.of(context).colorScheme.warningColor,
             ),
           ),
           const SizedBox(width: 8),
@@ -299,7 +299,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
               'Acceptés',
               '$acceptedCount',
               Icons.check_circle,
-              AppTheme.successColor,
+              Theme.of(context).colorScheme.successColor,
             ),
           ),
           const SizedBox(width: 8),
@@ -308,7 +308,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
               'À venir',
               '$upcomingCount',
               Icons.upcoming,
-              AppTheme.primaryColor,
+              Theme.of(context).colorScheme.primaryColor,
             ),
           ),
         ],
@@ -342,7 +342,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
               label,
               style: const TextStyle(
                 fontSize: 11,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -363,7 +363,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
             Icon(
               Icons.church_outlined,
               size: 64,
-              color: AppTheme.textSecondaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textSecondaryColor.withOpacity(0.5),
             ),
             const SizedBox(height: 16),
             Text(
@@ -372,14 +372,14 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                   : 'Aucune affectation avec ce statut',
               style: const TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             const Text(
               'Vos affectations aux équipes de service apparaîtront ici',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -439,13 +439,13 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
                         'Position ID: ${assignment.positionId}', // TODO: Charger le nom de la position
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -482,13 +482,13 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                     Icon(
                       Icons.access_time,
                       size: 16,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       'Créé le ${_formatDate(assignment.createdAt)}',
                       style: const TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                   ],
@@ -501,13 +501,13 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                       Icon(
                         Icons.check,
                         size: 16,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         'Répondu le ${_formatDate(assignment.respondedAt!)}',
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -529,14 +529,14 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                           'Notes :',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           assignment.notes!,
                           style: const TextStyle(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                       ],
@@ -555,7 +555,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                           icon: const Icon(Icons.close, size: 18),
                           label: const Text('Refuser'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: AppTheme.errorColor,
+                            foregroundColor: Theme.of(context).colorScheme.errorColor,
                           ),
                         ),
                       ),
@@ -566,7 +566,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                           icon: const Icon(Icons.check, size: 18),
                           label: const Text('Accepter'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.successColor,
+                            backgroundColor: Theme.of(context).colorScheme.successColor,
                           ),
                         ),
                       ),
@@ -585,7 +585,7 @@ class _MemberServicesPageState extends State<MemberServicesPage>
                       icon: const Icon(Icons.description, size: 18),
                       label: const Text('Voir la feuille de service'),
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppTheme.primaryColor,
+                        foregroundColor: Theme.of(context).colorScheme.primaryColor,
                       ),
                     ),
                   ),
@@ -601,17 +601,17 @@ class _MemberServicesPageState extends State<MemberServicesPage>
   Color _getStatusColor(String status) {
     switch (status) {
       case 'invited':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'accepted':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'declined':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'tentative':
         return Colors.orange;
       case 'confirmed':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       default:
-        return AppTheme.textSecondaryColor;
+        return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 

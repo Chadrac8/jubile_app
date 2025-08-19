@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../services/home_config_service.dart';
 import '../models/home_config_model.dart';
 
@@ -183,7 +183,7 @@ class _TestHomeConfigWidgetState extends State<TestHomeConfigWidget> {
       appBar: AppBar(
         title: const Text('Test Home Config'),
         backgroundColor: Colors.blue,
-        foregroundColor: AppTheme.surfaceColor),
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -197,7 +197,7 @@ class _TestHomeConfigWidgetState extends State<TestHomeConfigWidget> {
                     Icon(
                       _isLoading ? Icons.hourglass_empty : Icons.info,
                       size: 48,
-                      color: _isLoading ? AppTheme.warningColor : Colors.blue),
+                      color: _isLoading ? Theme.of(context).colorScheme.warningColor : Colors.blue),
                     const SizedBox(height: 16),
                     Text(
                       'Statut',
@@ -223,8 +223,8 @@ class _TestHomeConfigWidgetState extends State<TestHomeConfigWidget> {
               icon: const Icon(Icons.image),
               label: const Text('Tester différentes images'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.successColor,
-                foregroundColor: AppTheme.surfaceColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 padding: const EdgeInsets.symmetric(vertical: 16))),
             const SizedBox(height: 12),
             
@@ -233,8 +233,8 @@ class _TestHomeConfigWidgetState extends State<TestHomeConfigWidget> {
               icon: const Icon(Icons.refresh),
               label: const Text('Réinitialiser la config'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.warningColor,
-                foregroundColor: AppTheme.surfaceColor,
+                backgroundColor: Theme.of(context).colorScheme.warningColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 padding: const EdgeInsets.symmetric(vertical: 16))),
             
             if (_isLoading) ...[

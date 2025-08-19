@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -122,9 +122,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor,
-              AppTheme.primaryColor.withOpacity(0.8),
-              AppTheme.secondaryColor,
+              Theme.of(context).colorScheme.primaryColor,
+              Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.secondaryColor,
             ],
           ),
         ),
@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         child: Icon(
                           Icons.church,
                           size: 60,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -214,7 +214,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 icon: const Icon(Icons.flash_on),
                                 label: const Text('Accès rapide (anonyme)'),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppTheme.secondaryColor,
+                                  backgroundColor: Theme.of(context).colorScheme.secondaryColor,
                                   foregroundColor: Colors.white,
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   shape: RoundedRectangleBorder(
@@ -284,7 +284,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                               ElevatedButton(
                                 onPressed: _isLoading ? null : _signInWithEmailPassword,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppTheme.primaryColor,
+                                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                                   foregroundColor: Colors.white,
                                   padding: const EdgeInsets.symmetric(vertical: 16),
                                   shape: RoundedRectangleBorder(

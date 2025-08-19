@@ -3,7 +3,7 @@ import '../models/page_model.dart';
 import '../services/pages_firebase_service.dart';
 import '../widgets/page_components/component_renderer.dart';
 import '../widgets/custom_page_app_bar.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class MemberPagesView extends StatefulWidget {
   final String? pageId; // Pour afficher une page spécifique par ID
@@ -151,12 +151,12 @@ class _MemberPagesViewState extends State<MemberPagesView>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
             ),
             SizedBox(height: 16),
             Text(
               'Chargement des pages...',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
           ],
         ),
@@ -168,18 +168,18 @@ class _MemberPagesViewState extends State<MemberPagesView>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.error_outline, size: 64, color: AppTheme.errorColor),
+            Icon(Icons.error_outline, size: 64, color: Theme.of(context).colorScheme.errorColor),
             SizedBox(height: 16),
             Text(
               'Erreur',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: AppTheme.errorColor,
+                color: Theme.of(context).colorScheme.errorColor,
               ),
             ),
             SizedBox(height: 8),
             Text(
               _errorMessage!,
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 24),
@@ -188,7 +188,7 @@ class _MemberPagesViewState extends State<MemberPagesView>
               icon: Icon(Icons.refresh),
               label: Text('Réessayer'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
               ),
             ),
@@ -202,18 +202,18 @@ class _MemberPagesViewState extends State<MemberPagesView>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.web_asset_off, size: 64, color: AppTheme.textSecondaryColor),
+            Icon(Icons.web_asset_off, size: 64, color: Theme.of(context).colorScheme.textSecondaryColor),
             SizedBox(height: 16),
             Text(
               'Aucune page disponible',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             SizedBox(height: 8),
             Text(
               'Aucune page n\'a été publiée pour le moment.',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
               textAlign: TextAlign.center,
             ),
           ],
@@ -282,8 +282,8 @@ class _MemberPagesViewState extends State<MemberPagesView>
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                   gradient: LinearGradient(
                     colors: [
-                      AppTheme.primaryColor.withOpacity(0.1),
-                      AppTheme.primaryColor.withOpacity(0.05),
+                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
                     ],
                   ),
                 ),
@@ -291,7 +291,7 @@ class _MemberPagesViewState extends State<MemberPagesView>
                   child: Icon(
                     page.iconName != null ? Icons.web : Icons.article,
                     size: 32,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ),
@@ -307,7 +307,7 @@ class _MemberPagesViewState extends State<MemberPagesView>
                     page.title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -319,7 +319,7 @@ class _MemberPagesViewState extends State<MemberPagesView>
                     Text(
                       page.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,

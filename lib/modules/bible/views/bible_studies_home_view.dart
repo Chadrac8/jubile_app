@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_study.dart';
-import '../services/bible_study_service.dart';
+import '../../models/bible_study.dart';
+import '../../services/bible_study_service.dart';
 import 'bible_study_detail_view.dart';
 
 class BibleStudiesHomeView extends StatefulWidget {
@@ -114,7 +114,7 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600),
               tabs: const [
@@ -184,7 +184,7 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: isSelected 
-                              ? AppTheme.surfaceColor 
+                              ? Theme.of(context).colorScheme.surfaceColor 
                               : theme.colorScheme.onSurface),
                         backgroundColor: theme.colorScheme.surface,
                         selectedColor: theme.colorScheme.primary));
@@ -416,14 +416,14 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                               decoration: BoxDecoration(
-                                color: AppTheme.warningColor.withOpacity(0.1),
+                                color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(8)),
                               child: Text(
                                 'POPULAIRE',
                                 style: GoogleFonts.inter(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
-                                  color: AppTheme.warningColor))),
+                                  color: Theme.of(context).colorScheme.warningColor))),
                         ]),
                       const SizedBox(height: 4),
                       Text(
@@ -492,7 +492,7 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
                                     value: progress.progressPercentage / 100,
                                     backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                      showCompleted ? AppTheme.successColor : theme.colorScheme.primary))),
+                                      showCompleted ? Theme.of(context).colorScheme.successColor : theme.colorScheme.primary))),
                                 const SizedBox(width: 12),
                                 Text(
                                   showCompleted 
@@ -502,7 +502,7 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                     color: showCompleted 
-                                        ? AppTheme.successColor 
+                                        ? Theme.of(context).colorScheme.successColor 
                                         : theme.colorScheme.primary)),
                               ]);
                           }),
@@ -516,15 +516,15 @@ class _BibleStudiesHomeViewState extends State<BibleStudiesHomeView>
       case 'Nouveau Testament':
         return Colors.blue;
       case 'Ancien Testament':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'Spiritualité':
         return Colors.purple;
       case 'Théologie':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'Paraboles':
         return Colors.teal;
       default:
-        return AppTheme.textTertiaryColor;
+        return Theme.of(context).colorScheme.textTertiaryColor;
     }
   }
 

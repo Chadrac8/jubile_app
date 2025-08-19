@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import '../models/prayer_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../auth/auth_service.dart';
 import '../services/prayers_firebase_service.dart';
 
@@ -445,7 +445,7 @@ class _PrayerCardState extends State<PrayerCard> with TickerProviderStateMixin {
                             icon: Icon(
                               hasPrayed ? Icons.favorite : Icons.favorite_border,
                               size: 20,
-                              color: hasPrayed ? AppTheme.primaryColor : Colors.grey,
+                              color: hasPrayed ? Theme.of(context).colorScheme.primaryColor : Colors.grey,
                             ),
                             tooltip: hasPrayed ? 'Je ne prie plus' : 'Je prie pour toi',
                             constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
@@ -458,7 +458,7 @@ class _PrayerCardState extends State<PrayerCard> with TickerProviderStateMixin {
                         '${widget.prayer.prayerCount}',
                         style: TextStyle(
                           fontSize: 12,
-                          color: hasPrayed ? AppTheme.primaryColor : Colors.grey,
+                          color: hasPrayed ? Theme.of(context).colorScheme.primaryColor : Colors.grey,
                           fontWeight: hasPrayed ? FontWeight.w600 : FontWeight.normal,
                         ),
                       ),

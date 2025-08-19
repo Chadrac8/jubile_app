@@ -3,7 +3,7 @@ import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../message/models/branham_sermon_model.dart';
 import '../../message/services/admin_branham_sermon_service.dart';
-import '../services/branham_audio_manager.dart';
+import '../../services/branham_audio_manager.dart';
 import 'dart:async';
 
 // Primary color for the app theme
@@ -64,7 +64,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Service audio indisponible. La liste des prédications reste accessible.'),
-            backgroundColor: AppTheme.warningColor,
+            backgroundColor: Theme.of(context).colorScheme.warningColor,
             duration: Duration(seconds: 3)));
       }
     }
@@ -256,7 +256,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
           Text(
             'Prédications Branham',
             style: GoogleFonts.inter(
-              color: AppTheme.surfaceColor,
+              color: Theme.of(context).colorScheme.surfaceColor,
               fontSize: 24,
               fontWeight: FontWeight.bold)),
           const Spacer(),
@@ -268,7 +268,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
               onPressed: _showSermonsBottomSheet,
               icon: const Icon(
                 Icons.playlist_play,
-                color: AppTheme.surfaceColor,
+                color: Theme.of(context).colorScheme.surfaceColor,
                 size: 28),
               tooltip: 'Voir toutes les prédications')),
         ]));
@@ -298,7 +298,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
             child: Icon(
               Icons.audiotrack,
               size: 100,
-              color: AppTheme.surfaceColor.withOpacity(0.9))),
+              color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9))),
           
           const SizedBox(height: 40),
           
@@ -307,7 +307,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
             Text(
               _currentSermon!.title,
               style: GoogleFonts.inter(
-                color: AppTheme.surfaceColor,
+                color: Theme.of(context).colorScheme.surfaceColor,
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
@@ -321,25 +321,25 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
               children: [
                 Icon(
                   Icons.calendar_today,
-                  color: AppTheme.surfaceColor.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                   size: 16),
                 const SizedBox(width: 8),
                 Text(
                   _currentSermon!.date,
                   style: GoogleFonts.inter(
-                    color: AppTheme.surfaceColor.withOpacity(0.7),
+                    color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                     fontSize: 14)),
                 const SizedBox(width: 20),
                 Icon(
                   Icons.location_on,
-                  color: AppTheme.surfaceColor.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                   size: 16),
                 const SizedBox(width: 8),
                 Flexible(
                   child: Text(
                     _currentSermon!.location,
                     style: GoogleFonts.inter(
-                      color: AppTheme.surfaceColor.withOpacity(0.7),
+                      color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                       fontSize: 14),
                     overflow: TextOverflow.ellipsis)),
               ]),
@@ -347,7 +347,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
             Text(
               'Aucune prédication sélectionnée',
               style: GoogleFonts.inter(
-                color: AppTheme.surfaceColor.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                 fontSize: 16)),
             const SizedBox(height: 12),
             ElevatedButton(
@@ -360,12 +360,12 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.info, color: AppTheme.surfaceColor,
+                  Icon(Icons.info, color: Theme.of(context).colorScheme.surfaceColor,
                   const SizedBox(width: 8),
                   Text(
                     'Choisir une prédication',
                     style: GoogleFonts.inter(
-                      color: AppTheme.surfaceColor,
+                      color: Theme.of(context).colorScheme.surfaceColor,
                       fontWeight: FontWeight.w600)),
                 ])),
           ],
@@ -384,7 +384,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
               Text(
                 _formatDuration(_currentPosition),
                 style: GoogleFonts.inter(
-                  color: AppTheme.surfaceColor.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                   fontSize: 12)),
               Expanded(
                 child: Slider(
@@ -399,11 +399,11 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                     }
                   },
                   activeColor: _primaryColor,
-                  inactiveColor: AppTheme.surfaceColor.withOpacity(0.3))),
+                  inactiveColor: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.3))),
               Text(
                 _formatDuration(_totalDuration),
                 style: GoogleFonts.inter(
-                  color: AppTheme.surfaceColor.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                   fontSize: 12)),
             ]),
           
@@ -418,7 +418,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                 onPressed: _previousSermon,
                 icon: const Icon(
                   Icons.skip_previous,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 40)),
               
               // Bouton play/pause principal
@@ -438,7 +438,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                   onPressed: _togglePlayPause,
                   icon: Icon(
                     _isPlaying ? Icons.pause : Icons.play_arrow,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 35))),
               
               // Bouton suivant
@@ -446,7 +446,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                 onPressed: _nextSermon,
                 icon: const Icon(
                   Icons.skip_next,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 40)),
             ]),
         ]));
@@ -483,7 +483,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                     width: 40,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: AppTheme.surfaceColor.withOpacity(0.3),
+                      color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(2))),
                   
                   // Header
@@ -500,7 +500,7 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                           child: Text(
                             'Prédications disponibles',
                             style: GoogleFonts.inter(
-                              color: AppTheme.surfaceColor,
+                              color: Theme.of(context).colorScheme.surfaceColor,
                               fontSize: 24,
                               fontWeight: FontWeight.w700))),
                         GestureDetector(
@@ -508,11 +508,11 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: AppTheme.surfaceColor.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
                               shape: BoxShape.circle),
                             child: Icon(
                               Icons.close_rounded,
-                              color: AppTheme.surfaceColor.withOpacity(0.8),
+                              color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.8),
                               size: 20))),
                       ])),
                   
@@ -521,21 +521,21 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppTheme.surfaceColor.withOpacity(0.1),
+                        color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: AppTheme.surfaceColor.withOpacity(0.2),
+                          color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                           width: 1)),
                       child: TextField(
                         controller: _searchController,
-                        style: GoogleFonts.inter(color: AppTheme.surfaceColor,
+                        style: GoogleFonts.inter(color: Theme.of(context).colorScheme.surfaceColor,
                         decoration: InputDecoration(
                           hintText: 'Rechercher une prédication...',
                           hintStyle: GoogleFonts.inter(
-                            color: AppTheme.surfaceColor.withOpacity(0.5)),
+                            color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.5)),
                           prefixIcon: Icon(
                             Icons.search_rounded,
-                            color: AppTheme.surfaceColor.withOpacity(0.6)),
+                            color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.6)),
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -600,17 +600,17 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                     _primaryColor.withOpacity(0.8),
                   ])
               : null,
-          color: isSelected ? null : AppTheme.surfaceColor.withOpacity(0.1),
+          color: isSelected ? null : Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected 
                 ? _primaryColor 
-                : AppTheme.surfaceColor.withOpacity(0.3),
+                : Theme.of(context).colorScheme.surfaceColor.withOpacity(0.3),
             width: 1)),
         child: Text(
           label,
           style: GoogleFonts.inter(
-            color: isSelected ? AppTheme.surfaceColor : AppTheme.surfaceColor.withOpacity(0.8),
+            color: isSelected ? Theme.of(context).colorScheme.surfaceColor : Theme.of(context).colorScheme.surfaceColor.withOpacity(0.8),
             fontSize: 14,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500))));
   }
@@ -627,14 +627,14 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                 ])
             : LinearGradient(
                 colors: [
-                  AppTheme.surfaceColor.withOpacity(0.1),
-                  AppTheme.surfaceColor.withOpacity(0.05),
+                  Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
+                  Theme.of(context).colorScheme.surfaceColor.withOpacity(0.05),
                 ]),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isCurrentSermon 
               ? _primaryColor.withOpacity(0.5)
-              : AppTheme.surfaceColor.withOpacity(0.1),
+              : Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
           width: 1)),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
@@ -649,20 +649,20 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
                       _primaryColor.withOpacity(0.7),
                     ]
                   : [
-                      AppTheme.surfaceColor.withOpacity(0.2),
-                      AppTheme.surfaceColor.withOpacity(0.1),
+                      Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
+                      Theme.of(context).colorScheme.surfaceColor.withOpacity(0.1),
                     ]),
             shape: BoxShape.circle),
           child: Icon(
             isCurrentSermon && _isPlaying
                 ? Icons.pause_rounded
                 : Icons.play_arrow_rounded,
-            color: AppTheme.surfaceColor,
+            color: Theme.of(context).colorScheme.surfaceColor,
             size: 24)),
         title: Text(
           sermon.title,
           style: GoogleFonts.inter(
-            color: AppTheme.surfaceColor,
+            color: Theme.of(context).colorScheme.surfaceColor,
             fontSize: 16,
             fontWeight: FontWeight.w600),
           maxLines: 2,
@@ -673,25 +673,25 @@ class _BranhamBackgroundPlayerWidgetState extends State<BranhamBackgroundPlayerW
             children: [
               Icon(
                 Icons.calendar_today_rounded,
-                color: AppTheme.surfaceColor.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.6),
                 size: 12),
               const SizedBox(width: 4),
               Text(
                 sermon.date,
                 style: GoogleFonts.inter(
-                  color: AppTheme.surfaceColor.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                   fontSize: 12)),
               const SizedBox(width: 12),
               Icon(
                 Icons.location_on_rounded,
-                color: AppTheme.surfaceColor.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.6),
                 size: 12),
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
                   sermon.location,
                   style: GoogleFonts.inter(
-                    color: AppTheme.surfaceColor.withOpacity(0.7),
+                    color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
                     fontSize: 12),
                   overflow: TextOverflow.ellipsis)),
             ])),

@@ -10,7 +10,7 @@ import '../../services/component_action_service.dart';
 import '../../services/youtube_service.dart';
 import '../../services/soundcloud_service.dart';
 import '../../services/media_player_service.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class ComponentRenderer extends StatelessWidget {
   final PageComponent component;
@@ -106,7 +106,7 @@ class ComponentRenderer extends StatelessWidget {
               style: TextStyle(
                 fontSize: fontSize * 0.9, // Légèrement plus petit en grid
                 fontWeight: fontWeight,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
                 height: 1.3,
               ),
               textAlign: TextAlign.center,
@@ -127,7 +127,7 @@ class ComponentRenderer extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
-          color: AppTheme.textPrimaryColor,
+          color: Theme.of(context).colorScheme.textPrimaryColor,
           height: 1.5,
         ),
         textAlign: textAlign,
@@ -544,7 +544,7 @@ class ComponentRenderer extends StatelessWidget {
                       ? Icons.playlist_play 
                       : Icons.play_arrow,
                     size: 36,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ),
@@ -628,7 +628,7 @@ class ComponentRenderer extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 4),
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withAlpha(230), // 0.9 opacity
+        color: Theme.of(context).colorScheme.primaryColor.withAlpha(230), // 0.9 opacity
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -680,7 +680,7 @@ class ComponentRenderer extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.list, size: 20, color: AppTheme.primaryColor),
+                  Icon(Icons.list, size: 20, color: Theme.of(context).colorScheme.primaryColor),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -688,7 +688,7 @@ class ComponentRenderer extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -723,7 +723,7 @@ class ComponentRenderer extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
+              color: Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 16),
@@ -762,10 +762,10 @@ class ComponentRenderer extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 8),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: AppTheme.primaryColor.withAlpha(25), // 0.1 opacity
+              backgroundColor: Theme.of(context).colorScheme.primaryColor.withAlpha(25), // 0.1 opacity
               child: Icon(
                 Icons.circle,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 size: 16,
               ),
             ),
@@ -786,7 +786,7 @@ class ComponentRenderer extends StatelessWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -809,7 +809,7 @@ class ComponentRenderer extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     if (description.isNotEmpty) ...[
@@ -817,7 +817,7 @@ class ComponentRenderer extends StatelessWidget {
                       Text(
                         description,
                         style: TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                           fontSize: 14,
                         ),
                       ),
@@ -839,7 +839,7 @@ class ComponentRenderer extends StatelessWidget {
               children: [
                 Icon(
                   Icons.link,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 20,
                 ),
                 const SizedBox(width: 12),
@@ -850,7 +850,7 @@ class ComponentRenderer extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           fontWeight: FontWeight.w500,
                           decoration: TextDecoration.underline,
                         ),
@@ -860,7 +860,7 @@ class ComponentRenderer extends StatelessWidget {
                         Text(
                           description,
                           style: TextStyle(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                             fontSize: 12,
                           ),
                         ),
@@ -871,7 +871,7 @@ class ComponentRenderer extends StatelessWidget {
                 if (action.isNotEmpty)
                   Icon(
                     Icons.open_in_new,
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                     size: 16,
                   ),
               ],
@@ -890,7 +890,7 @@ class ComponentRenderer extends StatelessWidget {
                 width: 6,
                 height: 6,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -902,7 +902,7 @@ class ComponentRenderer extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     if (description.isNotEmpty) ...[
@@ -910,7 +910,7 @@ class ComponentRenderer extends StatelessWidget {
                       Text(
                         description,
                         style: TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                           fontSize: 14,
                         ),
                       ),
@@ -970,13 +970,13 @@ class ComponentRenderer extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppTheme.primaryColor.withAlpha(13), // 0.05 opacity
-                AppTheme.secondaryColor.withAlpha(13), // 0.05 opacity
+                Theme.of(context).colorScheme.primaryColor.withAlpha(13), // 0.05 opacity
+                Theme.of(context).colorScheme.secondaryColor.withAlpha(13), // 0.05 opacity
               ],
             ),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: AppTheme.primaryColor.withAlpha(51), // 0.2 opacity
+              color: Theme.of(context).colorScheme.primaryColor.withAlpha(51), // 0.2 opacity
             ),
           ),
           child: Column(
@@ -986,7 +986,7 @@ class ComponentRenderer extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.menu_book,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
@@ -995,7 +995,7 @@ class ComponentRenderer extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                 ],
@@ -1007,7 +1007,7 @@ class ComponentRenderer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontStyle: FontStyle.italic,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                     height: 1.3,
                   ),
                   maxLines: 4,
@@ -1022,7 +1022,7 @@ class ComponentRenderer extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                 ),
@@ -1055,13 +1055,13 @@ class ComponentRenderer extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.primaryColor.withAlpha(13), // 0.05 opacity
-            AppTheme.secondaryColor.withAlpha(13), // 0.05 opacity
+            Theme.of(context).colorScheme.primaryColor.withAlpha(13), // 0.05 opacity
+            Theme.of(context).colorScheme.secondaryColor.withAlpha(13), // 0.05 opacity
           ],
         ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.primaryColor.withAlpha(51), // 0.2 opacity
+          color: Theme.of(context).colorScheme.primaryColor.withAlpha(51), // 0.2 opacity
         ),
       ),
       child: Column(
@@ -1073,12 +1073,12 @@ class ComponentRenderer extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Icon(
                   Icons.format_quote,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 20,
                 ),
               ),
@@ -1088,7 +1088,7 @@ class ComponentRenderer extends StatelessWidget {
                   verse,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontStyle: FontStyle.italic,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                     height: 1.6,
                   ),
                 ),
@@ -1104,7 +1104,7 @@ class ComponentRenderer extends StatelessWidget {
                   '— $reference',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
                 if (version != 'LSG') ...[
@@ -1112,7 +1112,7 @@ class ComponentRenderer extends StatelessWidget {
                   Text(
                     '($version)',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -1638,10 +1638,10 @@ class ComponentRenderer extends StatelessWidget {
   Widget _buildDirectFileAudioComponent(String url, String title, String artist, String duration, String description) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withOpacity(0.05),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.primaryColor.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
         ),
       ),
       child: Column(
@@ -1657,11 +1657,11 @@ class ComponentRenderer extends StatelessWidget {
                     width: 56,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.primaryColor.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -1686,7 +1686,7 @@ class ComponentRenderer extends StatelessWidget {
                           title,
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                             fontSize: 16,
                           ),
                           maxLines: 1,
@@ -1707,7 +1707,7 @@ class ComponentRenderer extends StatelessWidget {
                         Text(
                           artist,
                           style: TextStyle(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                             fontSize: 14,
                           ),
                           maxLines: 1,
@@ -1722,13 +1722,13 @@ class ComponentRenderer extends StatelessWidget {
                             Icon(
                               Icons.access_time,
                               size: 14,
-                              color: AppTheme.textTertiaryColor,
+                              color: Theme.of(context).colorScheme.textTertiaryColor,
                             ),
                             const SizedBox(width: 4),
                             Text(
                               duration,
                               style: TextStyle(
-                                color: AppTheme.textTertiaryColor,
+                                color: Theme.of(context).colorScheme.textTertiaryColor,
                                 fontSize: 12,
                               ),
                             ),
@@ -1746,7 +1746,7 @@ class ComponentRenderer extends StatelessWidget {
                       onPressed: () => _launchUrl(url),
                       icon: Icon(
                         Icons.open_in_new,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         size: 20,
                       ),
                       tooltip: 'Ouvrir le fichier',
@@ -1778,7 +1778,7 @@ class ComponentRenderer extends StatelessWidget {
               widthFactor: 0.0, // Pas de progression par défaut
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -1793,7 +1793,7 @@ class ComponentRenderer extends StatelessWidget {
               child: Text(
                 description,
                 style: TextStyle(
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                   fontSize: 13,
                 ),
               ),
@@ -2014,7 +2014,7 @@ class ComponentRenderer extends StatelessWidget {
                   child: Icon(
                     Icons.open_in_new,
                     size: 16,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ),
@@ -2080,13 +2080,13 @@ class ComponentRenderer extends StatelessWidget {
           if (title.isNotEmpty) ...[
             Row(
               children: [
-                Icon(Icons.code, color: AppTheme.primaryColor, size: 20),
+                Icon(Icons.code, color: Theme.of(context).colorScheme.primaryColor, size: 20),
                 const SizedBox(width: 8),
                 Text(
                   title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -2106,7 +2106,7 @@ class ComponentRenderer extends StatelessWidget {
                 Text(
                   'Contenu HTML intégré',
                   style: TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
@@ -2115,7 +2115,7 @@ class ComponentRenderer extends StatelessWidget {
                 Text(
                   'Le contenu HTML sera rendu ici dans l\'application finale.',
                   style: TextStyle(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                     fontSize: 12,
                   ),
                 ),
@@ -2201,7 +2201,7 @@ class ComponentRenderer extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.format_quote,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
@@ -2210,7 +2210,7 @@ class ComponentRenderer extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                 ],
@@ -2310,12 +2310,12 @@ class ComponentRenderer extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withAlpha(25), // 0.1 opacity
+                  color: Theme.of(context).colorScheme.primaryColor.withAlpha(25), // 0.1 opacity
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Icon(
                   Icons.format_quote,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 24,
                 ),
               ),
@@ -2347,7 +2347,7 @@ class ComponentRenderer extends StatelessWidget {
                           '— $author',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.primaryColor,
+                            color: Theme.of(context).colorScheme.primaryColor,
                             fontSize: 14,
                           ),
                         ),
@@ -3725,24 +3725,24 @@ class ComponentRenderer extends StatelessWidget {
     switch (style) {
       case 'secondary':
         return ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.secondaryColor,
+          backgroundColor: Theme.of(context).colorScheme.secondaryColor,
           foregroundColor: Colors.white,
           minimumSize: buttonSize,
         );
       case 'outline':
         return OutlinedButton.styleFrom(
-          foregroundColor: AppTheme.primaryColor,
-          side: BorderSide(color: AppTheme.primaryColor),
+          foregroundColor: Theme.of(context).colorScheme.primaryColor,
+          side: BorderSide(color: Theme.of(context).colorScheme.primaryColor),
           minimumSize: buttonSize,
         );
       case 'text':
         return TextButton.styleFrom(
-          foregroundColor: AppTheme.primaryColor,
+          foregroundColor: Theme.of(context).colorScheme.primaryColor,
           minimumSize: buttonSize,
         );
       default:
          return ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           minimumSize: buttonSize,
         );
@@ -3752,12 +3752,12 @@ class ComponentRenderer extends StatelessWidget {
   Color _getButtonColor(String style) {
     switch (style) {
       case 'secondary':
-        return AppTheme.secondaryColor;
+        return Theme.of(context).colorScheme.secondaryColor;
       case 'outline':
       case 'text':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 

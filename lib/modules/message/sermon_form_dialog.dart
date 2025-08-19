@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../theme.dart';
-import '../models/admin_branham_sermon_model.dart';
-import '../services/admin_branham_sermon_service.dart';
+import '../../models/admin_branham_sermon_model.dart';
+import '../../services/admin_branham_sermon_service.dart';
 import '../../../auth/auth_service.dart';
 
 /// Dialogue pour ajouter/modifier une prédication
@@ -86,12 +86,12 @@ class _SermonFormDialogState extends State<SermonFormDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('URL audio invalide'),
-          backgroundColor: AppTheme.warningColor));
+          backgroundColor: Theme.of(context).colorScheme.warningColor));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('URL audio valide'),
-          backgroundColor: AppTheme.successColor));
+          backgroundColor: Theme.of(context).colorScheme.successColor));
     }
   }
 
@@ -162,7 +162,7 @@ class _SermonFormDialogState extends State<SermonFormDialog> {
             content: Text(widget.sermon == null 
                 ? 'Prédication ajoutée avec succès' 
                 : 'Prédication modifiée avec succès'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       } else {
         throw Exception('Échec de la sauvegarde');
       }
@@ -170,7 +170,7 @@ class _SermonFormDialogState extends State<SermonFormDialog> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur: $e'),
-          backgroundColor: AppTheme.errorColor));
+          backgroundColor: Theme.of(context).colorScheme.errorColor));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -407,12 +407,12 @@ class _SermonFormDialogState extends State<SermonFormDialog> {
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppTheme.primaryColor)),
+              color: Theme.of(context).colorScheme.primaryColor)),
           const SizedBox(width: 8),
           Expanded(
             child: Container(
               height: 1,
-              color: AppTheme.primaryColor.withOpacity(0.3))),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3))),
         ]));
   }
 

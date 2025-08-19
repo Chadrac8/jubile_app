@@ -4,7 +4,7 @@ import '../services/firebase_service.dart';
 import '../pages/workflow_form_page.dart';
 import '../pages/workflow_detail_page.dart';
 import '../pages/workflow_edit_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class WorkflowTracker extends StatefulWidget {
   final PersonModel person;

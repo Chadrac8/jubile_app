@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/dynamic_list_model.dart';
 import '../services/dynamic_lists_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/custom_card.dart';
 import 'dynamic_list_builder_page.dart';
 
@@ -238,7 +238,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: _buildAppBar(),
       body: _isLoading ? _buildLoadingView() : _buildDataView(),
       floatingActionButton: _buildFloatingActionButton(),
@@ -393,7 +393,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
         children: [
           Icon(
             _getIconForSourceModule(_list.sourceModule),
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
           ),
           const SizedBox(width: 8),
           Text(
@@ -401,7 +401,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppTheme.primaryColor,
+              color: Theme.of(context).colorScheme.primaryColor,
             ),
           ),
           const Spacer(),
@@ -444,7 +444,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
             icon: const Icon(Icons.refresh),
             label: const Text('Actualiser'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
             ),
           ),
@@ -460,11 +460,11 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
       margin: const EdgeInsets.only(bottom: 12),
       child: ExpansionTile(
         leading: CircleAvatar(
-          backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+          backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
           child: Text(
             '${index + 1}',
             style: TextStyle(
-              color: AppTheme.primaryColor,
+              color: Theme.of(context).colorScheme.primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -528,7 +528,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
               icon: Icon(
                 _getActionIcon(field.fieldType),
                 size: 16,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
               onPressed: () => _handleFieldAction(field, value),
             ),
@@ -540,7 +540,7 @@ class _DynamicListDetailPageState extends State<DynamicListDetailPage> {
   Widget _buildFloatingActionButton() {
     return FloatingActionButton(
       onPressed: _editList,
-      backgroundColor: AppTheme.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primaryColor,
       foregroundColor: Colors.white,
       child: const Icon(Icons.edit),
       tooltip: 'Modifier la liste',

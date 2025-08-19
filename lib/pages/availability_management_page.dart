@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/appointment_model.dart';
 import '../services/appointments_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AvailabilityManagementPage extends StatefulWidget {
   final String? responsableId;
@@ -119,7 +119,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.errorColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer'),
           ),
         ],
@@ -140,7 +140,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.errorColor,
+        backgroundColor: Theme.of(context).colorScheme.errorColor,
       ),
     );
   }
@@ -149,7 +149,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       ),
     );
   }
@@ -194,7 +194,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
           Text(
             'Définissez vos créneaux disponibles pour les rendez-vous',
             style: TextStyle(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
           const SizedBox(height: 16),
@@ -206,7 +206,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                   icon: const Icon(Icons.repeat),
                   label: const Text('Récurrence hebdo'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -218,7 +218,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                   icon: const Icon(Icons.today),
                   label: const Text('Date spécifique'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.secondaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.secondaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -246,14 +246,14 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Erreur lors du chargement',
                   style: TextStyle(
                     fontSize: 18,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -271,7 +271,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                 Icon(
                   Icons.schedule,
                   size: 80,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
                 const SizedBox(height: 24),
                 const Text(
@@ -279,7 +279,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -287,7 +287,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                   'Ajoutez vos créneaux disponibles pour recevoir des demandes de rendez-vous',
                   style: TextStyle(
                     fontSize: 16,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -323,7 +323,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
               children: [
                 Icon(
                   disponibilite.isRecurrenceHebdo ? Icons.repeat : Icons.today,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -337,7 +337,7 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                 ),
                 IconButton(
                   onPressed: () => _deleteDisponibilite(disponibilite.id),
-                  icon: Icon(Icons.delete, color: AppTheme.errorColor),
+                  icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                 ),
               ],
             ),
@@ -348,8 +348,8 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                 children: disponibilite.jours.map((jour) {
                   return Chip(
                     label: Text(_formatJour(jour)),
-                    backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
-                    labelStyle: TextStyle(color: AppTheme.primaryColor),
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                    labelStyle: TextStyle(color: Theme.of(context).colorScheme.primaryColor),
                   );
                 }).toList(),
               ),
@@ -357,13 +357,13 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppTheme.secondaryColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   _formatDate(disponibilite.dateSpecifique!),
                   style: TextStyle(
-                    color: AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -386,20 +386,20 @@ class _AvailabilityManagementPageState extends State<AvailabilityManagementPage>
                     Icon(
                       Icons.access_time,
                       size: 16,
-                      color: AppTheme.textTertiaryColor,
+                      color: Theme.of(context).colorScheme.textTertiaryColor,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       '${creneau.debut} - ${creneau.fin}',
                       style: TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                     const SizedBox(width: 8),
                     Text(
                       '(${creneau.dureeRendezVous} min/RDV)',
                       style: TextStyle(
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                         fontSize: 12,
                       ),
                     ),

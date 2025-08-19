@@ -5,7 +5,7 @@ import '../services/forms_firebase_service.dart';
 import '../widgets/form_responses_list.dart';
 import '../widgets/form_statistics_view.dart';
 import 'form_builder_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormDetailPage extends StatefulWidget {
   final FormModel form;
@@ -62,7 +62,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors du rechargement: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     } finally {
@@ -86,7 +86,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Formulaire mis à jour avec succès'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     }
@@ -109,7 +109,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Formulaire publié avec succès'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -117,7 +117,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la publication: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     } finally {
@@ -139,7 +139,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Formulaire dupliqué avec succès'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -147,7 +147,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la duplication: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     } finally {
@@ -164,17 +164,17 @@ class _FormDetailPageState extends State<FormDetailPage>
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Lien copié dans le presse-papiers'),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       ),
     );
   }
 
   Color get _statusColor {
     switch (_currentForm?.status) {
-      case 'brouillon': return AppTheme.warningColor;
-      case 'publie': return AppTheme.successColor;
-      case 'archive': return AppTheme.textTertiaryColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'brouillon': return Theme.of(context).colorScheme.warningColor;
+      case 'publie': return Theme.of(context).colorScheme.successColor;
+      case 'archive': return Theme.of(context).colorScheme.textTertiaryColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -184,7 +184,7 @@ class _FormDetailPageState extends State<FormDetailPage>
       return Scaffold(
         appBar: AppBar(
           title: const Text('Formulaire'),
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
         ),
         body: const Center(
@@ -194,14 +194,14 @@ class _FormDetailPageState extends State<FormDetailPage>
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
               expandedHeight: 200,
               pinned: true,
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
               actions: [
                 IconButton(
@@ -271,8 +271,8 @@ class _FormDetailPageState extends State<FormDetailPage>
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        AppTheme.primaryColor,
-                        AppTheme.primaryColor.withOpacity(0.8),
+                        Theme.of(context).colorScheme.primaryColor,
+                        Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
                       ],
                     ),
                   ),
@@ -344,9 +344,9 @@ class _FormDetailPageState extends State<FormDetailPage>
               delegate: _SliverAppBarDelegate(
                 TabBar(
                   controller: _tabController,
-                  indicatorColor: AppTheme.primaryColor,
-                  labelColor: AppTheme.primaryColor,
-                  unselectedLabelColor: AppTheme.textSecondaryColor,
+                  indicatorColor: Theme.of(context).colorScheme.primaryColor,
+                  labelColor: Theme.of(context).colorScheme.primaryColor,
+                  unselectedLabelColor: Theme.of(context).colorScheme.textSecondaryColor,
                   tabs: const [
                     Tab(text: 'Aperçu'),
                     Tab(text: 'Réponses'),
@@ -373,7 +373,7 @@ class _FormDetailPageState extends State<FormDetailPage>
         scale: _fabAnimation,
         child: FloatingActionButton.extended(
           onPressed: _currentForm!.isPublished ? _copyFormUrl : _publishForm,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           icon: Icon(_currentForm!.isPublished ? Icons.link : Icons.publish),
           label: Text(_currentForm!.isPublished ? 'Copier le lien' : 'Publier'),
@@ -580,12 +580,12 @@ class _FormDetailPageState extends State<FormDetailPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     icon,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -619,7 +619,7 @@ class _FormDetailPageState extends State<FormDetailPage>
           Icon(
             icon,
             size: 18,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -627,7 +627,7 @@ class _FormDetailPageState extends State<FormDetailPage>
             child: Text(
               label,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -649,10 +649,10 @@ class _FormDetailPageState extends State<FormDetailPage>
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.backgroundColor,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: AppTheme.textTertiaryColor.withOpacity(0.3),
+          color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
         ),
       ),
       child: Row(
@@ -660,7 +660,7 @@ class _FormDetailPageState extends State<FormDetailPage>
           Icon(
             _getFieldIcon(field.type),
             size: 18,
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -677,7 +677,7 @@ class _FormDetailPageState extends State<FormDetailPage>
                   Text(
                     field.helpText!,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
               ],
@@ -687,13 +687,13 @@ class _FormDetailPageState extends State<FormDetailPage>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
-                color: AppTheme.errorColor.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.errorColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
                 'Obligatoire',
                 style: TextStyle(
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                 ),

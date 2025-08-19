@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import '../models/branham_sermon_model.dart';
+import '../../models/branham_sermon_model.dart';
 
 /// Service pour récupérer les prédications depuis branham.org
 class BranhamSermonService {

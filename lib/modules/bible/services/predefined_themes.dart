@@ -62,7 +62,7 @@ class PredefinedThemes {
       {
         'name': 'Espoir',
         'description': 'Messages d\'espérance et de confiance en Dieu',
-        'color': AppTheme.successColor.value,
+        'color': Theme.of(context).colorScheme.successColor.value,
         'iconCodePoint': Icons.brightness_high.codePoint,
         'iconFontFamily': Icons.brightness_high.fontFamily,
         'passages': [
@@ -166,7 +166,7 @@ class PredefinedThemes {
       {
         'name': 'Sagesse',
         'description': 'Enseignements sur la sagesse divine et la connaissance',
-        'color': AppTheme.warningColor.value,
+        'color': Theme.of(context).colorScheme.warningColor.value,
         'iconCodePoint': Icons.lightbulb.codePoint,
         'iconFontFamily': Icons.lightbulb.fontFamily,
         'passages': [

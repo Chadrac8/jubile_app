@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 import '../models/form_model.dart';
 import '../services/forms_firebase_service.dart';
 import '../widgets/form_field_editor.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormBuilderPage extends StatefulWidget {
   final FormModel? form;
@@ -202,7 +202,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la sauvegarde: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     } finally {
@@ -296,10 +296,10 @@ class _FormBuilderPageState extends State<FormBuilderPage>
         return true;
       },
       child: Scaffold(
-        backgroundColor: AppTheme.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.backgroundColor,
         appBar: AppBar(
           title: Text(widget.form != null ? 'Modifier le formulaire' : 'Nouveau formulaire'),
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           elevation: 0,
           actions: [
@@ -312,7 +312,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                 margin: const EdgeInsets.only(right: 16),
                 child: const Icon(
                   Icons.circle,
-                  color: AppTheme.warningColor,
+                  color: Theme.of(context).colorScheme.warningColor,
                   size: 8,
                 ),
               ),
@@ -330,7 +330,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: _isLoading ? null : _saveForm,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           icon: _isLoading 
               ? const SizedBox(
@@ -542,7 +542,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                 Text(
                   '${_fields.length} champ${_fields.length > 1 ? 's' : ''}',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -553,10 +553,10 @@ class _FormBuilderPageState extends State<FormBuilderPage>
               Container(
                 padding: const EdgeInsets.all(32),
                 decoration: BoxDecoration(
-                  color: AppTheme.backgroundColor,
+                  color: Theme.of(context).colorScheme.backgroundColor,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: AppTheme.textTertiaryColor.withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
                     style: BorderStyle.solid,
                   ),
                 ),
@@ -565,20 +565,20 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                     Icon(
                       Icons.quiz_outlined,
                       size: 48,
-                      color: AppTheme.textTertiaryColor,
+                      color: Theme.of(context).colorScheme.textTertiaryColor,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'Aucun champ ajouté',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Glissez-déposez des champs depuis le panneau de droite',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -609,7 +609,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
       child: ListTile(
         leading: Icon(
           _getFieldIcon(field.type),
-          color: AppTheme.primaryColor,
+          color: Theme.of(context).colorScheme.primaryColor,
         ),
         title: Text(field.label.isNotEmpty ? field.label : field.typeLabel),
         subtitle: Text('${field.typeLabel}${field.isRequired ? ' • Obligatoire' : ''}'),
@@ -621,7 +621,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
               onPressed: () => _editField(field),
             ),
             IconButton(
-              icon: const Icon(Icons.delete, color: AppTheme.errorColor),
+              icon: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               onPressed: () => _deleteField(field),
             ),
             const Icon(Icons.drag_handle),
@@ -647,7 +647,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
         Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
           ),
           child: Row(
             children: [
@@ -676,7 +676,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                       entry.key,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                   ),
@@ -711,7 +711,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                 Icon(
                   fieldType['icon'] as IconData,
                   size: 20,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -723,7 +723,7 @@ class _FormBuilderPageState extends State<FormBuilderPage>
                 const Icon(
                   Icons.add,
                   size: 16,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ],
             ),

@@ -6,7 +6,7 @@ import '../widgets/event_form_builder.dart';
 import '../widgets/event_registrations_list.dart';
 import '../widgets/event_statistics_view.dart';
 import 'event_form_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class EventDetailPage extends StatefulWidget {
@@ -67,7 +67,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -92,7 +92,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Événement mis à jour avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -112,7 +112,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Événement publié avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -121,7 +121,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -141,7 +141,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Événement dupliqué avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -150,7 +150,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -159,11 +159,11 @@ class _EventDetailPageState extends State<EventDetailPage>
 
   Color get _statusColor {
     switch (_currentEvent!.status) {
-      case 'publie': return AppTheme.successColor;
-      case 'brouillon': return AppTheme.warningColor;
-      case 'archive': return AppTheme.textTertiaryColor;
-      case 'annule': return AppTheme.errorColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'publie': return Theme.of(context).colorScheme.successColor;
+      case 'brouillon': return Theme.of(context).colorScheme.warningColor;
+      case 'archive': return Theme.of(context).colorScheme.textTertiaryColor;
+      case 'annule': return Theme.of(context).colorScheme.errorColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -194,7 +194,7 @@ class _EventDetailPageState extends State<EventDetailPage>
 
   Widget _buildLoadingImage() {
     return Container(
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).colorScheme.backgroundColor,
       child: const Center(
         child: CircularProgressIndicator(),
       ),
@@ -209,7 +209,7 @@ class _EventDetailPageState extends State<EventDetailPage>
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => Container(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.backgroundColor,
         child: const Center(child: CircularProgressIndicator()),
       ),
       errorWidget: (context, url, error) => Container(
@@ -218,8 +218,8 @@ class _EventDetailPageState extends State<EventDetailPage>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor.withOpacity(0.8),
-              AppTheme.secondaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.secondaryColor.withOpacity(0.8),
             ],
           ),
         ),
@@ -243,7 +243,7 @@ class _EventDetailPageState extends State<EventDetailPage>
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
@@ -251,7 +251,7 @@ class _EventDetailPageState extends State<EventDetailPage>
               expandedHeight: 250,
               floating: false,
               pinned: true,
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
@@ -297,9 +297,9 @@ class _EventDetailPageState extends State<EventDetailPage>
               delegate: _SliverAppBarDelegate(
                 TabBar(
                   controller: _tabController,
-                  labelColor: AppTheme.primaryColor,
-                  unselectedLabelColor: AppTheme.textSecondaryColor,
-                  indicatorColor: AppTheme.primaryColor,
+                  labelColor: Theme.of(context).colorScheme.primaryColor,
+                  unselectedLabelColor: Theme.of(context).colorScheme.textSecondaryColor,
+                  indicatorColor: Theme.of(context).colorScheme.primaryColor,
                   tabs: const [
                     Tab(text: 'Infos'),
                     Tab(text: 'Formulaire'),
@@ -326,7 +326,7 @@ class _EventDetailPageState extends State<EventDetailPage>
         scale: _fabAnimation,
         child: FloatingActionButton(
           onPressed: _editEvent,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           child: const Icon(Icons.edit),
         ),
@@ -414,7 +414,7 @@ class _EventDetailPageState extends State<EventDetailPage>
                             Icon(
                               Icons.description,
                               size: 20,
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                             const SizedBox(width: 8),
                             Text(
@@ -538,12 +538,12 @@ class _EventDetailPageState extends State<EventDetailPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     icon,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -577,14 +577,14 @@ class _EventDetailPageState extends State<EventDetailPage>
           Icon(
             icon,
             size: 16,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               label,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ),
@@ -609,7 +609,7 @@ class _EventDetailPageState extends State<EventDetailPage>
           children: [
             if (_currentEvent!.isDraft) ...[
               ListTile(
-                leading: const Icon(Icons.publish, color: AppTheme.successColor),
+                leading: const Icon(Icons.publish, color: Theme.of(context).colorScheme.successColor),
                 title: const Text('Publier'),
                 onTap: () {
                   Navigator.pop(context);
@@ -618,7 +618,7 @@ class _EventDetailPageState extends State<EventDetailPage>
               ),
             ],
             ListTile(
-              leading: const Icon(Icons.edit, color: AppTheme.primaryColor),
+              leading: const Icon(Icons.edit, color: Theme.of(context).colorScheme.primaryColor),
               title: const Text('Modifier'),
               onTap: () {
                 Navigator.pop(context);
@@ -626,7 +626,7 @@ class _EventDetailPageState extends State<EventDetailPage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.copy, color: AppTheme.secondaryColor),
+              leading: const Icon(Icons.copy, color: Theme.of(context).colorScheme.secondaryColor),
               title: const Text('Dupliquer'),
               onTap: () {
                 Navigator.pop(context);
@@ -635,7 +635,7 @@ class _EventDetailPageState extends State<EventDetailPage>
             ),
             if (!_currentEvent!.isArchived) ...[
               ListTile(
-                leading: const Icon(Icons.archive, color: AppTheme.warningColor),
+                leading: const Icon(Icons.archive, color: Theme.of(context).colorScheme.warningColor),
                 title: const Text('Archiver'),
                 onTap: () {
                   Navigator.pop(context);
@@ -644,7 +644,7 @@ class _EventDetailPageState extends State<EventDetailPage>
               ),
             ],
             ListTile(
-              leading: const Icon(Icons.delete, color: AppTheme.errorColor),
+              leading: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               title: const Text('Supprimer'),
               onTap: () {
                 Navigator.pop(context);
@@ -667,7 +667,7 @@ class _EventDetailPageState extends State<EventDetailPage>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Événement archivé'),
-                backgroundColor: AppTheme.successColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
               ),
             );
           }
@@ -676,7 +676,7 @@ class _EventDetailPageState extends State<EventDetailPage>
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Erreur: $e'),
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
             );
           }

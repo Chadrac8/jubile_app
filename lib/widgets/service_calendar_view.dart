@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/service_model.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 class ServiceCalendarView extends StatefulWidget {
   final List<ServiceModel> services;

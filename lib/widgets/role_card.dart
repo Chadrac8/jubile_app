@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/person_model.dart';
 import '../models/role_model.dart';
 import '../services/roles_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class RoleCard extends StatefulWidget {
   final RoleModel role;
@@ -106,7 +106,7 @@ class _RoleCardState extends State<RoleCard>
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: widget.isSelected
-              ? Border.all(color: AppTheme.primaryColor, width: 2)
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : null,
           boxShadow: [
             BoxShadow(
@@ -169,7 +169,7 @@ class _RoleCardState extends State<RoleCard>
                       Checkbox(
                         value: widget.isSelected,
                         onChanged: (value) => widget.onSelectionChanged(value ?? false),
-                        activeColor: AppTheme.primaryColor,
+                        activeColor: Theme.of(context).colorScheme.primaryColor,
                       ),
                   ],
                 ),
@@ -187,7 +187,7 @@ class _RoleCardState extends State<RoleCard>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       decoration: BoxDecoration(
-        color: widget.role.isActive ? AppTheme.successColor : AppTheme.warningColor,
+        color: widget.role.isActive ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.warningColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(

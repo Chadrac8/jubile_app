@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/person_model.dart';
 import '../services/firebase_service.dart';
 import '../services/workflow_initialization_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class WorkflowFormPage extends StatefulWidget {
@@ -280,7 +280,7 @@ class _WorkflowFormPageState extends State<WorkflowFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

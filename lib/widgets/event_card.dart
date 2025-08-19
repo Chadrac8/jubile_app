@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/event_model.dart';
 import '../services/events_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class EventCard extends StatefulWidget {
@@ -68,11 +68,11 @@ class _EventCardState extends State<EventCard>
 
   Color get _statusColor {
     switch (widget.event.status) {
-      case 'publie': return AppTheme.successColor;
-      case 'brouillon': return AppTheme.warningColor;
-      case 'archive': return AppTheme.textTertiaryColor;
-      case 'annule': return AppTheme.errorColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'publie': return Theme.of(context).colorScheme.successColor;
+      case 'brouillon': return Theme.of(context).colorScheme.warningColor;
+      case 'archive': return Theme.of(context).colorScheme.textTertiaryColor;
+      case 'annule': return Theme.of(context).colorScheme.errorColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -103,7 +103,7 @@ class _EventCardState extends State<EventCard>
 
   Widget _buildLoadingImage() {
     return Container(
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).colorScheme.backgroundColor,
       child: const Center(
         child: SizedBox(
           width: 20,
@@ -122,7 +122,7 @@ class _EventCardState extends State<EventCard>
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => Container(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.backgroundColor,
         child: const Center(child: CircularProgressIndicator()),
       ),
       errorWidget: (context, url, error) => Container(
@@ -131,8 +131,8 @@ class _EventCardState extends State<EventCard>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor.withOpacity(0.8),
-              AppTheme.secondaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.secondaryColor.withOpacity(0.8),
             ],
           ),
         ),
@@ -190,7 +190,7 @@ class _EventCardState extends State<EventCard>
             ),
           ],
           border: widget.isSelected
-              ? Border.all(color: AppTheme.primaryColor, width: 2)
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : null,
         ),
         child: Column(
@@ -247,10 +247,10 @@ class _EventCardState extends State<EventCard>
                       width: 28,
                       height: 28,
                       decoration: BoxDecoration(
-                        color: widget.isSelected ? AppTheme.primaryColor : Colors.white,
+                        color: widget.isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.white,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: widget.isSelected ? AppTheme.primaryColor : AppTheme.textTertiaryColor,
+                          color: widget.isSelected ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textTertiaryColor,
                           width: 2,
                         ),
                       ),
@@ -277,7 +277,7 @@ class _EventCardState extends State<EventCard>
                       ),
                       child: Icon(
                         Icons.how_to_reg,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         size: 16,
                       ),
                     ),
@@ -300,7 +300,7 @@ class _EventCardState extends State<EventCard>
                             widget.event.title,
                             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppTheme.textPrimaryColor,
+                              color: Theme.of(context).colorScheme.textPrimaryColor,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -309,13 +309,13 @@ class _EventCardState extends State<EventCard>
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             widget.event.typeLabel,
                             style: TextStyle(
-                              color: AppTheme.primaryColor,
+                              color: Theme.of(context).colorScheme.primaryColor,
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),
@@ -332,14 +332,14 @@ class _EventCardState extends State<EventCard>
                         Icon(
                           Icons.schedule,
                           size: 16,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             _formatDateTime(widget.event.startDate),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                           ),
                         ),
@@ -354,14 +354,14 @@ class _EventCardState extends State<EventCard>
                         Icon(
                           Icons.location_on,
                           size: 16,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             widget.event.location,
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -387,13 +387,13 @@ class _EventCardState extends State<EventCard>
                                   Icon(
                                     Icons.people,
                                     size: 16,
-                                    color: AppTheme.secondaryColor,
+                                    color: Theme.of(context).colorScheme.secondaryColor,
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
                                     '$count inscrit${count > 1 ? 's' : ''}',
                                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: AppTheme.secondaryColor,
+                                      color: Theme.of(context).colorScheme.secondaryColor,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -416,7 +416,7 @@ class _EventCardState extends State<EventCard>
                                 minHeight: 32,
                               ),
                               padding: EdgeInsets.zero,
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                             IconButton(
                               onPressed: () => _handleAction('more'),
@@ -427,7 +427,7 @@ class _EventCardState extends State<EventCard>
                                 minHeight: 32,
                               ),
                               padding: EdgeInsets.zero,
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                           ],
                         ),
@@ -463,7 +463,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Événement publié'),
-                backgroundColor: AppTheme.successColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
               ),
             );
           }
@@ -472,7 +472,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Erreur: $e'),
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
             );
           }
@@ -491,7 +491,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Événement dupliqué'),
-                backgroundColor: AppTheme.successColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
               ),
             );
           }
@@ -500,7 +500,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Erreur: $e'),
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
             );
           }
@@ -514,7 +514,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Événement archivé'),
-                backgroundColor: AppTheme.successColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
               ),
             );
           }
@@ -523,7 +523,7 @@ class _EventCardState extends State<EventCard>
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Erreur: $e'),
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
             );
           }
@@ -542,7 +542,7 @@ class _EventCardState extends State<EventCard>
           children: [
             if (widget.event.isDraft) ...[
               ListTile(
-                leading: const Icon(Icons.publish, color: AppTheme.successColor),
+                leading: const Icon(Icons.publish, color: Theme.of(context).colorScheme.successColor),
                 title: const Text('Publier'),
                 onTap: () {
                   Navigator.pop(context);
@@ -551,7 +551,7 @@ class _EventCardState extends State<EventCard>
               ),
             ],
             ListTile(
-              leading: const Icon(Icons.copy, color: AppTheme.primaryColor),
+              leading: const Icon(Icons.copy, color: Theme.of(context).colorScheme.primaryColor),
               title: const Text('Dupliquer'),
               onTap: () {
                 Navigator.pop(context);
@@ -560,7 +560,7 @@ class _EventCardState extends State<EventCard>
             ),
             if (!widget.event.isArchived) ...[
               ListTile(
-                leading: const Icon(Icons.archive, color: AppTheme.warningColor),
+                leading: const Icon(Icons.archive, color: Theme.of(context).colorScheme.warningColor),
                 title: const Text('Archiver'),
                 onTap: () {
                   Navigator.pop(context);
@@ -569,7 +569,7 @@ class _EventCardState extends State<EventCard>
               ),
             ],
             ListTile(
-              leading: const Icon(Icons.delete, color: AppTheme.errorColor),
+              leading: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               title: const Text('Supprimer'),
               onTap: () {
                 Navigator.pop(context);

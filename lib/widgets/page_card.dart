@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/page_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PageCard extends StatefulWidget {
   final CustomPageModel page;
@@ -129,7 +129,7 @@ class _PageCardState extends State<PageCard>
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: widget.isSelected
-              ? Border.all(color: AppTheme.primaryColor, width: 2)
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : null,
           boxShadow: [
             BoxShadow(
@@ -174,8 +174,8 @@ class _PageCardState extends State<PageCard>
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
                   gradient: LinearGradient(
                     colors: [
-                      AppTheme.primaryColor.withOpacity(0.1),
-                      AppTheme.primaryColor.withOpacity(0.05),
+                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
                     ],
                   ),
                 ),
@@ -200,7 +200,7 @@ class _PageCardState extends State<PageCard>
                               widget.page.title,
                               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: AppTheme.textPrimaryColor,
+                                color: Theme.of(context).colorScheme.textPrimaryColor,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -210,7 +210,7 @@ class _PageCardState extends State<PageCard>
                               Text(
                                 widget.page.description,
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: AppTheme.textSecondaryColor,
+                                  color: Theme.of(context).colorScheme.textSecondaryColor,
                                 ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -223,7 +223,7 @@ class _PageCardState extends State<PageCard>
                         Checkbox(
                           value: widget.isSelected,
                           onChanged: (value) => widget.onSelectionChanged(value ?? false),
-                          activeColor: AppTheme.primaryColor,
+                          activeColor: Theme.of(context).colorScheme.primaryColor,
                         )
                       else
                         PopupMenuButton<String>(
@@ -348,7 +348,7 @@ class _PageCardState extends State<PageCard>
                       _buildInfoChip(
                         icon: _visibilityIcon,
                         label: widget.page.visibilityLabel,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                       const Spacer(),
                       if (widget.page.publishDate != null)
@@ -383,7 +383,7 @@ class _PageCardState extends State<PageCard>
               ),
               child: Icon(
                 Icons.web, // Vous pouvez mapper iconName vers une vraie icône
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 size: 20,
               ),
             ),
@@ -400,7 +400,7 @@ class _PageCardState extends State<PageCard>
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/person_model.dart';
 import '../services/firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'workflow_edit_page.dart';
 
 class WorkflowDetailPage extends StatefulWidget {

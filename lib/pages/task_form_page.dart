@@ -5,7 +5,7 @@ import '../models/person_model.dart';
 import '../services/tasks_firebase_service.dart';
 import '../services/firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../image_upload.dart';
 
 class TaskFormPage extends StatefulWidget {
@@ -212,7 +212,7 @@ class _TaskFormPageState extends State<TaskFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du téléchargement: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -241,7 +241,7 @@ class _TaskFormPageState extends State<TaskFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement des personnes: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -268,7 +268,7 @@ class _TaskFormPageState extends State<TaskFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement des listes: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -325,7 +325,7 @@ class _TaskFormPageState extends State<TaskFormPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Tâche créée avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
           Navigator.pop(context, true);
@@ -356,7 +356,7 @@ class _TaskFormPageState extends State<TaskFormPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Tâche mise à jour avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
           Navigator.pop(context, true);
@@ -367,7 +367,7 @@ class _TaskFormPageState extends State<TaskFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sauvegarde: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -549,13 +549,13 @@ class _TaskFormPageState extends State<TaskFormPage>
           children: [
             Row(
               children: [
-                Icon(icon, color: AppTheme.primaryColor),
+                Icon(icon, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],

@@ -28,7 +28,7 @@ class _DebugPepitesPageState extends State<DebugPepitesPage> {
       appBar: AppBar(
         title: const Text('Debug Pépites d\'Or'),
         backgroundColor: const Color(0xFF8B4513),
-        foregroundColor: AppTheme.surfaceColor),
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -74,7 +74,7 @@ class _DebugPepitesPageState extends State<DebugPepitesPage> {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppTheme.textTertiaryColor),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor),
                   borderRadius: BorderRadius.circular(8)),
                 child: ListView.builder(
                   itemCount: _logs.length,

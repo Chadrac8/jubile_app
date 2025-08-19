@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskCard extends StatefulWidget {
   final TaskModel task;
@@ -72,26 +72,26 @@ class _TaskCardState extends State<TaskCard>
   Color get _priorityColor {
     switch (widget.task.priority) {
       case 'high':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'medium':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'low':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       default:
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
     }
   }
 
   Color get _statusColor {
     switch (widget.task.status) {
       case 'completed':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'in_progress':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'cancelled':
         return Colors.grey;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 
@@ -138,7 +138,7 @@ class _TaskCardState extends State<TaskCard>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side: widget.isSelected
-              ? BorderSide(color: AppTheme.primaryColor, width: 2)
+              ? BorderSide(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : BorderSide.none,
         ),
         child: Column(
@@ -170,7 +170,7 @@ class _TaskCardState extends State<TaskCard>
                                 ? Icons.check_circle
                                 : Icons.radio_button_unchecked,
                             color: widget.isSelected
-                                ? AppTheme.primaryColor
+                                ? Theme.of(context).colorScheme.primaryColor
                                 : Colors.grey,
                           ),
                         ),
@@ -266,7 +266,7 @@ class _TaskCardState extends State<TaskCard>
           value: 'todo',
           child: Row(
             children: [
-              Icon(Icons.radio_button_unchecked, color: AppTheme.primaryColor),
+              Icon(Icons.radio_button_unchecked, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 8),
               const Text('À faire'),
             ],
@@ -276,7 +276,7 @@ class _TaskCardState extends State<TaskCard>
           value: 'in_progress',
           child: Row(
             children: [
-              Icon(Icons.play_circle, color: AppTheme.warningColor),
+              Icon(Icons.play_circle, color: Theme.of(context).colorScheme.warningColor),
               const SizedBox(width: 8),
               const Text('En cours'),
             ],
@@ -286,7 +286,7 @@ class _TaskCardState extends State<TaskCard>
           value: 'completed',
           child: Row(
             children: [
-              Icon(Icons.check_circle, color: AppTheme.successColor),
+              Icon(Icons.check_circle, color: Theme.of(context).colorScheme.successColor),
               const SizedBox(width: 8),
               const Text('Terminé'),
             ],
@@ -351,10 +351,10 @@ class _TaskCardState extends State<TaskCard>
     IconData badgeIcon = Icons.schedule;
     
     if (isOverdue) {
-      badgeColor = AppTheme.errorColor;
+      badgeColor = Theme.of(context).colorScheme.errorColor;
       badgeIcon = Icons.warning;
     } else if (isDueSoon) {
-      badgeColor = AppTheme.warningColor;
+      badgeColor = Theme.of(context).colorScheme.warningColor;
       badgeIcon = Icons.schedule;
     }
     
@@ -386,18 +386,18 @@ class _TaskCardState extends State<TaskCard>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: AppTheme.secondaryColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.person, size: 14, color: AppTheme.secondaryColor),
+          Icon(Icons.person, size: 14, color: Theme.of(context).colorScheme.secondaryColor),
           const SizedBox(width: 4),
           Text(
             '${widget.task.assigneeIds.length}',
             style: TextStyle(
-              color: AppTheme.secondaryColor,
+              color: Theme.of(context).colorScheme.secondaryColor,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -411,18 +411,18 @@ class _TaskCardState extends State<TaskCard>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: AppTheme.tertiaryColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.tertiaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.attach_file, size: 14, color: AppTheme.tertiaryColor),
+          Icon(Icons.attach_file, size: 14, color: Theme.of(context).colorScheme.tertiaryColor),
           const SizedBox(width: 4),
           Text(
             '${widget.task.attachmentUrls.length}',
             style: TextStyle(
-              color: AppTheme.tertiaryColor,
+              color: Theme.of(context).colorScheme.tertiaryColor,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -458,7 +458,7 @@ class _TaskCardState extends State<TaskCard>
   Widget _buildWarningBanner() {
     final isOverdue = widget.task.isOverdue;
     final message = isOverdue ? 'En retard' : 'Échéance proche';
-    final color = isOverdue ? AppTheme.errorColor : AppTheme.warningColor;
+    final color = isOverdue ? Theme.of(context).colorScheme.errorColor : Theme.of(context).colorScheme.warningColor;
     final icon = isOverdue ? Icons.warning : Icons.schedule;
     
     return Container(

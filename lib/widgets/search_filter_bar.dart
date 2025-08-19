@@ -3,7 +3,7 @@ import '../models/person_model.dart';
 import '../models/role_model.dart';
 import '../services/firebase_service.dart';
 import '../services/roles_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class SearchFilterBar extends StatefulWidget {
   final TextEditingController searchController;

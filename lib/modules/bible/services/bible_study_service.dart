@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/bible_study.dart';
+import '../../models/bible_study.dart';
 
 class BibleStudyService {
   static const String _progressKey = 'bible_studies_progress';

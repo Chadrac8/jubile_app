@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/form_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormCard extends StatefulWidget {
   final FormModel form;
@@ -67,10 +67,10 @@ class _FormCardState extends State<FormCard>
 
   Color get _statusColor {
     switch (widget.form.status) {
-      case 'brouillon': return AppTheme.warningColor;
-      case 'publie': return AppTheme.successColor;
-      case 'archive': return AppTheme.textTertiaryColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'brouillon': return Theme.of(context).colorScheme.warningColor;
+      case 'publie': return Theme.of(context).colorScheme.successColor;
+      case 'archive': return Theme.of(context).colorScheme.textTertiaryColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -127,7 +127,7 @@ class _FormCardState extends State<FormCard>
             ),
           ],
           border: widget.isSelected
-              ? Border.all(color: AppTheme.primaryColor, width: 2)
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : null,
         ),
         child: Column(
@@ -149,7 +149,7 @@ class _FormCardState extends State<FormCard>
                     Checkbox(
                       value: widget.isSelected,
                       onChanged: (value) => widget.onSelectionChanged(value ?? false),
-                      activeColor: AppTheme.primaryColor,
+                      activeColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                     const SizedBox(width: 8),
                   ],
@@ -192,7 +192,7 @@ class _FormCardState extends State<FormCard>
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
@@ -201,13 +201,13 @@ class _FormCardState extends State<FormCard>
                               Icon(
                                 _accessibilityIcon,
                                 size: 14,
-                                color: AppTheme.primaryColor,
+                                color: Theme.of(context).colorScheme.primaryColor,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 widget.form.accessibilityLabel,
                                 style: TextStyle(
-                                  color: AppTheme.primaryColor,
+                                  color: Theme.of(context).colorScheme.primaryColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -260,15 +260,15 @@ class _FormCardState extends State<FormCard>
                         const PopupMenuItem(
                           value: 'delete',
                           child: ListTile(
-                            leading: Icon(Icons.delete, color: AppTheme.errorColor),
-                            title: Text('Supprimer', style: TextStyle(color: AppTheme.errorColor)),
+                            leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
+                            title: Text('Supprimer', style: TextStyle(color: Theme.of(context).colorScheme.errorColor)),
                             contentPadding: EdgeInsets.zero,
                           ),
                         ),
                       ],
                       child: const Icon(
                         Icons.more_vert,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                 ],
@@ -286,7 +286,7 @@ class _FormCardState extends State<FormCard>
                     widget.form.title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -297,7 +297,7 @@ class _FormCardState extends State<FormCard>
                     Text(
                       widget.form.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -312,20 +312,20 @@ class _FormCardState extends State<FormCard>
                       _buildInfoChip(
                         icon: Icons.quiz,
                         label: '${widget.form.fields.where((f) => f.isInputField).length} champs',
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                       const SizedBox(width: 8),
                       if (widget.form.hasSubmissionLimit)
                         _buildInfoChip(
                           icon: Icons.people,
                           label: 'Max ${widget.form.submissionLimit}',
-                          color: AppTheme.warningColor,
+                          color: Theme.of(context).colorScheme.warningColor,
                         ),
                       const Spacer(),
                       Text(
                         _formatDate(widget.form.updatedAt),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                       ),
                     ],
@@ -341,13 +341,13 @@ class _FormCardState extends State<FormCard>
                           _buildDateChip(
                             icon: Icons.schedule,
                             label: 'Publié le ${_formatDate(widget.form.publishDate!)}',
-                            color: AppTheme.successColor,
+                            color: Theme.of(context).colorScheme.successColor,
                           ),
                         if (widget.form.closeDate != null)
                           _buildDateChip(
                             icon: Icons.event_busy,
                             label: 'Ferme le ${_formatDate(widget.form.closeDate!)}',
-                            color: AppTheme.errorColor,
+                            color: Theme.of(context).colorScheme.errorColor,
                           ),
                       ],
                     ),

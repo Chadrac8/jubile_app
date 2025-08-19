@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_study.dart';
-import '../services/bible_study_service.dart';
+import '../../models/bible_study.dart';
+import '../../services/bible_study_service.dart';
 import '../views/bible_study_detail_view.dart';
 import '../views/bible_studies_list_view.dart';
 
@@ -301,7 +301,7 @@ class _BibleStudyHomeWidgetState extends State<BibleStudyHomeWidget> {
                             style: GoogleFonts.inter(
                               fontSize: 10,
                               fontWeight: FontWeight.w600,
-                              color: AppTheme.surfaceColor))),
+                              color: Theme.of(context).colorScheme.surfaceColor))),
                       ]),
                     const SizedBox(height: 12),
                     Text(
@@ -395,14 +395,14 @@ class _BibleStudyHomeWidgetState extends State<BibleStudyHomeWidget> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
-                          color: AppTheme.warningColor.withOpacity(0.1),
+                          color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(8)),
                         child: Text(
                           'POPULAIRE',
                           style: GoogleFonts.inter(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.warningColor))),
+                            color: Theme.of(context).colorScheme.warningColor))),
                   ]),
                 const SizedBox(height: 12),
                 Text(
@@ -446,13 +446,13 @@ class _BibleStudyHomeWidgetState extends State<BibleStudyHomeWidget> {
       case 'Nouveau Testament':
         return Colors.blue;
       case 'Ancien Testament':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'Spiritualité':
         return Colors.purple;
       case 'Théologie':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       default:
-        return AppTheme.textTertiaryColor;
+        return Theme.of(context).colorScheme.textTertiaryColor;
     }
   }
 

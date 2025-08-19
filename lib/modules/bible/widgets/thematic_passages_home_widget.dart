@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/thematic_passage_model.dart';
-import '../services/thematic_passage_service.dart';
+import '../../models/thematic_passage_model.dart';
+import '../../services/thematic_passage_service.dart';
 import '../views/thematic_passages_view.dart';
 
 class ThematicPassagesHomeWidget extends StatelessWidget {
@@ -113,7 +113,7 @@ class ThematicPassagesHomeWidget extends StatelessWidget {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Problème de connexion à Firebase'),
-                                  backgroundColor: AppTheme.warningColor));
+                                  backgroundColor: Theme.of(context).colorScheme.warningColor));
                               return;
                             }
                             
@@ -121,12 +121,12 @@ class ThematicPassagesHomeWidget extends StatelessWidget {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Thèmes initialisés avec succès'),
-                                backgroundColor: AppTheme.successColor));
+                                backgroundColor: Theme.of(context).colorScheme.successColor));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text('Erreur: $e'),
-                                backgroundColor: AppTheme.errorColor));
+                                backgroundColor: Theme.of(context).colorScheme.errorColor));
                           }
                         },
                         icon: const Icon(Icons.refresh),
@@ -302,7 +302,7 @@ class _LoadingShimmer extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 12),
             height: 60,
             decoration: BoxDecoration(
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
               borderRadius: BorderRadius.circular(12))))));
   }
 }

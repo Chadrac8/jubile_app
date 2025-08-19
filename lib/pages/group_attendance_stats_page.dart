@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../models/group_model.dart';
 import '../services/groups_firebase_service.dart';
 import '../widgets/group_member_attendance_stats.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class GroupAttendanceStatsPage extends StatefulWidget {
   final GroupModel group;
@@ -214,7 +214,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
                   'Réunions',
                   stats.totalMeetings.toString(),
                   Icons.event,
-                  AppTheme.secondaryColor,
+                  Theme.of(context).colorScheme.secondaryColor,
                 ),
               ),
             ],
@@ -227,7 +227,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
                   'Taux moyen',
                   '${(stats.averageAttendance * 100).round()}%',
                   Icons.how_to_reg,
-                  AppTheme.successColor,
+                  Theme.of(context).colorScheme.successColor,
                 ),
               ),
               const SizedBox(width: 16),
@@ -236,7 +236,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
                   'Total membres',
                   stats.totalMembers.toString(),
                   Icons.people,
-                  AppTheme.tertiaryColor,
+                  Theme.of(context).colorScheme.tertiaryColor,
                 ),
               ),
             ],
@@ -327,7 +327,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
           Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
         ],
@@ -381,10 +381,10 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
                   sections: attendanceRanges.entries.map((entry) {
                     final index = attendanceRanges.keys.toList().indexOf(entry.key);
                     final colors = [
-                      AppTheme.successColor,
-                      AppTheme.warningColor,
-                      AppTheme.tertiaryColor,
-                      AppTheme.errorColor,
+                      Theme.of(context).colorScheme.successColor,
+                      Theme.of(context).colorScheme.warningColor,
+                      Theme.of(context).colorScheme.tertiaryColor,
+                      Theme.of(context).colorScheme.errorColor,
                     ];
                     
                     return PieChartSectionData(
@@ -411,10 +411,10 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
               children: attendanceRanges.entries.map((entry) {
                 final index = attendanceRanges.keys.toList().indexOf(entry.key);
                 final colors = [
-                  AppTheme.successColor,
-                  AppTheme.warningColor,
-                  AppTheme.tertiaryColor,
-                  AppTheme.errorColor,
+                  Theme.of(context).colorScheme.successColor,
+                  Theme.of(context).colorScheme.warningColor,
+                  Theme.of(context).colorScheme.tertiaryColor,
+                  Theme.of(context).colorScheme.errorColor,
                 ];
                 
                 return Row(
@@ -552,7 +552,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
     if (excellentCount > 0) {
       insights.add({
         'icon': Icons.star,
-        'color': AppTheme.successColor,
+        'color': Theme.of(context).colorScheme.successColor,
         'title': 'Excellente assiduité',
         'description': '$excellentCount membre${excellentCount > 1 ? 's ont' : ' a'} une assiduité excellente (≥90%)',
       });
@@ -561,7 +561,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
     if (absenceCount > 0) {
       insights.add({
         'icon': Icons.warning,
-        'color': AppTheme.errorColor,
+        'color': Theme.of(context).colorScheme.errorColor,
         'title': 'Attention requise',
         'description': '$absenceCount membre${absenceCount > 1 ? 's ont' : ' a'} 3+ absences consécutives',
       });
@@ -570,7 +570,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
     if (poorCount > 0) {
       insights.add({
         'icon': Icons.trending_down,
-        'color': AppTheme.warningColor,
+        'color': Theme.of(context).colorScheme.warningColor,
         'title': 'Assiduité faible',
         'description': '$poorCount membre${poorCount > 1 ? 's ont' : ' a'} une assiduité faible (<50%)',
       });
@@ -579,7 +579,7 @@ class _GroupAttendanceStatsPageState extends State<GroupAttendanceStatsPage>
     if (stats.averageAttendance >= 0.8) {
       insights.add({
         'icon': Icons.thumb_up,
-        'color': AppTheme.successColor,
+        'color': Theme.of(context).colorScheme.successColor,
         'title': 'Groupe dynamique',
         'description': 'Le taux de présence moyen est excellent (${(stats.averageAttendance * 100).round()}%)',
       });

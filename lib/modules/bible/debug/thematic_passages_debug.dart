@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../services/thematic_passage_service.dart';
+import '../../services/thematic_passage_service.dart';
 
 /// Widget de débogage pour les passages thématiques
 class ThematicPassagesDebugWidget extends StatefulWidget {
@@ -107,9 +107,9 @@ class _ThematicPassagesDebugWidgetState extends State<ThematicPassagesDebugWidge
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppTheme.textTertiaryColor)),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
                 child: SingleChildScrollView(
                   child: Text(
                     _debugInfo,

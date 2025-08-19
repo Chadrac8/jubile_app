@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/event_model.dart';
 import '../services/events_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class EventStatisticsView extends StatefulWidget {
   final EventModel event;
@@ -57,7 +57,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -78,20 +78,20 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
             Icon(
               Icons.analytics_outlined,
               size: 64,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 16),
             Text(
               'Pas de statistiques',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               'Les inscriptions ne sont pas activées pour cet événement',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -170,12 +170,12 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.analytics,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -198,7 +198,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     'Total',
                     '${_statistics!.totalRegistrations}',
                     Icons.people,
-                    AppTheme.primaryColor,
+                    Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -207,7 +207,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     'Confirmés',
                     '${_statistics!.confirmedRegistrations}',
                     Icons.check_circle,
-                    AppTheme.successColor,
+                    Theme.of(context).colorScheme.successColor,
                   ),
                 ),
               ],
@@ -222,7 +222,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     'En attente',
                     '${_statistics!.waitingRegistrations}',
                     Icons.access_time,
-                    AppTheme.warningColor,
+                    Theme.of(context).colorScheme.warningColor,
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -231,7 +231,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     'Présents',
                     '${_statistics!.presentCount}',
                     Icons.person_pin_circle,
-                    AppTheme.secondaryColor,
+                    Theme.of(context).colorScheme.secondaryColor,
                   ),
                 ),
               ],
@@ -268,7 +268,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
           Text(
             label,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -313,12 +313,12 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.secondaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.trending_up,
-                    color: AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondaryColor,
                     size: 20,
                   ),
                 ),
@@ -342,7 +342,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     drawVerticalLine: false,
                     getDrawingHorizontalLine: (value) {
                       return FlLine(
-                        color: AppTheme.backgroundColor,
+                        color: Theme.of(context).colorScheme.backgroundColor,
                         strokeWidth: 1,
                       );
                     },
@@ -358,7 +358,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                           return Text(
                             value.toInt().toString(),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                           );
                         },
@@ -375,7 +375,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                             return Text(
                               '${date.day}/${date.month}',
                               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppTheme.textSecondaryColor,
+                                color: Theme.of(context).colorScheme.textSecondaryColor,
                               ),
                             );
                           }
@@ -389,7 +389,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                     LineChartBarData(
                       spots: spots,
                       isCurved: true,
-                      color: AppTheme.secondaryColor,
+                      color: Theme.of(context).colorScheme.secondaryColor,
                       barWidth: 3,
                       isStrokeCapRound: true,
                       dotData: FlDotData(
@@ -397,7 +397,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                         getDotPainter: (spot, percent, barData, index) {
                           return FlDotCirclePainter(
                             radius: 4,
-                            color: AppTheme.secondaryColor,
+                            color: Theme.of(context).colorScheme.secondaryColor,
                             strokeWidth: 2,
                             strokeColor: Colors.white,
                           );
@@ -405,7 +405,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                       ),
                       belowBarData: BarAreaData(
                         show: true,
-                        color: AppTheme.secondaryColor.withOpacity(0.1),
+                        color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                       ),
                     ),
                   ],
@@ -424,7 +424,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
 
     final sections = <PieChartSectionData>[
       PieChartSectionData(
-        color: AppTheme.successColor,
+        color: Theme.of(context).colorScheme.successColor,
         value: _statistics!.confirmedRegistrations.toDouble(),
         title: '${(_statistics!.confirmedRegistrations / total * 100).round()}%',
         radius: 60,
@@ -436,7 +436,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
       ),
       if (_statistics!.waitingRegistrations > 0)
         PieChartSectionData(
-          color: AppTheme.warningColor,
+          color: Theme.of(context).colorScheme.warningColor,
           value: _statistics!.waitingRegistrations.toDouble(),
           title: '${(_statistics!.waitingRegistrations / total * 100).round()}%',
           radius: 60,
@@ -448,7 +448,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
         ),
       if (_statistics!.cancelledRegistrations > 0)
         PieChartSectionData(
-          color: AppTheme.errorColor,
+          color: Theme.of(context).colorScheme.errorColor,
           value: _statistics!.cancelledRegistrations.toDouble(),
           title: '${(_statistics!.cancelledRegistrations / total * 100).round()}%',
           radius: 60,
@@ -483,12 +483,12 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.tertiaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.tertiaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.pie_chart,
-                    color: AppTheme.tertiaryColor,
+                    color: Theme.of(context).colorScheme.tertiaryColor,
                     size: 20,
                   ),
                 ),
@@ -526,11 +526,11 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLegendItem('Confirmés', AppTheme.successColor, _statistics!.confirmedRegistrations),
+                      _buildLegendItem('Confirmés', Theme.of(context).colorScheme.successColor, _statistics!.confirmedRegistrations),
                       if (_statistics!.waitingRegistrations > 0)
-                        _buildLegendItem('En attente', AppTheme.warningColor, _statistics!.waitingRegistrations),
+                        _buildLegendItem('En attente', Theme.of(context).colorScheme.warningColor, _statistics!.waitingRegistrations),
                       if (_statistics!.cancelledRegistrations > 0)
-                        _buildLegendItem('Annulés', AppTheme.errorColor, _statistics!.cancelledRegistrations),
+                        _buildLegendItem('Annulés', Theme.of(context).colorScheme.errorColor, _statistics!.cancelledRegistrations),
                     ],
                   ),
                 ),
@@ -597,12 +597,12 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.warningColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.speed,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                     size: 20,
                   ),
                 ),
@@ -622,7 +622,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
               _buildProgressIndicator(
                 'Taux de remplissage',
                 _statistics!.fillRate,
-                AppTheme.primaryColor,
+                Theme.of(context).colorScheme.primaryColor,
                 '${_statistics!.confirmedRegistrations} / ${widget.event.maxParticipants}',
               ),
               const SizedBox(height: 16),
@@ -632,7 +632,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
             _buildProgressIndicator(
               'Taux de présence',
               _statistics!.attendanceRate,
-              AppTheme.successColor,
+              Theme.of(context).colorScheme.successColor,
               '${_statistics!.presentCount} / ${_statistics!.confirmedRegistrations}',
             ),
           ],
@@ -667,7 +667,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
         Text(
           subtitle,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
         ),
         const SizedBox(height: 8),
@@ -705,12 +705,12 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.quiz,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -728,7 +728,7 @@ class _EventStatisticsViewState extends State<EventStatisticsView>
             Text(
               'Fonctionnalité en cours de développement',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
                 fontStyle: FontStyle.italic,
               ),
             ),

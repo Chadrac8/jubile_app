@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/service_model.dart';
 import '../services/services_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class ServiceSheetEditor extends StatefulWidget {
   final ServiceModel service;

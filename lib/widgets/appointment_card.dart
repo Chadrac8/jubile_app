@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import '../models/appointment_model.dart';
 import '../models/person_model.dart';
 import '../services/firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AppointmentCard extends StatefulWidget {
   final AppointmentModel appointment;
@@ -86,17 +86,17 @@ class _AppointmentCardState extends State<AppointmentCard>
   Color get _statusColor {
     switch (widget.appointment.statut) {
       case 'en_attente':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'confirme':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'refuse':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'termine':
         return Colors.grey;
       case 'annule':
         return Colors.grey;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 
@@ -226,7 +226,7 @@ class _AppointmentCardState extends State<AppointmentCard>
                   style: TextStyle(
                     fontSize: widget.isCompact ? 14 : 16,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               const SizedBox(height: 2),
@@ -235,14 +235,14 @@ class _AppointmentCardState extends State<AppointmentCard>
                   Icon(
                     Icons.access_time,
                     size: widget.isCompact ? 12 : 14,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     _formatDateTime(widget.appointment.dateTime),
                     style: TextStyle(
                       fontSize: widget.isCompact ? 12 : 14,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -297,7 +297,7 @@ class _AppointmentCardState extends State<AppointmentCard>
         Icon(
           icon,
           size: 16,
-          color: AppTheme.textSecondaryColor,
+          color: Theme.of(context).colorScheme.textSecondaryColor,
         ),
         const SizedBox(width: 8),
         Text(
@@ -305,7 +305,7 @@ class _AppointmentCardState extends State<AppointmentCard>
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
         ),
         Expanded(
@@ -313,7 +313,7 @@ class _AppointmentCardState extends State<AppointmentCard>
             value,
             style: const TextStyle(
               fontSize: 14,
-              color: AppTheme.textPrimaryColor,
+              color: Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
         ),
@@ -335,7 +335,7 @@ class _AppointmentCardState extends State<AppointmentCard>
           Icon(
             Icons.note,
             size: 16,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -343,7 +343,7 @@ class _AppointmentCardState extends State<AppointmentCard>
               widget.appointment.notes!,
               style: const TextStyle(
                 fontSize: 14,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -363,8 +363,8 @@ class _AppointmentCardState extends State<AppointmentCard>
               icon: const Icon(Icons.cancel_outlined, size: 16),
               label: const Text('Annuler'),
               style: OutlinedButton.styleFrom(
-                foregroundColor: AppTheme.errorColor,
-                side: BorderSide(color: AppTheme.errorColor),
+                foregroundColor: Theme.of(context).colorScheme.errorColor,
+                side: BorderSide(color: Theme.of(context).colorScheme.errorColor),
               ),
             ),
           ),
@@ -375,7 +375,7 @@ class _AppointmentCardState extends State<AppointmentCard>
             icon: const Icon(Icons.visibility, size: 16),
             label: const Text('Détails'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
             ),
           ),

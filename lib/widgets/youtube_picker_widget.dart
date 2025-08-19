@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../services/youtube_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class YouTubePickerWidget extends StatefulWidget {
   final String initialUrl;
@@ -140,7 +140,7 @@ class _YouTubePickerWidgetState extends State<YouTubePickerWidget> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
@@ -150,14 +150,14 @@ class _YouTubePickerWidgetState extends State<YouTubePickerWidget> {
               children: [
                 Icon(
                   _getContentTypeIcon(),
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 20,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   _urlInfo!.displayType,
                   style: TextStyle(
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -167,7 +167,7 @@ class _YouTubePickerWidgetState extends State<YouTubePickerWidget> {
                   icon: const Icon(Icons.info_outline, size: 16),
                   label: const Text('Détails'),
                   style: TextButton.styleFrom(
-                    foregroundColor: AppTheme.primaryColor,
+                    foregroundColor: Theme.of(context).colorScheme.primaryColor,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                   ),
                 ),
@@ -348,7 +348,7 @@ class _YouTubePickerWidgetState extends State<YouTubePickerWidget> {
       builder: (context) => AlertDialog(
         title: Row(
           children: [
-            Icon(_getContentTypeIcon(), color: AppTheme.primaryColor),
+            Icon(_getContentTypeIcon(), color: Theme.of(context).colorScheme.primaryColor),
             const SizedBox(width: 8),
             Text('Détails ${_urlInfo!.displayType}'),
           ],

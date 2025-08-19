@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import '../services/tasks_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskCalendarView extends StatefulWidget {
   final String? searchQuery;
@@ -67,18 +67,18 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
   }
 
   Color _getTaskColor(TaskModel task) {
-    if (task.isOverdue) return AppTheme.errorColor;
-    if (task.isDueSoon) return AppTheme.warningColor;
+    if (task.isOverdue) return Theme.of(context).colorScheme.errorColor;
+    if (task.isDueSoon) return Theme.of(context).colorScheme.warningColor;
     
     switch (task.priority) {
       case 'high':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'medium':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'low':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 
@@ -101,7 +101,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error, size: 64, color: AppTheme.errorColor),
+                Icon(Icons.error, size: 64, color: Theme.of(context).colorScheme.errorColor),
                 const SizedBox(height: 16),
                 Text('Erreur: ${snapshot.error}'),
               ],
@@ -117,7 +117,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.backgroundColor,
+                color: Theme.of(context).colorScheme.backgroundColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -158,7 +158,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
             // Weekday headers
             Container(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              color: AppTheme.backgroundColor,
+              color: Theme.of(context).colorScheme.backgroundColor,
               child: Row(
                 children: ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((day) {
                   return Expanded(
@@ -167,7 +167,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
                         day,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w600,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ),
@@ -235,13 +235,13 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
         margin: const EdgeInsets.all(1),
         decoration: BoxDecoration(
           color: isToday 
-              ? AppTheme.primaryColor.withOpacity(0.1)
+              ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1)
               : isCurrentMonth 
                   ? Colors.white 
-                  : AppTheme.backgroundColor,
+                  : Theme.of(context).colorScheme.backgroundColor,
           border: Border.all(
             color: isToday 
-                ? AppTheme.primaryColor 
+                ? Theme.of(context).colorScheme.primaryColor 
                 : Colors.grey[200]!,
             width: isToday ? 2 : 1,
           ),
@@ -258,8 +258,8 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
                   fontSize: 14,
                   fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
                   color: isCurrentMonth 
-                      ? (isToday ? AppTheme.primaryColor : AppTheme.textPrimaryColor)
-                      : AppTheme.textTertiaryColor,
+                      ? (isToday ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textPrimaryColor)
+                      : Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ),
             ),
@@ -357,7 +357,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
               // Header
               Row(
                 children: [
-                  Icon(Icons.calendar_today, color: AppTheme.primaryColor),
+                  Icon(Icons.calendar_today, color: Theme.of(context).colorScheme.primaryColor),
                   const SizedBox(width: 8),
                   Text(
                     _formatDate(date),
@@ -369,13 +369,13 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
                       '${tasks.length} tâche${tasks.length > 1 ? 's' : ''}',
                       style: TextStyle(
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -458,7 +458,7 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
         trailing: task.isOverdue || task.isDueSoon
             ? Icon(
                 task.isOverdue ? Icons.warning : Icons.schedule,
-                color: task.isOverdue ? AppTheme.errorColor : AppTheme.warningColor,
+                color: task.isOverdue ? Theme.of(context).colorScheme.errorColor : Theme.of(context).colorScheme.warningColor,
                 size: 20,
               )
             : null,
@@ -491,13 +491,13 @@ class _TaskCalendarViewState extends State<TaskCalendarView> {
   Color _getStatusColor(TaskModel task) {
     switch (task.status) {
       case 'completed':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'in_progress':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'cancelled':
         return Colors.grey;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 

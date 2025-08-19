@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../models/form_model.dart';
 import '../services/forms_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormPublicPage extends StatefulWidget {
   final String formId;
@@ -218,10 +218,10 @@ class _FormPublicPageState extends State<FormPublicPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: Text(_form?.title ?? 'Formulaire'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -233,7 +233,7 @@ class _FormPublicPageState extends State<FormPublicPage>
     if (_isLoading) {
       return const Center(
         child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+          valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
         ),
       );
     }
@@ -246,13 +246,13 @@ class _FormPublicPageState extends State<FormPublicPage>
             Icon(
               Icons.error_outline,
               size: 64,
-              color: AppTheme.errorColor,
+              color: Theme.of(context).colorScheme.errorColor,
             ),
             const SizedBox(height: 16),
             Text(
               'Erreur',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppTheme.errorColor,
+                color: Theme.of(context).colorScheme.errorColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -260,7 +260,7 @@ class _FormPublicPageState extends State<FormPublicPage>
             Text(
               _errorMessage!,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -284,20 +284,20 @@ class _FormPublicPageState extends State<FormPublicPage>
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: AppTheme.successColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.successColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   Icons.check_circle,
                   size: 64,
-                  color: AppTheme.successColor,
+                  color: Theme.of(context).colorScheme.successColor,
                 ),
               ),
               const SizedBox(height: 24),
               Text(
                 'Formulaire soumis !',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: AppTheme.successColor,
+                  color: Theme.of(context).colorScheme.successColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -307,7 +307,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                 child: Text(
                   _form!.settings.confirmationMessage,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -319,7 +319,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                     // TODO: Implement redirect
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
                     foregroundColor: Colors.white,
                   ),
                   child: const Text('Continuer'),
@@ -365,7 +365,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                         _form!.title,
                         style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       if (_form!.description.isNotEmpty) ...[
@@ -373,7 +373,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                         Text(
                           _form!.description,
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                       ],
@@ -394,7 +394,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                         child: ElevatedButton(
                           onPressed: _isSubmitting ? null : _submitForm,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.primaryColor,
+                            backgroundColor: Theme.of(context).colorScheme.primaryColor,
                             foregroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             shape: RoundedRectangleBorder(
@@ -434,21 +434,21 @@ class _FormPublicPageState extends State<FormPublicPage>
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: AppTheme.warningColor.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.info_outline,
-                                color: AppTheme.warningColor,
+                                color: Theme.of(context).colorScheme.warningColor,
                                 size: 16,
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 'Limite de ${_form!.submissionLimit} soumissions',
                                 style: TextStyle(
-                                  color: AppTheme.warningColor,
+                                  color: Theme.of(context).colorScheme.warningColor,
                                   fontSize: 12,
                                 ),
                               ),
@@ -492,14 +492,14 @@ class _FormPublicPageState extends State<FormPublicPage>
             children: [
               Container(
                 height: 2,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
               const SizedBox(height: 8),
               Text(
                 field.label,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                 ),
               ),
               if (field.helpText != null) ...[
@@ -507,7 +507,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                 Text(
                   field.helpText!,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -525,10 +525,10 @@ class _FormPublicPageState extends State<FormPublicPage>
         return Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: AppTheme.primaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: AppTheme.primaryColor.withOpacity(0.3),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
             ),
           ),
           child: Row(
@@ -536,7 +536,7 @@ class _FormPublicPageState extends State<FormPublicPage>
             children: [
               Icon(
                 Icons.info_outline,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 size: 20,
               ),
               const SizedBox(width: 12),
@@ -544,7 +544,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                 child: Text(
                   field.label,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ),
@@ -568,7 +568,7 @@ class _FormPublicPageState extends State<FormPublicPage>
                 field.label,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ),
@@ -576,7 +576,7 @@ class _FormPublicPageState extends State<FormPublicPage>
               Text(
                 '*',
                 style: TextStyle(
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -589,7 +589,7 @@ class _FormPublicPageState extends State<FormPublicPage>
           Text(
             field.helpText!,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
         ],
@@ -703,7 +703,7 @@ class _FormPublicPageState extends State<FormPublicPage>
               _responses[field.id] = value;
             });
           },
-          activeColor: AppTheme.primaryColor,
+          activeColor: Theme.of(context).colorScheme.primaryColor,
         );
       }).toList(),
     );
@@ -727,7 +727,7 @@ class _FormPublicPageState extends State<FormPublicPage>
               _responses[field.id] = selectedOptions;
             });
           },
-          activeColor: AppTheme.primaryColor,
+          activeColor: Theme.of(context).colorScheme.primaryColor,
         );
       }).toList(),
     );
@@ -814,13 +814,13 @@ class _FormPublicPageState extends State<FormPublicPage>
             Icon(
               Icons.cloud_upload,
               size: 48,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 8),
             Text(
               'Cliquez pour télécharger un fichier',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ],
@@ -847,20 +847,20 @@ class _FormPublicPageState extends State<FormPublicPage>
             Icon(
               Icons.edit,
               size: 48,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 8),
             Text(
               'Zone de signature',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               'Fonctionnalité en développement',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
             ),
           ],

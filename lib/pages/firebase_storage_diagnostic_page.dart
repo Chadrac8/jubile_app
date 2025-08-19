@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/firebase_storage_test.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FirebaseStorageDiagnosticPage extends StatefulWidget {
   const FirebaseStorageDiagnosticPage({super.key});
@@ -34,7 +34,7 @@ class _FirebaseStorageDiagnosticPageState extends State<FirebaseStorageDiagnosti
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors du diagnostic: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     } finally {
@@ -47,7 +47,7 @@ class _FirebaseStorageDiagnosticPageState extends State<FirebaseStorageDiagnosti
     return Scaffold(
       appBar: AppBar(
         title: const Text('Diagnostic Firebase Storage'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -64,7 +64,7 @@ class _FirebaseStorageDiagnosticPageState extends State<FirebaseStorageDiagnosti
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.info_outline, color: AppTheme.primaryColor),
+                        Icon(Icons.info_outline, color: Theme.of(context).colorScheme.primaryColor),
                         const SizedBox(width: 8),
                         const Text(
                           'Diagnostic Firebase Storage',
@@ -100,7 +100,7 @@ class _FirebaseStorageDiagnosticPageState extends State<FirebaseStorageDiagnosti
                   : const Icon(Icons.play_arrow),
                 label: Text(_isRunning ? 'Test en cours...' : 'Lancer le diagnostic'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),

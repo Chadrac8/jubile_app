@@ -10,7 +10,7 @@ import '../widgets/workflow_tracker.dart';
 import '../widgets/custom_fields_widget.dart';
 import '../widgets/my_assigned_workflows_widget.dart';
 import 'person_form_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class PersonDetailPage extends StatefulWidget {

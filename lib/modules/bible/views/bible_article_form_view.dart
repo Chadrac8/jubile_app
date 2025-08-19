@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_article.dart';
-import '../services/bible_article_service.dart';
+import '../../models/bible_article.dart';
+import '../../services/bible_article_service.dart';
 
 class BibleArticleFormView extends StatefulWidget {
   final BibleArticle? article;
@@ -410,7 +410,7 @@ class _BibleArticleFormViewState extends State<BibleArticleFormView> {
                 onPressed: _isLoading ? null : _saveArticle,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.primaryColor,
-                  foregroundColor: AppTheme.surfaceColor,
+                  foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12))),

@@ -180,7 +180,7 @@ class _ChurchFlowAppState extends State<ChurchFlowApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ChurchFlow - Gestion d\'Église',
-      theme: AppTheme.lightTheme,
+      theme: Theme.of(context).colorScheme.lightTheme,
       home: _hasError ? _buildErrorScreen() : const SafeAuthWrapper(),
       debugShowCheckedModeBanner: false,
       

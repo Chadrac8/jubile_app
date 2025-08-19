@@ -5,7 +5,7 @@ import '../services/pages_firebase_service.dart';
 import '../widgets/page_components/component_renderer.dart';
 import '../widgets/custom_page_app_bar.dart';
 import 'page_builder_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PagePreviewPage extends StatefulWidget {
   final CustomPageModel page;
@@ -138,7 +138,7 @@ class _PagePreviewPageState extends State<PagePreviewPage>
   void _copyPageUrl() {
     final url = 'https://app.churchflow.com/pages/${_currentPage!.slug}';
     Clipboard.setData(ClipboardData(text: url));
-    _showSnackBar('URL copiée: /${_currentPage!.slug}', AppTheme.primaryColor);
+    _showSnackBar('URL copiée: /${_currentPage!.slug}', Theme.of(context).colorScheme.primaryColor);
   }
 
   void _showSnackBar(String message, Color color) {
@@ -269,7 +269,7 @@ class _PagePreviewPageState extends State<PagePreviewPage>
         scale: _fabAnimation,
         child: FloatingActionButton(
           onPressed: _editPage,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           child: const Icon(Icons.edit),
         ),
@@ -411,7 +411,7 @@ class _PagePreviewPageState extends State<PagePreviewPage>
             icon: const Icon(Icons.edit),
             label: const Text('Ajouter du contenu'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
             ),
           ),

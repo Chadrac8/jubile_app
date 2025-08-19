@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../models/prayer_model.dart';
 import '../services/prayers_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'prayer_form_page.dart';
 
 class PrayerDetailPage extends StatefulWidget {
@@ -427,7 +427,7 @@ class _PrayerDetailPageState extends State<PrayerDetailPage>
                                       tag,
                                       style: const TextStyle(fontSize: 12),
                                     ),
-                                    backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                                    backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   );
                                 }).toList(),
@@ -529,7 +529,7 @@ class _PrayerDetailPageState extends State<PrayerDetailPage>
                                             Icons.favorite,
                                             size: 24,
                                             color: prayer.prayerCount > 0 
-                                                ? AppTheme.primaryColor 
+                                                ? Theme.of(context).colorScheme.primaryColor 
                                                 : Colors.grey,
                                           ),
                                         );
@@ -542,7 +542,7 @@ class _PrayerDetailPageState extends State<PrayerDetailPage>
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: prayer.prayerCount > 0 
-                                            ? AppTheme.primaryColor 
+                                            ? Theme.of(context).colorScheme.primaryColor 
                                             : Colors.grey,
                                       ),
                                     ),
@@ -713,7 +713,7 @@ class _PrayerDetailPageState extends State<PrayerDetailPage>
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: hasPrayed 
-                                      ? AppTheme.primaryColor 
+                                      ? Theme.of(context).colorScheme.primaryColor 
                                       : null,
                                   padding: const EdgeInsets.symmetric(vertical: 12),
                                 ),

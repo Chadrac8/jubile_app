@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/thematic_passage_model.dart';
+import '../../models/thematic_passage_model.dart';
 import '../bible_service.dart';
 import 'predefined_themes.dart';
 

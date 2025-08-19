@@ -1,4 +1,4 @@
-import '../models/quote_model.dart';
+import '../../models/quote_model.dart';
 
 /// Service pour gérer les citations de William Marrion Branham
 class QuotesService {

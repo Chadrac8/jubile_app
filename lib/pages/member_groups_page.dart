@@ -6,7 +6,7 @@ import '../models/person_model.dart';
 import '../services/groups_firebase_service.dart';
 import '../services/firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'group_detail_page.dart';
 
 
@@ -109,7 +109,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -146,7 +146,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             ElevatedButton(
               onPressed: () => Navigator.pop(context, true),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
               child: const Text('Annuler le signalement'),
             ),
@@ -166,7 +166,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Signalement d\'absence annulé'),
-                backgroundColor: AppTheme.successColor,
+                backgroundColor: Theme.of(context).colorScheme.successColor,
               ),
             );
           }
@@ -175,7 +175,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Erreur lors de l\'annulation : $e'),
-                backgroundColor: AppTheme.errorColor,
+                backgroundColor: Theme.of(context).colorScheme.errorColor,
               ),
             );
           }
@@ -207,7 +207,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Absence signalée avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -216,7 +216,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur lors du signalement : $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -240,7 +240,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Vous avez rejoint le groupe "${group.name}"'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -249,7 +249,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de l\'inscription : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -269,7 +269,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Impossible d\'ouvrir le lien'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -279,12 +279,12 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Mes Groupes'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -311,7 +311,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -352,7 +352,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primaryColor : Colors.transparent,
+          color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -360,14 +360,14 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+              color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
               size: 20,
             ),
             const SizedBox(width: 8),
             Text(
               title,
               style: TextStyle(
-                color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+                color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -376,7 +376,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.white.withOpacity(0.3) : AppTheme.primaryColor,
+                  color: isSelected ? Colors.white.withOpacity(0.3) : Theme.of(context).colorScheme.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -404,21 +404,21 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             Icon(
               Icons.groups_outlined,
               size: 64,
-              color: AppTheme.textSecondaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textSecondaryColor.withOpacity(0.5),
             ),
             const SizedBox(height: 16),
             const Text(
               'Vous n\'appartenez à aucun groupe',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             const Text(
               'Explorez les groupes disponibles pour rejoindre une communauté',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -452,14 +452,14 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             Icon(
               Icons.check_circle_outline,
               size: 64,
-              color: AppTheme.successColor,
+              color: Theme.of(context).colorScheme.successColor,
             ),
             SizedBox(height: 16),
             Text(
               'Vous faites partie de tous les groupes !',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ],
@@ -571,13 +571,13 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                     Icon(
                       Icons.schedule,
                       size: 16,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       '${group.dayName} à ${group.time}',
                       style: const TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -589,14 +589,14 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                     Icon(
                       Icons.location_on,
                       size: 16,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         group.location,
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ),
@@ -609,10 +609,10 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppTheme.secondaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: AppTheme.secondaryColor.withOpacity(0.3),
+                        color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.3),
                       ),
                     ),
                     child: Column(
@@ -623,14 +623,14 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                             Icon(
                               Icons.upcoming,
                               size: 16,
-                              color: AppTheme.secondaryColor,
+                              color: Theme.of(context).colorScheme.secondaryColor,
                             ),
                             const SizedBox(width: 8),
                             Text(
                               'Prochaine réunion',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: AppTheme.secondaryColor,
+                                color: Theme.of(context).colorScheme.secondaryColor,
                               ),
                             ),
                           ],
@@ -640,13 +640,13 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                           nextMeeting.title,
                           style: const TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                           ),
                         ),
                         Text(
                           _formatDateTime(nextMeeting.date),
                           style: const TextStyle(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                       ],
@@ -666,7 +666,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                           icon: const Icon(Icons.video_call, size: 18),
                           label: const Text('Rejoindre'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: AppTheme.primaryColor,
+                            foregroundColor: Theme.of(context).colorScheme.primaryColor,
                           ),
                         ),
                       ),
@@ -723,7 +723,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
@@ -742,7 +742,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             Text(
               group.description,
               style: const TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
                 height: 1.4,
               ),
             ),
@@ -752,27 +752,27 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
                 Icon(
                   Icons.schedule,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   '${group.dayName} à ${group.time}',
                   style: const TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(width: 16),
                 Icon(
                   Icons.location_on,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     group.location,
                     style: const TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ),
@@ -803,7 +803,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         icon: const Icon(Icons.event_busy, size: 18),
         label: const Text('Pas de réunion'),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.textTertiaryColor,
+          backgroundColor: Theme.of(context).colorScheme.textTertiaryColor,
         ),
       );
     }
@@ -815,7 +815,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
         icon: const Icon(Icons.event_busy, size: 18),
         label: const Text('Non connecté'),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppTheme.textTertiaryColor,
+          backgroundColor: Theme.of(context).colorScheme.textTertiaryColor,
         ),
       );
     }
@@ -842,7 +842,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             ),
             label: const Text('Vérification...'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.textTertiaryColor,
+              backgroundColor: Theme.of(context).colorScheme.textTertiaryColor,
             ),
           );
         }
@@ -853,7 +853,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
             icon: const Icon(Icons.check_circle, size: 18),
             label: const Text('Absence signalée'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
               foregroundColor: Colors.white,
             ),
           );
@@ -864,7 +864,7 @@ class _MemberGroupsPageState extends State<MemberGroupsPage>
           icon: const Icon(Icons.event_busy, size: 18),
           label: const Text('Signaler absence'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppTheme.warningColor,
+            backgroundColor: Theme.of(context).colorScheme.warningColor,
             foregroundColor: Colors.white,
           ),
         );
@@ -998,7 +998,7 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
         children: [
           Icon(
             Icons.event_busy,
-            color: AppTheme.warningColor,
+            color: Theme.of(context).colorScheme.warningColor,
             size: 28,
           ),
           const SizedBox(width: 12),
@@ -1019,10 +1019,10 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.backgroundColor,
+                color: Theme.of(context).colorScheme.backgroundColor,
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: AppTheme.primaryColor.withOpacity(0.2),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
                 ),
               ),
               child: Column(
@@ -1033,7 +1033,7 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
                       Icon(
                         Icons.groups,
                         size: 18,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                       const SizedBox(width: 8),
                       Expanded(
@@ -1041,7 +1041,7 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
                           widget.groupName,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                           ),
                         ),
                       ),
@@ -1053,14 +1053,14 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
                       Icon(
                         Icons.event,
                         size: 18,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           widget.meetingTitle,
                           style: const TextStyle(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                       ),
@@ -1072,13 +1072,13 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
                       Icon(
                         Icons.schedule,
                         size: 18,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         'Réunion ${_formatMeetingDate()}',
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -1093,7 +1093,7 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
               'Raison de l\'absence :',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
             const SizedBox(height: 12),
@@ -1118,9 +1118,9 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
                       }
                     });
                   },
-                  backgroundColor: isSelected ? AppTheme.primaryColor.withOpacity(0.1) : null,
-                  selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-                  checkmarkColor: AppTheme.primaryColor,
+                  backgroundColor: isSelected ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1) : null,
+                  selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
+                  checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                 );
               }).toList(),
             ),
@@ -1174,7 +1174,7 @@ class _AbsenceReportDialogState extends State<_AbsenceReportDialog> {
           icon: const Icon(Icons.send),
           label: const Text('Signaler'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppTheme.warningColor,
+            backgroundColor: Theme.of(context).colorScheme.warningColor,
           ),
         ),
       ],

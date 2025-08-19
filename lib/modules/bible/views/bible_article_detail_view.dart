@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_article.dart';
-import '../services/bible_article_service.dart';
+import '../../models/bible_article.dart';
+import '../../services/bible_article_service.dart';
 import 'bible_article_form_view.dart';
 
 class BibleArticleDetailView extends StatefulWidget {
@@ -73,18 +73,18 @@ class _BibleArticleDetailViewState extends State<BibleArticleDetailView> {
       expandedHeight: 200,
       pinned: true,
       backgroundColor: theme.primaryColor,
-      foregroundColor: AppTheme.surfaceColor,
+      foregroundColor: Theme.of(context).colorScheme.surfaceColor,
       actions: [
         IconButton(
           onPressed: _toggleBookmark,
           icon: Icon(
             _isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-            color: AppTheme.surfaceColor),
+            color: Theme.of(context).colorScheme.surfaceColor),
           tooltip: _isBookmarked ? 'Retirer des favoris' : 'Ajouter aux favoris'),
         if (widget.isAdmin)
           PopupMenuButton<String>(
             onSelected: _handleAdminAction,
-            icon: Icon(Icons.settings, color: AppTheme.surfaceColor),
+            icon: Icon(Icons.settings, color: Theme.of(context).colorScheme.surfaceColor),
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: 'edit',
@@ -129,14 +129,14 @@ class _BibleArticleDetailViewState extends State<BibleArticleDetailView> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: AppTheme.surfaceColor.withValues(alpha: 0.2),
+                      color: Theme.of(context).colorScheme.surfaceColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       _article.category,
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
-                        color: AppTheme.surfaceColor))),
+                        color: Theme.of(context).colorScheme.surfaceColor))),
                   const SizedBox(height: 12),
                   
                   // Titre
@@ -145,7 +145,7 @@ class _BibleArticleDetailViewState extends State<BibleArticleDetailView> {
                     style: GoogleFonts.inter(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.surfaceColor)),
+                      color: Theme.of(context).colorScheme.surfaceColor)),
                 ]))))));
   }
 

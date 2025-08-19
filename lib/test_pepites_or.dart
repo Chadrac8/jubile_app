@@ -119,14 +119,14 @@ class TestPepitesOrPage extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('3 pépites d\'or créées avec succès !'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       }
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }
@@ -165,7 +165,7 @@ class TestPepitesOrPage extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }

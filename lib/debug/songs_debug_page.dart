@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../modules/songs/models/song_model.dart';
 
@@ -201,7 +201,7 @@ class _SongsDebugPageState extends State<SongsDebugPage> {
     if (errors.isEmpty) return const SizedBox.shrink();
     
     return Card(
-      color: AppTheme.errorColor,
+      color: Theme.of(context).colorScheme.errorColor,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -209,13 +209,13 @@ class _SongsDebugPageState extends State<SongsDebugPage> {
           children: [
             const Text(
               '❌ Erreurs de Conversion (10 premières)',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.errorColor)),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.errorColor)),
             const SizedBox(height: 8),
             ...errors.map((error) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 2),
               child: Text(
                 '• $error',
-                style: TextStyle(color: AppTheme.errorColor, fontSize: 12)))),
+                style: TextStyle(color: Theme.of(context).colorScheme.errorColor, fontSize: 12)))),
           ])));
   }
 }

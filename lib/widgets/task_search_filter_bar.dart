@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskSearchFilterBar extends StatefulWidget {
   final TextEditingController searchController;
@@ -141,7 +141,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).colorScheme.backgroundColor,
       child: Column(
         children: [
           // Search bar
@@ -157,7 +157,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                       hintText: 'Rechercher des tâches...',
                       prefixIcon: Icon(
                         Icons.search,
-                        color: _isSearchFocused ? AppTheme.primaryColor : Colors.grey,
+                        color: _isSearchFocused ? Theme.of(context).colorScheme.primaryColor : Colors.grey,
                       ),
                       suffixIcon: widget.searchController.text.isNotEmpty
                           ? IconButton(
@@ -176,7 +176,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                       fillColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: AppTheme.primaryColor, width: 2),
+                        borderSide: BorderSide(color: Theme.of(context).colorScheme.primaryColor, width: 2),
                       ),
                     ),
                   ),
@@ -184,7 +184,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                 const SizedBox(width: 12),
                 // Filter button
                 Material(
-                  color: _isFilterExpanded ? AppTheme.primaryColor : Colors.white,
+                  color: _isFilterExpanded ? Theme.of(context).colorScheme.primaryColor : Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   child: InkWell(
                     onTap: _toggleFilters,
@@ -195,7 +195,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: _isFilterExpanded ? AppTheme.primaryColor : Colors.grey[300]!,
+                          color: _isFilterExpanded ? Theme.of(context).colorScheme.primaryColor : Colors.grey[300]!,
                         ),
                       ),
                       child: Stack(
@@ -214,7 +214,7 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                                 width: 16,
                                 height: 16,
                                 decoration: BoxDecoration(
-                                  color: AppTheme.errorColor,
+                                  color: Theme.of(context).colorScheme.errorColor,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
@@ -292,8 +292,8 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                                     label: Text(status['label']!),
                                     selected: isSelected,
                                     onSelected: (selected) => _onStatusFilterChanged(status['value']!, selected),
-                                    selectedColor: AppTheme.primaryColor.withOpacity(0.3),
-                                    checkmarkColor: AppTheme.primaryColor,
+                                    selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
+                                    checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                                   );
                                 }).toList(),
                               ),
@@ -313,9 +313,9 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                                 runSpacing: 8,
                                 children: _priorityOptions.map((priority) {
                                   final isSelected = widget.selectedPriorityFilters.contains(priority['value']);
-                                  Color priorityColor = AppTheme.warningColor;
-                                  if (priority['value'] == 'high') priorityColor = AppTheme.errorColor;
-                                  if (priority['value'] == 'low') priorityColor = AppTheme.successColor;
+                                  Color priorityColor = Theme.of(context).colorScheme.warningColor;
+                                  if (priority['value'] == 'high') priorityColor = Theme.of(context).colorScheme.errorColor;
+                                  if (priority['value'] == 'low') priorityColor = Theme.of(context).colorScheme.successColor;
                                   
                                   return FilterChip(
                                     label: Text(priority['label']!),
@@ -366,13 +366,13 @@ class _TaskSearchFilterBarState extends State<TaskSearchFilterBar>
                                 Container(
                                   padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                    color: AppTheme.primaryColor.withOpacity(0.1),
+                                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Text(
                                     'Du ${_formatDate(widget.dueAfter!)} au ${_formatDate(widget.dueBefore!)}',
                                     style: TextStyle(
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       fontSize: 12,
                                     ),
                                   ),

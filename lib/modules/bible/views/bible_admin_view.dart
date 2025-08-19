@@ -3,10 +3,10 @@ import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import '../models/reading_plan.dart';
-import '../models/bible_study.dart';
-import '../services/reading_plan_service.dart';
-import '../services/bible_study_service.dart';
+import '../../models/reading_plan.dart';
+import '../../models/bible_study.dart';
+import '../../services/reading_plan_service.dart';
+import '../../services/bible_study_service.dart';
 import 'reading_plan_form_view.dart';
 import 'bible_study_form_view.dart';
 
@@ -322,7 +322,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 13),
               tabs: const [
@@ -386,7 +386,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
                     const SizedBox(width: 8),
                     IconButton(
                       onPressed: _deleteSelectedPlans,
-                      icon: Icon(Icons.delete, color: AppTheme.errorColor),
+                      icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                       iconSize: 20),
                   ],
                 ]),
@@ -449,7 +449,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
                     const SizedBox(width: 8),
                     IconButton(
                       onPressed: _deleteSelectedStudies,
-                      icon: Icon(Icons.delete, color: AppTheme.errorColor),
+                      icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                       iconSize: 20),
                   ],
                 ]),
@@ -506,13 +506,13 @@ class _BibleAdminViewState extends State<BibleAdminView>
                     title: 'Études bibliques',
                     value: '${stats['totalStudies'] ?? 0}',
                     icon: Icons.school,
-                    color: AppTheme.successColor,
+                    color: Theme.of(context).colorScheme.successColor,
                     theme: theme),
                   _buildStatCard(
                     title: 'Plans actifs',
                     value: '${stats['activePlans'] ?? 0}',
                     icon: Icons.play_circle,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                     theme: theme),
                   _buildStatCard(
                     title: 'Études en cours',
@@ -585,7 +585,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.info, color: AppTheme.textTertiaryColor),
+          Icon(Icons.info, color: Theme.of(context).colorScheme.textTertiaryColor),
           const SizedBox(height: 16),
           Text(
             'Aucun plan de lecture',
@@ -605,7 +605,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.info, color: AppTheme.textTertiaryColor),
+          Icon(Icons.info, color: Theme.of(context).colorScheme.textTertiaryColor),
           const SizedBox(height: 16),
           Text(
             'Aucune étude biblique',
@@ -797,7 +797,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
             leading: const Icon(Icons.schedule),
             title: Text(plan.name),
             subtitle: Text('${plan.totalDays} jours'),
-            trailing: Icon(Icons.star, color: AppTheme.warningColor))),
+            trailing: Icon(Icons.star, color: Theme.of(context).colorScheme.warningColor))),
           const SizedBox(height: 16),
         ],
         
@@ -810,7 +810,7 @@ class _BibleAdminViewState extends State<BibleAdminView>
             leading: const Icon(Icons.school),
             title: Text(study.title),
             subtitle: Text('${study.lessons.length} leçons • ${study.author}'),
-            trailing: Icon(Icons.star, color: AppTheme.warningColor))),
+            trailing: Icon(Icons.star, color: Theme.of(context).colorScheme.warningColor))),
         ],
       ]);
   }

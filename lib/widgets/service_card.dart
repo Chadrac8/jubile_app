@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/service_model.dart';
 import '../services/services_firebase_service.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 
 class ServiceCard extends StatefulWidget {

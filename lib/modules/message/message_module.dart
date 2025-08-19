@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'widgets/pepites_or_tab.dart';
 import '../bible/widgets/branham_background_player.dart';
 import 'widgets/read_message_tab.dart';
@@ -37,27 +37,27 @@ class _MessageModuleState extends State<MessageModule>
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppTheme.primaryColor.withOpacity(0.05), // Rouge bordeaux très léger
-            AppTheme.backgroundColor, // Background F8F9FA
+            Theme.of(context).colorScheme.primaryColor.withOpacity(0.05), // Rouge bordeaux très léger
+            Theme.of(context).colorScheme.backgroundColor, // Background F8F9FA
           ])),
       child: Column(
         children: [
           // TabBar sans AppBar
           Container(
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor, // Rouge bordeaux
+              color: Theme.of(context).colorScheme.primaryColor, // Rouge bordeaux
               boxShadow: [
                 BoxShadow(
-                  color: AppTheme.primaryActive.withOpacity(0.3), // Ombre avec couleur active
+                  color: Theme.of(context).colorScheme.primaryActive.withOpacity(0.3), // Ombre avec couleur active
                   blurRadius: 4,
                   offset: const Offset(0, 2)),
               ]),
             child: TabBar(
               controller: _tabController,
-              indicatorColor: AppTheme.backgroundColor, // Indicateur blanc cassé sur rouge bordeaux
+              indicatorColor: Theme.of(context).colorScheme.backgroundColor, // Indicateur blanc cassé sur rouge bordeaux
               indicatorWeight: 3,
-              labelColor: AppTheme.surfaceColor,
-              unselectedLabelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
+              unselectedLabelColor: Theme.of(context).colorScheme.surfaceColor,
               labelStyle: GoogleFonts.inter(
                 fontWeight: FontWeight.w600,
                 fontSize: 14),

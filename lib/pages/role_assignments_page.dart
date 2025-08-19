@@ -3,7 +3,7 @@ import '../models/person_model.dart';
 import '../models/role_model.dart';
 import '../services/roles_firebase_service.dart';
 import '../services/firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class RoleAssignmentsPage extends StatefulWidget {
   const RoleAssignmentsPage({super.key});
@@ -177,7 +177,7 @@ class _RoleAssignmentsPageState extends State<RoleAssignmentsPage>
         title: _isAssignMode
             ? Text('${_selectedPersons.length} personne(s) sélectionnée(s)')
             : const Text('Assignations de rôles'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         leading: _isAssignMode
@@ -259,7 +259,7 @@ class _RoleAssignmentsPageState extends State<RoleAssignmentsPage>
             borderSide: BorderSide.none,
           ),
           filled: true,
-          fillColor: AppTheme.backgroundColor,
+          fillColor: Theme.of(context).colorScheme.backgroundColor,
         ),
       ),
     );
@@ -269,7 +269,7 @@ class _RoleAssignmentsPageState extends State<RoleAssignmentsPage>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
         border: Border(
           bottom: BorderSide(color: Colors.grey.withOpacity(0.2)),
         ),
@@ -375,10 +375,10 @@ class _RoleAssignmentsPageState extends State<RoleAssignmentsPage>
             ? Checkbox(
                 value: isSelected,
                 onChanged: (value) => _onPersonSelected(person, value ?? false),
-                activeColor: AppTheme.primaryColor,
+                activeColor: Theme.of(context).colorScheme.primaryColor,
               )
             : CircleAvatar(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 child: Text(
                   person.displayInitials,
                   style: const TextStyle(color: Colors.white),

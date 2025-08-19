@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'package:flutter/services.dart';
 import '../models/home_cover_config_model.dart';
 import '../services/home_cover_config_service.dart';
@@ -165,7 +165,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
         behavior: SnackBarBehavior.floating));
   }
 
@@ -173,7 +173,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.errorColor,
+        backgroundColor: Theme.of(context).colorScheme.errorColor,
         behavior: SnackBarBehavior.floating));
   }
 
@@ -183,7 +183,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
       appBar: AppBar(
         title: const Text('Configuration Image de Couverture'),
         backgroundColor: Colors.deepPurple,
-        foregroundColor: AppTheme.surfaceColor,
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor,
         actions: [
           IconButton(
             onPressed: _isSaving ? null : _resetToDefault,
@@ -257,7 +257,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
           Expanded(
             child: Text(
               value,
-              style: TextStyle(color: AppTheme.textTertiaryColor))),
+              style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor))),
         ]));
   }
 
@@ -287,14 +287,14 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                 _useVideo 
                     ? 'La couverture affichera une vidéo en arrière-plan'
                     : 'La couverture affichera un carrousel d\'images',
-                style: TextStyle(color: AppTheme.textTertiaryColor)),
+                style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor)),
               value: _useVideo,
               onChanged: (value) {
                 setState(() {
                   _useVideo = value;
                 });
               },
-              activeColor: AppTheme.primaryColor),
+              activeColor: Theme.of(context).colorScheme.primaryColor),
             
             const SizedBox(height: 16),
             
@@ -319,7 +319,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                 'Formats supportés: MP4, MOV, AVI',
                 style: TextStyle(
                   fontSize: 12,
-                  color: AppTheme.textTertiaryColor)),
+                  color: Theme.of(context).colorScheme.textTertiaryColor)),
             ] else ...[
               // Configuration image principale
               TextFormField(
@@ -358,7 +358,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                 'Formats supportés: JPG, JPEG, PNG, WebP, GIF',
                 style: TextStyle(
                   fontSize: 12,
-                  color: AppTheme.textTertiaryColor)),
+                  color: Theme.of(context).colorScheme.textTertiaryColor)),
             ],
           ])));
   }
@@ -418,7 +418,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
             const SizedBox(height: 8),
             const Text(
               'Ajoutez plusieurs images qui défileront automatiquement sur la page d\'accueil.',
-              style: TextStyle(fontSize: 12, color: AppTheme.textTertiaryColor)),
+              style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.textTertiaryColor)),
             const SizedBox(height: 16),
             
             // Section pour ajouter une nouvelle image
@@ -445,7 +445,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                   label: const Text('Ajouter'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
               ]),
             
             const SizedBox(height: 16),
@@ -455,16 +455,16 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  border: Border.all(color: AppTheme.textTertiaryColor),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor),
                   borderRadius: BorderRadius.circular(8)),
                 child: const Center(
                   child: Column(
                     children: [
                       Icon(Icons.image_not_supported_outlined, 
-                           size: 48, color: AppTheme.textTertiaryColor),
+                           size: 48, color: Theme.of(context).colorScheme.textTertiaryColor),
                       SizedBox(height: 8),
                       Text('Aucune image ajoutée',
-                           style: TextStyle(color: AppTheme.textTertiaryColor)),
+                           style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor)),
                     ])))
             else
               Container(
@@ -484,7 +484,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                           height: 60,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: AppTheme.textTertiaryColor)),
+                            border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
@@ -492,7 +492,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
-                                  color: AppTheme.textTertiaryColor,
+                                  color: Theme.of(context).colorScheme.textTertiaryColor,
                                   child: const Icon(Icons.broken_image));
                               }))),
                         title: Text(
@@ -504,10 +504,10 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.drag_handle, color: AppTheme.textTertiaryColor),
+                            Icon(Icons.drag_handle, color: Theme.of(context).colorScheme.textTertiaryColor),
                             const SizedBox(width: 8),
                             IconButton(
-                              icon: Icon(Icons.delete, color: AppTheme.errorColor),
+                              icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                               onPressed: () => _removeImageUrl(index),
                               tooltip: 'Supprimer'),
                           ])));
@@ -550,7 +550,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                         border: Border.all(
                           color: _imageUrlController.text == imageUrl
                               ? Colors.deepPurple
-                              : AppTheme.textTertiaryColor,
+                              : Theme.of(context).colorScheme.textTertiaryColor,
                           width: 2)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
@@ -559,7 +559,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
-                              color: AppTheme.textTertiaryColor,
+                              color: Theme.of(context).colorScheme.textTertiaryColor,
                               child: const Icon(Icons.broken_image));
                           }))));
                 })),
@@ -591,7 +591,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: AppTheme.textTertiaryColor)),
+                border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Stack(
@@ -603,7 +603,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                           child: const Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -635,14 +635,14 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
                               Text(
                                 _titleController.text,
                                 style: const TextStyle(
-                                  color: AppTheme.surfaceColor,
+                                  color: Theme.of(context).colorScheme.surfaceColor,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold)),
                             if (_subtitleController.text.isNotEmpty)
                               Text(
                                 _subtitleController.text,
                                 style: const TextStyle(
-                                  color: AppTheme.surfaceColor,
+                                  color: Theme.of(context).colorScheme.surfaceColor,
                                   fontSize: 14)),
                           ])),
                   ]))),
@@ -662,7 +662,7 @@ class _HomeCoverAdminPageState extends State<HomeCoverAdminPage> {
             onPressed: _isSaving ? null : _saveConfiguration,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.deepPurple,
-              foregroundColor: AppTheme.surfaceColor),
+              foregroundColor: Theme.of(context).colorScheme.surfaceColor),
             child: _isSaving
                 ? const SizedBox(
                     height: 20,

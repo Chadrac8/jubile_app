@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'firebase_storage_diagnostic_page.dart';
 
 class MemberSettingsPage extends StatefulWidget {
@@ -125,7 +125,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Paramètres sauvegardés'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -134,7 +134,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sauvegarde : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -152,7 +152,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Mot de passe modifié avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -170,7 +170,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Email modifié avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -210,7 +210,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Export en cours... Vous recevrez un email sous peu.'),
-                  backgroundColor: AppTheme.successColor,
+                  backgroundColor: Theme.of(context).colorScheme.successColor,
                 ),
               );
             },
@@ -234,7 +234,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
               'Cette action est définitive et irréversible.',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.errorColor,
+                color: Theme.of(context).colorScheme.errorColor,
               ),
             ),
             SizedBox(height: 16),
@@ -255,7 +255,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
             child: const Text('Confirmer la suppression'),
           ),
@@ -291,7 +291,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur lors de la déconnexion : $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -310,12 +310,12 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Paramètres'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
@@ -364,14 +364,14 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: (headerColor ?? AppTheme.primaryColor).withOpacity(0.1),
+              color: (headerColor ?? Theme.of(context).colorScheme.primaryColor).withOpacity(0.1),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
             ),
             child: Row(
               children: [
                 Icon(
                   icon,
-                  color: headerColor ?? AppTheme.primaryColor,
+                  color: headerColor ?? Theme.of(context).colorScheme.primaryColor,
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -380,7 +380,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: headerColor ?? AppTheme.primaryColor,
+                    color: headerColor ?? Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],
@@ -471,7 +471,7 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
           'Types de notifications',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
         ),
         const SizedBox(height: 8),
@@ -641,10 +641,10 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
     return _buildSectionCard(
       title: 'Zone de danger',
       icon: Icons.warning,
-      headerColor: AppTheme.errorColor,
+      headerColor: Theme.of(context).colorScheme.errorColor,
       children: [
         ListTile(
-          leading: const Icon(Icons.logout, color: AppTheme.warningColor),
+          leading: const Icon(Icons.logout, color: Theme.of(context).colorScheme.warningColor),
           title: const Text('Se déconnecter'),
           subtitle: const Text('Déconnecter ce compte'),
           trailing: const Icon(Icons.chevron_right),
@@ -653,13 +653,13 @@ class _MemberSettingsPageState extends State<MemberSettingsPage>
         ),
         const Divider(),
         ListTile(
-          leading: const Icon(Icons.delete_forever, color: AppTheme.errorColor),
+          leading: const Icon(Icons.delete_forever, color: Theme.of(context).colorScheme.errorColor),
           title: const Text(
             'Supprimer mon compte',
-            style: TextStyle(color: AppTheme.errorColor),
+            style: TextStyle(color: Theme.of(context).colorScheme.errorColor),
           ),
           subtitle: const Text('Suppression définitive et irréversible'),
-          trailing: const Icon(Icons.chevron_right, color: AppTheme.errorColor),
+          trailing: const Icon(Icons.chevron_right, color: Theme.of(context).colorScheme.errorColor),
           onTap: _deleteAccount,
           contentPadding: EdgeInsets.zero,
         ),

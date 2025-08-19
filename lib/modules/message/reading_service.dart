@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/sermon_model.dart';
+import '../../models/sermon_model.dart';
 
 /// Service pour gérer la lecture des prédications
 class ReadingService {

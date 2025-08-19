@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../models/app_config_model.dart';
 import '../../services/app_config_firebase_service.dart';
 import '../../services/pages_firebase_service.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class ModulesConfigurationPage extends StatefulWidget {
   const ModulesConfigurationPage({super.key});
@@ -299,7 +299,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
       appBar: AppBar(
         title: const Text('Configuration des Modules'),
         elevation: 0,
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         actions: [
           if (_isResetting)
@@ -372,14 +372,14 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
           children: [
             Row(
               children: [
-                Icon(Icons.info, color: AppTheme.primaryColor),
+                Icon(Icons.info, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   'Information',
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],
@@ -387,22 +387,22 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
             const SizedBox(height: 12),
             Text(
               '• Cochez "Activé pour les membres" pour rendre un module/page accessible dans la vue membre',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
             const SizedBox(height: 4),
             Text(
               '• Cochez "Navigation principale" pour afficher le module/page dans la barre de navigation (maximum 4 éléments)',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
             const SizedBox(height: 4),
             Text(
               '• Les modules et pages non en navigation principale apparaîtront dans le menu "Plus"',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
             const SizedBox(height: 4),
             Text(
               '• Les pages personnalisées proviennent du module Constructeur de Pages',
-              style: TextStyle(color: AppTheme.textSecondaryColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.textSecondaryColor),
             ),
           ],
         ),
@@ -422,7 +422,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
             ),
             const SizedBox(height: 16),
@@ -450,7 +450,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
         border: Border.all(color: Colors.grey[300]!),
         borderRadius: BorderRadius.circular(8),
         color: module.isEnabledForMembers
-            ? AppTheme.primaryColor.withOpacity(0.05)
+            ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.05)
             : Colors.grey[50],
       ),
       child: Column(
@@ -460,7 +460,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
             children: [
               Icon(
                 _getIconForModule(module.iconName),
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -473,14 +473,14 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     Text(
                       module.description,
                       style: TextStyle(
                         fontSize: 14,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                   ],
@@ -495,7 +495,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       color: Colors.white,
                     ),
                   ),
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 ),
             ],
           ),
@@ -508,7 +508,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                     Checkbox(
                       value: module.isEnabledForMembers,
                       onChanged: (value) => _toggleModuleForMembers(index),
-                      activeColor: AppTheme.primaryColor,
+                      activeColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                     const Text('Membres'),
                   ],
@@ -522,13 +522,13 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       onChanged: (canMakePrimary || canRemoveFromPrimary)
                           ? (value) => _togglePrimaryInBottomNav(index)
                           : null,
-                      activeColor: AppTheme.primaryColor,
+                      activeColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                     Text(
                       'Menu principal',
                       style: TextStyle(
                         color: (canMakePrimary || canRemoveFromPrimary)
-                            ? AppTheme.textPrimaryColor
+                            ? Theme.of(context).colorScheme.textPrimaryColor
                             : Colors.grey,
                       ),
                     ),
@@ -578,14 +578,14 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
           children: [
             Row(
               children: [
-                Icon(Icons.web, color: AppTheme.primaryColor),
+                Icon(Icons.web, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   'Pages personnalisées',
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],
@@ -595,7 +595,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
               'Pages créées avec le Constructeur de Pages',
               style: TextStyle(
                 fontSize: 14,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 16),
@@ -652,7 +652,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       icon: const Icon(Icons.refresh, size: 16),
                       label: const Text('Synchroniser les pages'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.primaryColor,
+                        backgroundColor: Theme.of(context).colorScheme.primaryColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       ),
@@ -685,7 +685,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
         border: Border.all(color: Colors.grey[300]!),
         borderRadius: BorderRadius.circular(8),
         color: page.isEnabledForMembers
-            ? AppTheme.primaryColor.withOpacity(0.05)
+            ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.05)
             : Colors.grey[50],
       ),
       child: Column(
@@ -695,7 +695,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
             children: [
               Icon(
                 _getIconForModule(page.iconName),
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 size: 24,
               ),
               const SizedBox(width: 12),
@@ -708,21 +708,21 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       style: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     Text(
                       page.description.isNotEmpty ? page.description : 'Page personnalisée',
                       style: TextStyle(
                         fontSize: 14,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                     Text(
                       'Visibilité: ${_getVisibilityLabel(page.visibility)}',
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                         fontStyle: FontStyle.italic,
                       ),
                     ),
@@ -738,7 +738,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       color: Colors.white,
                     ),
                   ),
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 ),
             ],
           ),
@@ -751,7 +751,7 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                     Checkbox(
                       value: page.isEnabledForMembers,
                       onChanged: (value) => _togglePageForMembers(index),
-                      activeColor: AppTheme.primaryColor,
+                      activeColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                     const Text('Membres'),
                   ],
@@ -765,13 +765,13 @@ class _ModulesConfigurationPageState extends State<ModulesConfigurationPage> {
                       onChanged: (canMakePrimary || canRemoveFromPrimary)
                           ? (value) => _togglePagePrimaryInBottomNav(index)
                           : null,
-                      activeColor: AppTheme.primaryColor,
+                      activeColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                     Text(
                       'Menu principal',
                       style: TextStyle(
                         color: (canMakePrimary || canRemoveFromPrimary)
-                            ? AppTheme.textPrimaryColor
+                            ? Theme.of(context).colorScheme.textPrimaryColor
                             : Colors.grey,
                       ),
                     ),

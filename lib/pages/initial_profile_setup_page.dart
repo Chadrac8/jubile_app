@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/person_model.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../image_upload.dart';
 import '../services/image_storage_service.dart' as ImageStorage;
 
@@ -153,7 +153,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sélection de l\'image: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -205,7 +205,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la configuration: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -219,7 +219,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: SafeArea(
         child: FadeTransition(
           opacity: _fadeAnimation,
@@ -230,7 +230,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                 expandedHeight: 200,
                 floating: false,
                 pinned: true,
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 automaticallyImplyLeading: false,
                 flexibleSpace: FlexibleSpaceBar(
                   title: const Text(
@@ -246,8 +246,8 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          AppTheme.primaryColor,
-                          AppTheme.secondaryColor,
+                          Theme.of(context).colorScheme.primaryColor,
+                          Theme.of(context).colorScheme.secondaryColor,
                         ],
                       ),
                     ),
@@ -303,12 +303,12 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
                     Icons.waving_hand,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 24,
                   ),
                 ),
@@ -321,14 +321,14 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                         'Bienvenue !',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Complétez votre profil pour personnaliser votre expérience.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -413,12 +413,12 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   width: 3,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.primaryColor.withOpacity(0.2),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -449,7 +449,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
             icon: const Icon(Icons.camera_alt),
             label: const Text('Changer la photo'),
             style: TextButton.styleFrom(
-              foregroundColor: AppTheme.primaryColor,
+              foregroundColor: Theme.of(context).colorScheme.primaryColor,
             ),
           ),
         ],
@@ -459,11 +459,11 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
 
   Widget _buildFallbackAvatar() {
     return Container(
-      color: AppTheme.primaryColor.withOpacity(0.1),
+      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
       child: Icon(
         Icons.person,
         size: 60,
-        color: AppTheme.primaryColor,
+        color: Theme.of(context).colorScheme.primaryColor,
       ),
     );
   }
@@ -486,12 +486,12 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     icon,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -500,7 +500,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                   title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -530,7 +530,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.primaryColor, width: 2),
         ),
       ),
       keyboardType: keyboardType,
@@ -558,7 +558,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
                     : 'Date de naissance (optionnel)',
                 style: TextStyle(
                   color: _birthDate != null
-                      ? AppTheme.textPrimaryColor
+                      ? Theme.of(context).colorScheme.textPrimaryColor
                       : Colors.grey.shade600,
                   fontSize: 16,
                 ),
@@ -587,7 +587,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppTheme.primaryColor, width: 2),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.primaryColor, width: 2),
         ),
       ),
       items: items.map((String item) {
@@ -608,7 +608,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
           child: ElevatedButton(
             onPressed: _isLoading ? null : _completeSetup,
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
@@ -640,7 +640,7 @@ class _InitialProfileSetupPageState extends State<InitialProfileSetupPage>
           child: Text(
             'Ignorer pour l\'instant',
             style: TextStyle(
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
         ),

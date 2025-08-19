@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
-import '../services/reading_plan_service.dart';
+import '../../models/reading_plan.dart';
+import '../../services/reading_plan_service.dart';
 import 'daily_reading_view.dart';
 
 class ActiveReadingPlanView extends StatefulWidget {
@@ -178,12 +178,12 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: isCompleted 
-                      ? AppTheme.successColor.withOpacity(0.2)
+                      ? Theme.of(context).colorScheme.successColor.withOpacity(0.2)
                       : theme.colorScheme.primary.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(12)),
                 child: Icon(
                   isCompleted ? Icons.check_circle : Icons.today,
-                  color: isCompleted ? AppTheme.successColor : theme.colorScheme.primary,
+                  color: isCompleted ? Theme.of(context).colorScheme.successColor : theme.colorScheme.primary,
                   size: 24)),
               const SizedBox(width: 12),
               Expanded(
@@ -195,7 +195,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
                       style: GoogleFonts.inter(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: isCompleted ? AppTheme.successColor : null)),
+                        color: isCompleted ? Theme.of(context).colorScheme.successColor : null)),
                     Text(
                       todayTask.title,
                       style: GoogleFonts.inter(
@@ -252,9 +252,9 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: isCompleted 
-                    ? AppTheme.successColor 
+                    ? Theme.of(context).colorScheme.successColor 
                     : theme.colorScheme.primary,
-                foregroundColor: AppTheme.surfaceColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12))),
@@ -376,7 +376,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
             height: 32,
             decoration: BoxDecoration(
               color: isCompleted 
-                  ? AppTheme.successColor.withOpacity(0.2)
+                  ? Theme.of(context).colorScheme.successColor.withOpacity(0.2)
                   : theme.colorScheme.primary.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8)),
             child: Center(
@@ -384,7 +384,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
                 '${day.day}',
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
-                  color: isCompleted ? AppTheme.successColor : theme.colorScheme.primary,
+                  color: isCompleted ? Theme.of(context).colorScheme.successColor : theme.colorScheme.primary,
                   fontSize: 12)))),
           const SizedBox(width: 12),
           Expanded(
@@ -405,7 +405,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
           if (isCompleted)
             Icon(
               Icons.check_circle,
-              color: AppTheme.successColor,
+              color: Theme.of(context).colorScheme.successColor,
               size: 20),
         ]));
   }
@@ -437,7 +437,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
                   theme: theme,
                   value: '$completedDays',
                   label: 'Jours terminés',
-                  color: AppTheme.successColor)),
+                  color: Theme.of(context).colorScheme.successColor)),
               Expanded(
                 child: _buildStatItem(
                   theme: theme,
@@ -449,7 +449,7 @@ class _ActiveReadingPlanViewState extends State<ActiveReadingPlanView> {
                   theme: theme,
                   value: '$streak',
                   label: 'Série actuelle',
-                  color: AppTheme.warningColor)),
+                  color: Theme.of(context).colorScheme.warningColor)),
             ]),
         ]));
   }

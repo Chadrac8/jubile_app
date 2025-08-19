@@ -6,7 +6,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'dart:convert';
 import 'bible_service.dart';
 import 'bible_model.dart';
@@ -202,7 +202,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         padding: EdgeInsets.only(
           top: 20,
@@ -217,12 +217,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [AppTheme.primaryColor.withValues(alpha: 0.1), AppTheme.surfaceColor]),
+                  colors: [Theme.of(context).colorScheme.primaryColor.withValues(alpha: 0.1), Theme.of(context).colorScheme.surfaceColor]),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.primaryColor.withValues(alpha: 0.2))),
+                border: Border.all(color: Theme.of(context).colorScheme.primaryColor.withValues(alpha: 0.2))),
               child: Row(
                 children: [
-                  Icon(Icons.auto_stories, color: AppTheme.primaryColor),
+                  Icon(Icons.auto_stories, color: Theme.of(context).colorScheme.primaryColor),
                   SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -232,14 +232,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           '${verse.book} ${verse.chapter}:${verse.verse}',
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
-                            color: AppTheme.primaryColor)),
+                            color: Theme.of(context).colorScheme.primaryColor)),
                         Text(
                           verse.text.length > 80 
                             ? '${verse.text.substring(0, 80)}...'
                             : verse.text,
                           style: GoogleFonts.inter(
                             fontSize: 12,
-                            color: AppTheme.textTertiaryColor.withValues(alpha: 0.8))),
+                            color: Theme.of(context).colorScheme.textTertiaryColor.withValues(alpha: 0.8))),
                       ])),
                 ])),
             
@@ -253,7 +253,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   child: _buildActionButton(
                     icon: hasNote ? Icons.sticky_note_2 : Icons.sticky_note_2_outlined,
                     label: hasNote ? 'Modifier note' : 'Ajouter note',
-                    color: AppTheme.successColor,
+                    color: Theme.of(context).colorScheme.successColor,
                     onTap: () {
                       Navigator.pop(context);
                       _editNoteDialog(verse);
@@ -283,7 +283,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               _buildActionButton(
                 icon: Icons.highlight,
                 label: 'Surligner',
-                color: AppTheme.warningColor,
+                color: Theme.of(context).colorScheme.warningColor,
                 fullWidth: true,
                 onTap: () {
                   Navigator.pop(context);
@@ -300,7 +300,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   child: _buildActionButton(
                     icon: isFavorite ? Icons.favorite : Icons.favorite_border,
                     label: isFavorite ? 'Retirer favori' : 'Ajouter favori',
-                    color: AppTheme.errorColor,
+                    color: Theme.of(context).colorScheme.errorColor,
                     onTap: () {
                       Navigator.pop(context);
                       _toggleFavorite(verse);
@@ -373,13 +373,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       SnackBar(
         content: Row(
           children: [
-            Icon(Icons.check_circle, color: AppTheme.surfaceColor, size: 20),
+            Icon(Icons.check_circle, color: Theme.of(context).colorScheme.surfaceColor, size: 20),
             SizedBox(width: 8),
             Text(
               'Verset copié dans le presse-papiers',
               style: GoogleFonts.inter(fontWeight: FontWeight.w500)),
           ]),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
         duration: Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -393,21 +393,21 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.warningColor.withValues(alpha: 0.1),
+        color: Theme.of(context).colorScheme.warningColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.warningColor.withValues(alpha: 0.3))),
+        border: Border.all(color: Theme.of(context).colorScheme.warningColor.withValues(alpha: 0.3))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.highlight, color: AppTheme.warningColor),
+              Icon(Icons.highlight, color: Theme.of(context).colorScheme.warningColor),
               SizedBox(width: 8),
               Text(
                 'Surligné en ${HighlightConfig.colors[currentHighlight?.color]?['name'] ?? 'Jaune'}',
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600,
-                  color: AppTheme.warningColor.withValues(alpha: 0.8))),
+                  color: Theme.of(context).colorScheme.warningColor.withValues(alpha: 0.8))),
             ]),
           SizedBox(height: 12),
           Row(
@@ -428,7 +428,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 child: _buildActionButton(
                   icon: Icons.delete,
                   label: 'Supprimer',
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                   onTap: () {
                     Navigator.pop(context);
                     _removeHighlight(verse);
@@ -443,7 +443,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         padding: EdgeInsets.all(20),
         child: Column(
@@ -452,14 +452,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             // En-tête
             Row(
               children: [
-                Icon(Icons.palette, color: AppTheme.primaryColor),
+                Icon(Icons.palette, color: Theme.of(context).colorScheme.primaryColor),
                 SizedBox(width: 12),
                 Text(
                   'Choisir couleur et style',
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.primaryColor)),
+                    color: Theme.of(context).colorScheme.primaryColor)),
               ]),
             
             SizedBox(height: 20),
@@ -470,7 +470,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               style: GoogleFonts.inter(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.textTertiaryColor.withOpacity(0.8))),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))),
             SizedBox(height: 12),
             
             Wrap(
@@ -555,13 +555,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       SnackBar(
         content: Row(
           children: [
-            Icon(Icons.check_circle, color: AppTheme.surfaceColor, size: 20),
+            Icon(Icons.check_circle, color: Theme.of(context).colorScheme.surfaceColor, size: 20),
             SizedBox(width: 8),
             Text(
               'Surlignage supprimé',
               style: GoogleFonts.inter(fontWeight: FontWeight.w500)),
           ]),
-        backgroundColor: AppTheme.textTertiaryColor.withOpacity(0.9),
+        backgroundColor: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.9),
         duration: Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
@@ -713,7 +713,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         maxChildSize: 0.95,
         builder: (context, scrollController) => Container(
           decoration: const BoxDecoration(
-            color: AppTheme.surfaceColor,
+            color: Theme.of(context).colorScheme.surfaceColor,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
           child: Column(
             children: [
@@ -723,7 +723,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 width: 40,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: AppTheme.textTertiaryColor.withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(2))),
               
               // Header
@@ -752,9 +752,9 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     children: [
                       // Tabs
                       TabBar(
-                        labelColor: AppTheme.primaryColor,
-                        unselectedLabelColor: AppTheme.textTertiaryColor.withOpacity(0.6),
-                        indicatorColor: AppTheme.primaryColor,
+                        labelColor: Theme.of(context).colorScheme.primaryColor,
+                        unselectedLabelColor: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
+                        indicatorColor: Theme.of(context).colorScheme.primaryColor,
                         tabs: const [
                           Tab(text: 'Ancien Testament'),
                           Tab(text: 'Nouveau Testament'),
@@ -808,10 +808,10 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         return Container(
           margin: const EdgeInsets.only(bottom: 12),
           decoration: BoxDecoration(
-            color: isSelected ? AppTheme.primaryColor.withOpacity(0.1) : AppTheme.textTertiaryColor.withOpacity(0.05),
+            color: isSelected ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1) : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: isSelected ? AppTheme.primaryColor : Colors.transparent,
+              color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.transparent,
               width: 1)),
           child: ListTile(
             title: Text(
@@ -819,15 +819,15 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               style: GoogleFonts.inter(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: isSelected ? AppTheme.primaryColor : Colors.black87)),
+                color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.black87)),
             subtitle: Text(
               '${book.chapters.length} chapitre${book.chapters.length > 1 ? 's' : ''}',
               style: GoogleFonts.inter(
                 fontSize: 14,
-                color: AppTheme.textTertiaryColor.withOpacity(0.8))),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))),
             trailing: isSelected 
-                ? Icon(Icons.check_circle, color: AppTheme.primaryColor)
-                : Icon(Icons.arrow_forward_ios, color: AppTheme.textTertiaryColor),
+                ? Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primaryColor)
+                : Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.textTertiaryColor),
             onTap: () => _showChapterSelector(book)));
       });
   }
@@ -867,10 +867,10 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: isSelected ? AppTheme.primaryColor : AppTheme.textTertiaryColor.withOpacity(0.1),
+                    color: isSelected ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: isSelected ? AppTheme.primaryColor : AppTheme.textTertiaryColor.withOpacity(0.3)!,
+                      color: isSelected ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3)!,
                       width: 1)),
                   child: Center(
                     child: Text(
@@ -878,7 +878,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: isSelected ? AppTheme.surfaceColor : Colors.black87)))));
+                        color: isSelected ? Theme.of(context).colorScheme.surfaceColor : Colors.black87)))));
             })),
         actions: [
           TextButton(
@@ -1094,12 +1094,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final theme = _isDarkMode ? ThemeData.dark().copyWith(
-      colorScheme: AppTheme.lightTheme.colorScheme.copyWith(brightness: Brightness.dark),
-      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme)) : AppTheme.lightTheme;
+      colorScheme: Theme.of(context).colorScheme.lightTheme.colorScheme.copyWith(brightness: Brightness.dark),
+      textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme)) : Theme.of(context).colorScheme.lightTheme;
     if (_isLoading) {
       // Shimmer premium sur l’accueil Bible
       return Scaffold(
-        backgroundColor: AppTheme.backgroundColor, // Couleur d'arrière-plan unifiée pour la vue Membre
+        backgroundColor: Theme.of(context).colorScheme.backgroundColor, // Couleur d'arrière-plan unifiée pour la vue Membre
         body: Center(
           child: Shimmer.fromColors(
             baseColor: theme.colorScheme.surface,
@@ -1111,21 +1111,21 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   width: 220,
                   height: 32,
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(12))),
                 const SizedBox(height: 18),
                 Container(
                   width: 320,
                   height: 120,
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(24))),
                 const SizedBox(height: 18),
                 Container(
                   width: 180,
                   height: 18,
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(8))),
               ]))));
     }
@@ -1137,19 +1137,19 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           // TabBar sans AppBar - Style identique au module Message
           Container(
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor, // Rouge bordeaux
+              color: Theme.of(context).colorScheme.primaryColor, // Rouge bordeaux
               boxShadow: [
                 BoxShadow(
-                  color: AppTheme.primaryActive.withOpacity(0.3), // Ombre avec couleur active
+                  color: Theme.of(context).colorScheme.primaryActive.withOpacity(0.3), // Ombre avec couleur active
                   blurRadius: 4,
                   offset: const Offset(0, 2)),
               ]),
             child: TabBar(
               controller: _tabController,
-              indicatorColor: AppTheme.backgroundColor, // Indicateur blanc cassé sur rouge bordeaux
+              indicatorColor: Theme.of(context).colorScheme.backgroundColor, // Indicateur blanc cassé sur rouge bordeaux
               indicatorWeight: 3,
-              labelColor: AppTheme.surfaceColor,
-              unselectedLabelColor: AppTheme.surfaceColor.withOpacity(0.7),
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
+              unselectedLabelColor: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.7),
               labelStyle: GoogleFonts.inter(
                 fontWeight: FontWeight.w600,
                 fontSize: 14),
@@ -1180,8 +1180,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppTheme.textTertiaryColor.withOpacity(0.05)!,
-            AppTheme.surfaceColor,
+            Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05)!,
+            Theme.of(context).colorScheme.surfaceColor,
           ])),
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -1207,7 +1207,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       style: GoogleFonts.poppins(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.textPrimaryColor))),
+                        color: Theme.of(context).colorScheme.textPrimaryColor))),
                   
                   // Plans de lecture
                   const ReadingPlanHomeWidget(),
@@ -1262,7 +1262,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -1299,18 +1299,18 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor)),
+                          color: Theme.of(context).colorScheme.textPrimaryColor)),
                       const SizedBox(height: 4),
                       Text(
                         subtitle,
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                           height: 1.3)),
                     ])),
                 Icon(
                   Icons.arrow_forward_ios,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                   size: 18),
               ])))));
   }
@@ -1349,13 +1349,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.primaryColor,
-            AppTheme.primaryColor.withOpacity(0.8),
+            Theme.of(context).colorScheme.primaryColor,
+            Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
           ]),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.primaryColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
             blurRadius: 20,
             offset: const Offset(0, 8)),
         ]),
@@ -1367,11 +1367,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppTheme.surfaceColor.withOpacity(0.2),
+                  color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(16)),
                 child: const Icon(
                   Icons.auto_stories,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 28)),
               const SizedBox(width: 16),
               Expanded(
@@ -1382,7 +1382,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       _getGreeting(),
                       style: GoogleFonts.inter(
                         fontSize: 16,
-                        color: AppTheme.surfaceColor.withOpacity(0.9),
+                        color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9),
                         fontWeight: FontWeight.w500)),
                     const SizedBox(height: 4),
                     Text(
@@ -1390,7 +1390,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       style: GoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.surfaceColor)),
+                        color: Theme.of(context).colorScheme.surfaceColor)),
                   ])),
             ]),
           
@@ -1404,7 +1404,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   icon: Icons.local_fire_department,
                   title: 'Jour consécutif',
                   value: '${_readingStreak}',
-                  color: AppTheme.warningColor)),
+                  color: Theme.of(context).colorScheme.warningColor)),
               const SizedBox(width: 12),
               Expanded(
                 child: _buildStatCard(
@@ -1432,10 +1432,10 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor.withOpacity(0.15),
+        color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.15),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppTheme.surfaceColor.withOpacity(0.2))),
+          color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2))),
       child: Column(
         children: [
           Container(
@@ -1445,7 +1445,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               shape: BoxShape.circle),
             child: Icon(
               icon,
-              color: AppTheme.surfaceColor,
+              color: Theme.of(context).colorScheme.surfaceColor,
               size: 20)),
           const SizedBox(height: 8),
           Text(
@@ -1453,12 +1453,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: AppTheme.surfaceColor)),
+              color: Theme.of(context).colorScheme.surfaceColor)),
           Text(
             title,
             style: GoogleFonts.inter(
               fontSize: 11,
-              color: AppTheme.surfaceColor.withOpacity(0.8),
+              color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.8),
               fontWeight: FontWeight.w500),
             textAlign: TextAlign.center),
         ]));
@@ -1477,7 +1477,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           end: Alignment.bottomRight,
           colors: [
             Colors.amber[50]!,
-            AppTheme.warningColor.withOpacity(0.05)!,
+            Theme.of(context).colorScheme.warningColor.withOpacity(0.05)!,
           ]),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
@@ -1499,7 +1499,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   padding: const EdgeInsets.all(10), // Réduit de 12 à 10
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.amber, AppTheme.warningColor]),
+                      colors: [Colors.amber, Theme.of(context).colorScheme.warningColor]),
                     borderRadius: BorderRadius.circular(14), // Réduit de 16 à 14
                     boxShadow: [
                       BoxShadow(
@@ -1509,7 +1509,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     ]),
                   child: const Icon(
                     Icons.wb_sunny,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 22, // Réduit de 24 à 22
                   )),
                 const SizedBox(width: 14), // Réduit de 16 à 14
@@ -1534,7 +1534,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   onPressed: () => _shareDailyBread(),
                   icon: const Icon(Icons.share),
                   style: IconButton.styleFrom(
-                    backgroundColor: AppTheme.surfaceColor,
+                    backgroundColor: Theme.of(context).colorScheme.surfaceColor,
                     foregroundColor: Colors.amber[700])),
               ]),
             
@@ -1545,7 +1545,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               child: Container(
                 padding: const EdgeInsets.all(16), // Réduit de 20 à 16
                 decoration: BoxDecoration(
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -1579,7 +1579,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     fontSize: _fontSize + 2,
                                     fontStyle: FontStyle.italic,
                                     height: 1.4,
-                                    color: AppTheme.textTertiaryColor.withOpacity(0.8),
+                                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8),
                                     fontWeight: FontWeight.w500))),
                               if (verseText.length > 120) ...[
                                 const SizedBox(height: 8),
@@ -1667,7 +1667,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     ]),
                   child: const Icon(
                     Icons.auto_stories,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 22, // Réduit de 24 à 22
                   )),
                 const SizedBox(width: 14), // Réduit de 16 à 14
@@ -1692,7 +1692,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   onPressed: () => _shareScrapedBranhamQuote(),
                   icon: const Icon(Icons.share),
                   style: IconButton.styleFrom(
-                    backgroundColor: AppTheme.surfaceColor,
+                    backgroundColor: Theme.of(context).colorScheme.surfaceColor,
                     foregroundColor: Colors.blue[700])),
               ]),
             
@@ -1703,7 +1703,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               child: Container(
                 padding: const EdgeInsets.all(16), // Réduit de 20 à 16
                 decoration: BoxDecoration(
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
@@ -1737,7 +1737,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     fontSize: _fontSize + 2,
                                     fontStyle: FontStyle.italic,
                                     height: 1.4,
-                                    color: AppTheme.textTertiaryColor.withOpacity(0.8),
+                                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8),
                                     fontWeight: FontWeight.w500))),
                               if (quoteText.length > 120) ...[
                                 const SizedBox(height: 8),
@@ -1801,7 +1801,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             blurRadius: 8,
             offset: const Offset(0, 4)),
           BoxShadow(
-            color: AppTheme.surfaceColor.withOpacity(0.8),
+            color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.8),
             blurRadius: 1,
             offset: const Offset(0, 1),
             spreadRadius: 0),
@@ -1820,19 +1820,19 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      AppTheme.primaryColor,
+                      Theme.of(context).colorScheme.primaryColor,
                       Color(0xFF764BA2),
                     ]),
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.25),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.25),
                       blurRadius: 12,
                       offset: const Offset(0, 6)),
                   ]),
                 child: const Icon(
                   Icons.flash_on,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 24)),
               const SizedBox(width: 16),
               Expanded(
@@ -1852,12 +1852,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                           decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8)),
                           child: const Text(
                             'RAPIDE',
                             style: TextStyle(
-                              color: AppTheme.primaryColor,
+                              color: Theme.of(context).colorScheme.primaryColor,
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 0.5))),
@@ -1882,7 +1882,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 child: _buildQuickActionCard(
                   icon: Icons.play_circle_filled,
                   title: _getLastReadingTitle(),
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   onTap: () {
                     // Charger la dernière position et naviguer vers l'onglet lecture
                     _loadLastReadingPosition().then((_) {
@@ -1908,7 +1908,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 child: _buildQuickActionCard(
                   icon: Icons.note,
                   title: 'Mes\nnotes',
-                  color: AppTheme.successColor,
+                  color: Theme.of(context).colorScheme.successColor,
                   onTap: () {
                     // Ouvrir les notes
                     _showNotes();
@@ -1929,7 +1929,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.surfaceColor.withOpacity(0.9),
+            Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9),
             const Color(0xFFF8FAFC).withOpacity(0.7),
           ]),
         borderRadius: BorderRadius.circular(16),
@@ -1942,7 +1942,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             blurRadius: 8,
             offset: const Offset(0, 4)),
           BoxShadow(
-            color: AppTheme.surfaceColor.withOpacity(0.8),
+            color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.8),
             blurRadius: 1,
             offset: const Offset(0, 1)),
         ]),
@@ -1976,7 +1976,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     ]),
                   child: Icon(
                     icon,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 22)),
                 const SizedBox(height: 12),
                 Text(
@@ -2034,7 +2034,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     final book = books.firstWhere((b) => b.name == _selectedBook!);
     
     return Scaffold(
-      backgroundColor: AppTheme.surfaceColor,
+      backgroundColor: Theme.of(context).colorScheme.surfaceColor,
       body: Column(
         children: [
           // En-tête style YouVersion
@@ -2058,10 +2058,10 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.textTertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1),
             width: 1))),
       child: Row(
         children: [
@@ -2081,14 +2081,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(6)),
                     child: Text(
                       '$_selectedChapter',
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.primaryColor))),
+                        color: Theme.of(context).colorScheme.primaryColor))),
                 ]))),
           
           // Icônes à droite
@@ -2112,13 +2112,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       SnackBar(
                         content: Row(
                           children: [
-                            Icon(Icons.check_circle, color: AppTheme.surfaceColor, size: 20),
+                            Icon(Icons.check_circle, color: Theme.of(context).colorScheme.surfaceColor, size: 20),
                             SizedBox(width: 8),
                             Text(
                               'Navigation vers ${result['book']} ${result['chapter']}:${result['verse']}',
                               style: GoogleFonts.inter(fontWeight: FontWeight.w500)),
                           ]),
-                        backgroundColor: AppTheme.successColor,
+                        backgroundColor: Theme.of(context).colorScheme.successColor,
                         duration: Duration(seconds: 2),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
@@ -2137,7 +2137,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 },
                 icon: Icon(
                   Icons.search,
-                  color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                  color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                   size: 24),
                 splashRadius: 20),
               
@@ -2145,7 +2145,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               PopupMenuButton<String>(
                 icon: Icon(
                   Icons.more_vert,
-                  color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                  color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                   size: 24),
                 onSelected: (value) {
                   switch (value) {
@@ -2168,7 +2168,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     value: 'bookmark',
                     child: Row(
                       children: [
-                        Icon(Icons.bookmark_add, size: 20, color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                        Icon(Icons.bookmark_add, size: 20, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                         const SizedBox(width: 12),
                         const Text('Marquer ce chapitre'),
                       ])),
@@ -2176,7 +2176,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     value: 'share',
                     child: Row(
                       children: [
-                        Icon(Icons.share, size: 20, color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                        Icon(Icons.share, size: 20, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                         const SizedBox(width: 12),
                         const Text('Partager'),
                       ])),
@@ -2184,7 +2184,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     value: 'font_size',
                     child: Row(
                       children: [
-                        Icon(Icons.text_fields, size: 20, color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                        Icon(Icons.text_fields, size: 20, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                         const SizedBox(width: 12),
                         const Text('Taille du texte'),
                       ])),
@@ -2192,7 +2192,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     value: 'settings',
                     child: Row(
                       children: [
-                        Icon(Icons.settings, size: 20, color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                        Icon(Icons.settings, size: 20, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                         const SizedBox(width: 12),
                         const Text('Paramètres'),
                       ])),
@@ -2209,7 +2209,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           'Chapitre non trouvé',
           style: GoogleFonts.crimsonText(
             fontSize: 18,
-            color: AppTheme.textTertiaryColor.withOpacity(0.6),
+            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
             fontWeight: FontWeight.w500)));
     }
 
@@ -2220,7 +2220,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       padding: const EdgeInsets.fromLTRB(24, 32, 24, 120),
       child: Container(
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
@@ -2243,7 +2243,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       letterSpacing: 1.2)),
                   const SizedBox(height: 8),
                   Text(
@@ -2260,8 +2260,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppTheme.primaryColor,
-                          AppTheme.primaryColor.withOpacity(0.3),
+                          Theme.of(context).colorScheme.primaryColor,
+                          Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                         ]),
                       borderRadius: BorderRadius.circular(2))),
                 ])),
@@ -2289,7 +2289,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: isSelected
-                                ? AppTheme.primaryColor.withOpacity(0.08)
+                                ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.08)
                                 : isHighlighted
                                     ? _getHighlightColor(verseKey).withOpacity(0.1)
                                     : isFavorite
@@ -2298,7 +2298,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
                               color: isSelected
-                                  ? AppTheme.primaryColor.withOpacity(0.3)
+                                  ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.3)
                                   : isHighlighted
                                       ? _getHighlightColor(verseKey).withOpacity(0.3)
                                       : Colors.transparent,
@@ -2306,7 +2306,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                             boxShadow: (isSelected || isHighlighted || isFavorite)
                                 ? [
                                     BoxShadow(
-                                      color: (isSelected ? AppTheme.primaryColor : _getHighlightColor(verseKey)).withOpacity(0.1),
+                                      color: (isSelected ? Theme.of(context).colorScheme.primaryColor : _getHighlightColor(verseKey)).withOpacity(0.1),
                                       blurRadius: 8,
                                       offset: const Offset(0, 2)),
                                   ]
@@ -2326,7 +2326,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     style: GoogleFonts.inter(
                                       fontSize: _fontSize,
                                       fontWeight: FontWeight.w700,
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       height: _lineHeight)),
                                 // Texte du verset avec style amélioré
                                 TextSpan(
@@ -2392,7 +2392,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     style: GoogleFonts.inter(
                                       fontSize: _fontSize + 1,
                                       fontWeight: FontWeight.w700,
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       height: _lineHeight)),
                                 // Texte du verset avec effets visuels améliorés
                                 TextSpan(
@@ -2405,7 +2405,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                         ? TextDecoration.underline
                                         : null,
                                     decorationColor: _selectedVerses.contains(verseKey)
-                                        ? AppTheme.primaryColor
+                                        ? Theme.of(context).colorScheme.primaryColor
                                         : null,
                                     decorationThickness: _selectedVerses.contains(verseKey)
                                         ? 3.0
@@ -2453,11 +2453,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               FloatingActionButton(
                 heroTag: "previous",
                 onPressed: _goToPreviousChapter,
-                backgroundColor: AppTheme.surfaceColor,
+                backgroundColor: Theme.of(context).colorScheme.surfaceColor,
                 elevation: 4,
                 child: Icon(
                   Icons.chevron_left,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 28))
             else
               const SizedBox(width: 56), // Espace pour maintenir l'alignement
@@ -2467,11 +2467,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               FloatingActionButton(
                 heroTag: "next",
                 onPressed: _goToNextChapter,
-                backgroundColor: AppTheme.surfaceColor,
+                backgroundColor: Theme.of(context).colorScheme.surfaceColor,
                 elevation: 4,
                 child: Icon(
                   Icons.chevron_right,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 28))
             else
               const SizedBox(width: 56), // Espace pour maintenir l'alignement
@@ -2486,8 +2486,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppTheme.surfaceColor,
-            AppTheme.textTertiaryColor.withOpacity(0.05),
+            Theme.of(context).colorScheme.surfaceColor,
+            Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
           ]),
         boxShadow: [
           BoxShadow(
@@ -2507,19 +2507,19 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      AppTheme.primaryColor,
-                      AppTheme.primaryColor.withOpacity(0.8),
+                      Theme.of(context).colorScheme.primaryColor,
+                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
                     ]),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.primaryColor.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 2)),
                   ]),
                 child: const Icon(
                   Icons.menu_book,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 20)),
               const SizedBox(width: 12),
               Expanded(
@@ -2531,13 +2531,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         height: 1.1)),
                     Text(
                       'Explorez les Saintes Écritures',
                       style: GoogleFonts.inter(
                         fontSize: 12,
-                        color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                         fontWeight: FontWeight.w500)),
                   ])),
               // Menu d'options compact
@@ -2545,11 +2545,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 icon: Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10)),
                   child: Icon(
                     Icons.more_vert,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 16)),
                 onSelected: (value) {
                   switch (value) {
@@ -2571,7 +2571,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         Icon(
                           Icons.settings,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           size: 20),
                         const SizedBox(width: 12),
                         Text(
@@ -2586,7 +2586,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         Icon(
                           Icons.history,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           size: 20),
                         const SizedBox(width: 12),
                         Text(
@@ -2601,7 +2601,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         Icon(
                           Icons.bookmark_add,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           size: 20),
                         const SizedBox(width: 12),
                         Text(
@@ -2623,12 +2623,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 flex: 2,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: _selectedBook != null 
-                          ? AppTheme.primaryColor.withOpacity(0.3)
-                          : AppTheme.textTertiaryColor.withOpacity(0.2)),
+                          ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.3)
+                          : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.03),
@@ -2641,23 +2641,23 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         Icon(
                           Icons.book,
-                          color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                          color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                           size: 16),
                         const SizedBox(width: 6),
                         Text(
                           'Livre',
                           style: GoogleFonts.inter(
-                            color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                             fontSize: 12)),
                       ]),
                     isExpanded: true,
                     underline: const SizedBox(),
                     icon: Icon(
                       Icons.keyboard_arrow_down,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       size: 18),
                     style: GoogleFonts.inter(
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       fontSize: 13,
                       fontWeight: FontWeight.w600),
                     items: books.map((b) => DropdownMenuItem(
@@ -2666,7 +2666,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         children: [
                           Icon(
                             Icons.book,
-                            color: AppTheme.primaryColor,
+                            color: Theme.of(context).colorScheme.primaryColor,
                             size: 14),
                           const SizedBox(width: 6),
                           Expanded(
@@ -2693,12 +2693,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   decoration: BoxDecoration(
-                    color: _selectedBook != null ? AppTheme.surfaceColor : AppTheme.textTertiaryColor.withOpacity(0.1),
+                    color: _selectedBook != null ? Theme.of(context).colorScheme.surfaceColor : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: _selectedChapter != null 
-                          ? AppTheme.primaryColor.withOpacity(0.3)
-                          : AppTheme.textTertiaryColor.withOpacity(0.2)),
+                          ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.3)
+                          : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2)),
                     boxShadow: _selectedBook != null ? [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.03),
@@ -2711,24 +2711,24 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         Icon(
                           Icons.format_list_numbered,
-                          color: _selectedBook != null ? AppTheme.textTertiaryColor.withOpacity(0.6) : AppTheme.textTertiaryColor.withOpacity(0.4),
+                          color: _selectedBook != null ? Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6) : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.4),
                           size: 16),
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
                             'Chap.',
                             style: GoogleFonts.inter(
-                              color: _selectedBook != null ? AppTheme.textTertiaryColor.withOpacity(0.6) : AppTheme.textTertiaryColor.withOpacity(0.4),
+                              color: _selectedBook != null ? Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6) : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.4),
                               fontSize: 12))),
                       ]),
                     isExpanded: true,
                     underline: const SizedBox(),
                     icon: Icon(
                       Icons.keyboard_arrow_down,
-                      color: _selectedBook != null ? AppTheme.primaryColor : AppTheme.textTertiaryColor.withOpacity(0.4),
+                      color: _selectedBook != null ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.4),
                       size: 18),
                     style: GoogleFonts.inter(
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       fontSize: 13,
                       fontWeight: FontWeight.w600),
                     items: _selectedBook != null
@@ -2741,14 +2741,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                     decoration: BoxDecoration(
-                                      color: AppTheme.primaryColor.withOpacity(0.1),
+                                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(6)),
                                     child: Text(
                                       '${i + 1}',
                                       style: GoogleFonts.poppins(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
-                                        color: AppTheme.primaryColor))),
+                                        color: Theme.of(context).colorScheme.primaryColor))),
                                 ])))
                         : [],
                     onChanged: _selectedBook != null 
@@ -2779,14 +2779,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    AppTheme.primaryColor.withOpacity(0.1),
-                    AppTheme.primaryColor.withOpacity(0.05),
+                    Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                    Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
                   ]),
                 shape: BoxShape.circle),
               child: Icon(
                 Icons.menu_book_outlined,
                 size: 80,
-                color: AppTheme.primaryColor.withOpacity(0.7))),
+                color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.7))),
             const SizedBox(height: 32),
             Text(
               _selectedBook == null
@@ -2795,7 +2795,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               style: GoogleFonts.poppins(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
               textAlign: TextAlign.center),
             const SizedBox(height: 16),
             Text(
@@ -2804,7 +2804,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   : 'Découvrez les versets du livre ${_selectedBook}',
               style: GoogleFonts.inter(
                 fontSize: 16,
-                color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                 height: 1.5),
               textAlign: TextAlign.center),
             const SizedBox(height: 32),
@@ -2821,8 +2821,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 icon: const Icon(Icons.auto_awesome),
                 label: const Text('Suggestion aléatoire'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
-                  foregroundColor: AppTheme.surfaceColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
+                  foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16)),
@@ -2846,7 +2846,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           child: Container(
             height: 64,
             decoration: BoxDecoration(
-              color: AppTheme.surfaceColor,
+              color: Theme.of(context).colorScheme.surfaceColor,
               borderRadius: BorderRadius.circular(16)))));
     }
     
@@ -2862,12 +2862,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppTheme.primaryColor.withOpacity(0.08),
-                AppTheme.primaryColor.withOpacity(0.03),
+                Theme.of(context).colorScheme.primaryColor.withOpacity(0.08),
+                Theme.of(context).colorScheme.primaryColor.withOpacity(0.03),
               ]),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppTheme.primaryColor.withOpacity(0.1))),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1))),
           child: Column(
             children: [
               Row(
@@ -2875,11 +2875,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(10)),
                     child: Icon(
                       Icons.auto_stories,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       size: 18)),
                   const SizedBox(width: 12),
                   Expanded(
@@ -2891,12 +2891,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           style: GoogleFonts.crimsonText(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: AppTheme.primaryColor)),
+                            color: Theme.of(context).colorScheme.primaryColor)),
                         Text(
                           '${verses.length} versets',
                           style: GoogleFonts.inter(
                             fontSize: 11,
-                            color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                             fontWeight: FontWeight.w500)),
                       ])),
                   // Navigation rapide compacte
@@ -2907,8 +2907,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           onPressed: () => setState(() => _selectedChapter = chapter - 1),
                           icon: const Icon(Icons.navigate_before),
                           style: IconButton.styleFrom(
-                            backgroundColor: AppTheme.surfaceColor,
-                            foregroundColor: AppTheme.primaryColor,
+                            backgroundColor: Theme.of(context).colorScheme.surfaceColor,
+                            foregroundColor: Theme.of(context).colorScheme.primaryColor,
                             padding: const EdgeInsets.all(6),
                             minimumSize: const Size(32, 32)),
                           tooltip: 'Chapitre précédent'),
@@ -2918,8 +2918,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           onPressed: () => setState(() => _selectedChapter = chapter + 1),
                           icon: const Icon(Icons.navigate_next),
                           style: IconButton.styleFrom(
-                            backgroundColor: AppTheme.surfaceColor,
-                            foregroundColor: AppTheme.primaryColor,
+                            backgroundColor: Theme.of(context).colorScheme.surfaceColor,
+                            foregroundColor: Theme.of(context).colorScheme.primaryColor,
                             padding: const EdgeInsets.all(6),
                             minimumSize: const Size(32, 32)),
                           tooltip: 'Chapitre suivant'),
@@ -2952,12 +2952,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 child: Container(
                   decoration: BoxDecoration(
                     color: isHighlight
-                        ? AppTheme.primaryColor.withOpacity(0.08)
-                        : AppTheme.surfaceColor,
+                        ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.08)
+                        : Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(16),
                     border: isHighlight 
-                        ? Border.all(color: AppTheme.primaryColor.withOpacity(0.3), width: 1.5)
-                        : Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.1)),
+                        ? Border.all(color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3), width: 1.5)
+                        : Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.03),
@@ -2989,8 +2989,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      AppTheme.primaryColor.withOpacity(0.1),
-                                      AppTheme.primaryColor.withOpacity(0.05),
+                                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                                      Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
                                     ]),
                                   borderRadius: BorderRadius.circular(8)),
                                 child: Text(
@@ -2998,7 +2998,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
-                                    color: AppTheme.primaryColor))),
+                                    color: Theme.of(context).colorScheme.primaryColor))),
                               
                               const SizedBox(width: 12),
                               
@@ -3015,12 +3015,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                               fontSize: _fontSize,
                                               height: _lineHeight,
                                               fontWeight: FontWeight.w500,
-                                              color: AppTheme.textTertiaryColor.withOpacity(0.8))
+                                              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))
                                           : GoogleFonts.crimsonText(
                                               fontSize: _fontSize,
                                               height: _lineHeight,
                                               fontWeight: FontWeight.w500,
-                                              color: AppTheme.textTertiaryColor.withOpacity(0.8))),
+                                              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))),
                                     
                                     const SizedBox(height: 6),
                                     
@@ -3029,7 +3029,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                       '${v.book} ${v.chapter}:${v.verse}',
                                       style: GoogleFonts.inter(
                                         fontSize: 10,
-                                        color: AppTheme.textTertiaryColor.withOpacity(0.5),
+                                        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
                                         fontWeight: FontWeight.w500)),
                                   ])),
                               
@@ -3096,7 +3096,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: AppTheme.textTertiaryColor.withOpacity(0.05),
+                                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
                                 borderRadius: BorderRadius.circular(12)),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -3110,7 +3110,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                   _buildVerseAction(
                                     icon: isHighlight ? Icons.highlight_off : Icons.highlight,
                                     label: isHighlight ? 'Surligné' : 'Surligner',
-                                    color: AppTheme.primaryColor,
+                                    color: Theme.of(context).colorScheme.primaryColor,
                                     isActive: isHighlight,
                                     onTap: () => _toggleHighlight(v)),
                                   _buildVerseAction(
@@ -3122,7 +3122,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                   _buildVerseAction(
                                     icon: Icons.share,
                                     label: 'Partager',
-                                    color: AppTheme.successColor.withOpacity(0.7)!,
+                                    color: Theme.of(context).colorScheme.successColor.withOpacity(0.7)!,
                                     isActive: false,
                                     onTap: () => _shareVerse(v)),
                                 ])),
@@ -3148,13 +3148,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           color: isActive ? color.withOpacity(0.1) : Colors.transparent,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: isActive ? color.withOpacity(0.3) : AppTheme.textTertiaryColor.withOpacity(0.2))),
+            color: isActive ? color.withOpacity(0.3) : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              color: isActive ? color : AppTheme.textTertiaryColor.withOpacity(0.6),
+              color: isActive ? color : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
               size: 16),
             const SizedBox(height: 2),
             Text(
@@ -3162,7 +3162,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               style: GoogleFonts.inter(
                 fontSize: 9,
                 fontWeight: FontWeight.w500,
-                color: isActive ? color : AppTheme.textTertiaryColor.withOpacity(0.6))),
+                color: isActive ? color : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
           ])));
   }
 
@@ -3188,11 +3188,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: AppTheme.primaryColor.withOpacity(0.1),
+                            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12)),
                           child: Icon(
                             Icons.settings,
-                            color: AppTheme.primaryColor,
+                            color: Theme.of(context).colorScheme.primaryColor,
                             size: 24)),
                         const SizedBox(width: 16),
                         Expanded(
@@ -3209,11 +3209,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                 'Personnalisez votre expérience de lecture',
                                 style: GoogleFonts.inter(
                                   fontSize: 14,
-                                  color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                                  color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
                             ])),
                         IconButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          icon: Icon(Icons.close, color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                          icon: Icon(Icons.close, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
                       ]),
                     
                     const SizedBox(height: 24),
@@ -3358,15 +3358,15 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                             },
                             child: Text('Réinitialiser'),
                             style: TextButton.styleFrom(
-                              foregroundColor: AppTheme.textTertiaryColor.withOpacity(0.6),
+                              foregroundColor: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                               padding: const EdgeInsets.symmetric(vertical: 12)))),
                         const SizedBox(width: 12),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () => Navigator.of(context).pop(),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppTheme.primaryColor,
-                              foregroundColor: AppTheme.surfaceColor,
+                              backgroundColor: Theme.of(context).colorScheme.primaryColor,
+                              foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8))),
@@ -3391,14 +3391,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           children: [
             Row(
               children: [
-                Icon(Icons.history, color: AppTheme.primaryColor),
+                Icon(Icons.history, color: Theme.of(context).colorScheme.primaryColor),
                 SizedBox(width: 12),
                 Text(
                   'Historique de lecture',
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor)),
+                    color: Theme.of(context).colorScheme.textPrimaryColor)),
               ]),
             SizedBox(height: 20),
             _buildHistoryItem('Genèse 1', 'Aujourd\'hui 14:30'),
@@ -3423,8 +3423,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         SnackBar(content: Text('Historique effacé')));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.errorColor.withOpacity(0.1),
-                      foregroundColor: AppTheme.errorColor.withOpacity(0.7)),
+                      backgroundColor: Theme.of(context).colorScheme.errorColor.withOpacity(0.1),
+                      foregroundColor: Theme.of(context).colorScheme.errorColor.withOpacity(0.7)),
                     child: Text('Effacer'))),
               ]),
           ])));
@@ -3432,17 +3432,17 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
 
   Widget _buildHistoryItem(String chapter, String time) {
     return ListTile(
-      leading: Icon(Icons.book, color: AppTheme.primaryColor),
+      leading: Icon(Icons.book, color: Theme.of(context).colorScheme.primaryColor),
       title: Text(
         chapter,
         style: GoogleFonts.inter(
           fontWeight: FontWeight.w600,
-          color: AppTheme.textPrimaryColor)),
+          color: Theme.of(context).colorScheme.textPrimaryColor)),
       subtitle: Text(
         time,
         style: GoogleFonts.inter(
           fontSize: 12,
-          color: AppTheme.textSecondaryColor)),
+          color: Theme.of(context).colorScheme.textSecondaryColor)),
       trailing: Icon(Icons.arrow_forward_ios, size: 16),
       onTap: () {
         Navigator.pop(context);
@@ -3459,7 +3459,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       children: [
         Row(
           children: [
-            Icon(icon, size: 20, color: AppTheme.primaryColor),
+            Icon(icon, size: 20, color: Theme.of(context).colorScheme.primaryColor),
             const SizedBox(width: 8),
             Text(
               title,
@@ -3478,9 +3478,9 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: AppTheme.textTertiaryColor.withOpacity(0.05),
+        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.2)!)),
+        border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2)!)),
       child: Row(
         children: [
           Expanded(
@@ -3497,12 +3497,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   subtitle,
                   style: GoogleFonts.inter(
                     fontSize: 12,
-                    color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
               ])),
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: AppTheme.primaryColor),
+            activeColor: Theme.of(context).colorScheme.primaryColor),
         ]));
   }
 
@@ -3511,9 +3511,9 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: AppTheme.textTertiaryColor.withOpacity(0.05),
+        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.2)!)),
+        border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2)!)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -3531,15 +3531,15 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppTheme.primaryColor)),
+                  color: Theme.of(context).colorScheme.primaryColor)),
             ]),
           const SizedBox(height: 8),
           SliderTheme(
             data: SliderTheme.of(context).copyWith(
-              activeTrackColor: AppTheme.primaryColor,
-              inactiveTrackColor: AppTheme.textTertiaryColor.withOpacity(0.3),
-              thumbColor: AppTheme.primaryColor,
-              overlayColor: AppTheme.primaryColor.withOpacity(0.2),
+              activeTrackColor: Theme.of(context).colorScheme.primaryColor,
+              inactiveTrackColor: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
+              thumbColor: Theme.of(context).colorScheme.primaryColor,
+              overlayColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
               trackHeight: 4),
             child: Slider(
               value: value,
@@ -3588,7 +3588,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Paramètres réinitialisés'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))));
   }
@@ -3606,7 +3606,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Marque-page supprimé pour $_selectedBook $_selectedChapter'),
-            backgroundColor: AppTheme.warningColor,
+            backgroundColor: Theme.of(context).colorScheme.warningColor,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))));
       } else {
@@ -3616,7 +3616,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Chapitre $_selectedBook $_selectedChapter marqué'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             action: SnackBarAction(
@@ -3643,37 +3643,37 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               children: [
                 Row(
                   children: [
-                    Icon(Icons.bookmark, color: AppTheme.primaryColor),
+                    Icon(Icons.bookmark, color: Theme.of(context).colorScheme.primaryColor),
                     SizedBox(width: 12),
                     Text(
                       'Mes marque-pages',
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.textPrimaryColor)),
+                        color: Theme.of(context).colorScheme.textPrimaryColor)),
                   ]),
                 SizedBox(height: 20),
                 if (bookmarks.isEmpty)
                   Center(
                     child: Column(
                       children: [
-                        Icon(Icons.bookmark_border, size: 48, color: AppTheme.textTertiaryColor.withOpacity(0.4)),
+                        Icon(Icons.bookmark_border, size: 48, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.4)),
                         SizedBox(height: 12),
                         Text(
                           'Aucun marque-page',
-                          style: GoogleFonts.inter(color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                          style: GoogleFonts.inter(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
                       ]))
                 else
                   ...bookmarks.map((bookmark) => 
                     ListTile(
-                      leading: Icon(Icons.bookmark, color: AppTheme.primaryColor),
+                      leading: Icon(Icons.bookmark, color: Theme.of(context).colorScheme.primaryColor),
                       title: Text(
                         bookmark,
                         style: GoogleFonts.inter(
                           fontWeight: FontWeight.w600,
-                          color: AppTheme.textPrimaryColor)),
+                          color: Theme.of(context).colorScheme.textPrimaryColor)),
                       trailing: IconButton(
-                        icon: Icon(Icons.delete, color: AppTheme.errorColor.withOpacity(0.4)),
+                        icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor.withOpacity(0.4)),
                         onPressed: () async {
                           await _removeBookmark(bookmark);
                           Navigator.pop(context);
@@ -3728,8 +3728,8 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            AppTheme.textTertiaryColor.withOpacity(0.05)!,
-            AppTheme.surfaceColor,
+            Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05)!,
+            Theme.of(context).colorScheme.surfaceColor,
           ])),
       child: Column(
         children: [
@@ -3748,7 +3748,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     return Container(
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -3777,11 +3777,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor.withOpacity(0.2),
+                    color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16)),
                   child: const Icon(
                     Icons.search,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 28)),
                 const SizedBox(width: 16),
                 Expanded(
@@ -3793,25 +3793,25 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.surfaceColor)),
+                          color: Theme.of(context).colorScheme.surfaceColor)),
                       Text(
                         'Explorez les Écritures',
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.surfaceColor.withOpacity(0.9),
+                          color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9),
                           fontWeight: FontWeight.w500)),
                     ])),
                 if (_searchQuery.isNotEmpty)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: AppTheme.surfaceColor.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       '${_searchResults.length} résultat${_searchResults.length > 1 ? 's' : ''}',
                       style: GoogleFonts.inter(
                         fontSize: 12,
-                        color: AppTheme.surfaceColor,
+                        color: Theme.of(context).colorScheme.surfaceColor,
                         fontWeight: FontWeight.w600))),
               ])),
           
@@ -3823,10 +3823,10 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 // Champ de recherche principal
                 Container(
                   decoration: BoxDecoration(
-                    color: AppTheme.textTertiaryColor.withOpacity(0.05),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: AppTheme.textTertiaryColor.withOpacity(0.2))),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2))),
                   child: TextField(
                     style: GoogleFonts.inter(
                       fontSize: 16,
@@ -3835,7 +3835,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       hintText: 'Rechercher un mot, "expression" ou référence (ex: Jean 3:16)',
                       hintStyle: GoogleFonts.inter(
                         fontSize: 14,
-                        color: AppTheme.textTertiaryColor.withOpacity(0.5)),
+                        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5)),
                       prefixIcon: Container(
                         margin: const EdgeInsets.all(12),
                         padding: const EdgeInsets.all(8),
@@ -3855,7 +3855,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                 });
                               },
                               icon: const Icon(Icons.clear),
-                              color: AppTheme.textTertiaryColor.withOpacity(0.5))
+                              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5))
                           : null,
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.symmetric(
@@ -3890,31 +3890,31 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: AppTheme.textTertiaryColor.withOpacity(0.2))),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2))),
                 child: DropdownButton<String>(
                   value: _selectedBookFilter,
                   hint: Row(
                     children: [
                       Icon(
                         Icons.book,
-                        color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                         size: 20),
                       const SizedBox(width: 8),
                       Text(
                         'Tous les livres',
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                          color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                           fontWeight: FontWeight.w500)),
                     ]),
                   underline: const SizedBox(),
                   isExpanded: true,
                   icon: Icon(
                     Icons.arrow_drop_down,
-                    color: AppTheme.textTertiaryColor.withOpacity(0.6)),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6)),
                   items: [
                     DropdownMenuItem<String>(
                       value: '',
@@ -3964,14 +3964,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       children: [
                         const Icon(
                           Icons.tune,
-                          color: AppTheme.surfaceColor,
+                          color: Theme.of(context).colorScheme.surfaceColor,
                           size: 20),
                         const SizedBox(width: 8),
                         Text(
                           'Avancé',
                           style: GoogleFonts.inter(
                             fontSize: 14,
-                            color: AppTheme.surfaceColor,
+                            color: Theme.of(context).colorScheme.surfaceColor,
                             fontWeight: FontWeight.w600)),
                       ]))))),
           ]);
@@ -3980,12 +3980,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
 
   Widget _buildSearchSuggestions() {
     final suggestions = [
-      {'text': 'amour', 'icon': Icons.favorite, 'color': AppTheme.errorColor},
-      {'text': 'paix', 'icon': Icons.spa, 'color': AppTheme.successColor},
+      {'text': 'amour', 'icon': Icons.favorite, 'color': Theme.of(context).colorScheme.errorColor},
+      {'text': 'paix', 'icon': Icons.spa, 'color': Theme.of(context).colorScheme.successColor},
       {'text': 'sagesse', 'icon': Icons.psychology, 'color': Colors.purple},
       {'text': 'espoir', 'icon': Icons.star, 'color': Colors.amber},
       {'text': 'Jean 3:16', 'icon': Icons.auto_stories, 'color': Colors.blue},
-      {'text': 'Psaume 23', 'icon': Icons.music_note, 'color': AppTheme.warningColor},
+      {'text': 'Psaume 23', 'icon': Icons.music_note, 'color': Theme.of(context).colorScheme.warningColor},
     ];
 
     return Column(
@@ -3997,7 +3997,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: AppTheme.textTertiaryColor.withOpacity(0.7))),
+            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7))),
         const SizedBox(height: 12),
         Wrap(
           spacing: 8,
@@ -4050,13 +4050,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textTertiaryColor.withOpacity(0.7))),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7))),
           const SizedBox(height: 8),
           Text(
             'Tapez un mot, une expression ou une référence\npour explorer les Écritures',
             style: GoogleFonts.inter(
               fontSize: 16,
-              color: AppTheme.textTertiaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
               height: 1.5),
             textAlign: TextAlign.center),
           const SizedBox(height: 32),
@@ -4077,7 +4077,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         'title': 'Thèmes spirituels',
         'description': 'Amour, paix, espoir',
         'icon': Icons.favorite,
-        'color': AppTheme.errorColor,
+        'color': Theme.of(context).colorScheme.errorColor,
         'searches': ['amour', 'paix', 'espoir', 'foi'],
       },
       {
@@ -4116,7 +4116,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       borderRadius: BorderRadius.circular(16)),
                     child: Icon(
                       search['icon'] as IconData,
-                      color: AppTheme.surfaceColor,
+                      color: Theme.of(context).colorScheme.surfaceColor,
                       size: 24)),
                   const SizedBox(height: 12),
                   Text(
@@ -4124,14 +4124,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                     textAlign: TextAlign.center),
                   const SizedBox(height: 4),
                   Text(
                     search['description'] as String,
                     style: GoogleFonts.inter(
                       fontSize: 12,
-                      color: AppTheme.textTertiaryColor.withOpacity(0.5),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
                       height: 1.3),
                     textAlign: TextAlign.center),
                 ])))))).toList());
@@ -4155,22 +4155,22 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  AppTheme.successColor.withOpacity(0.05)!,
+                  Theme.of(context).colorScheme.successColor.withOpacity(0.05)!,
                   Colors.blue[50]!,
                 ]),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppTheme.successColor.withOpacity(0.2))),
+                color: Theme.of(context).colorScheme.successColor.withOpacity(0.2))),
             child: Row(
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.successColor,
+                    color: Theme.of(context).colorScheme.successColor,
                     borderRadius: BorderRadius.circular(16)),
                   child: const Icon(
                     Icons.check_circle,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 24)),
                 const SizedBox(width: 16),
                 Expanded(
@@ -4182,12 +4182,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.successColor.withOpacity(0.7))),
+                          color: Theme.of(context).colorScheme.successColor.withOpacity(0.7))),
                       Text(
                         'Pour la recherche: "$_searchQuery"',
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.textTertiaryColor.withOpacity(0.6),
+                          color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6),
                           fontStyle: FontStyle.italic)),
                     ])),
               ]))),
@@ -4229,12 +4229,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       child: Container(
         decoration: BoxDecoration(
           color: isHighlight
-              ? AppTheme.primaryColor.withOpacity(0.08)
-              : AppTheme.surfaceColor,
+              ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.08)
+              : Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.circular(20),
           border: isHighlight 
-              ? Border.all(color: AppTheme.primaryColor.withOpacity(0.3), width: 2)
-              : Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.1)),
+              ? Border.all(color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3), width: 2)
+              : Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1)),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.04),
@@ -4276,7 +4276,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.surfaceColor))),
+                          color: Theme.of(context).colorScheme.surfaceColor))),
                     
                     const SizedBox(width: 16),
                     
@@ -4293,12 +4293,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                     fontSize: _fontSize,
                                     height: _lineHeight,
                                     fontWeight: FontWeight.w500,
-                                    color: AppTheme.textTertiaryColor.withOpacity(0.8))
+                                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))
                                 : GoogleFonts.crimsonText(
                                     fontSize: _fontSize + 2,
                                     height: _lineHeight,
                                     fontWeight: FontWeight.w500,
-                                    color: AppTheme.textTertiaryColor.withOpacity(0.8))),
+                                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))),
                           
                           const SizedBox(height: 12),
                           
@@ -4334,12 +4334,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              color: AppTheme.successColor.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.successColor.withOpacity(0.1),
                               shape: BoxShape.circle),
                             child: Icon(
                               Icons.sticky_note_2,
                               size: 16,
-                              color: AppTheme.successColor.withOpacity(0.7))),
+                              color: Theme.of(context).colorScheme.successColor.withOpacity(0.7))),
                         ],
                       ]),
                   ]),
@@ -4351,16 +4351,16 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.successColor.withOpacity(0.05),
+                      color: Theme.of(context).colorScheme.successColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: AppTheme.successColor.withOpacity(0.2))),
+                        color: Theme.of(context).colorScheme.successColor.withOpacity(0.2))),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Icon(
                           Icons.sticky_note_2,
-                          color: AppTheme.successColor.withOpacity(0.7),
+                          color: Theme.of(context).colorScheme.successColor.withOpacity(0.7),
                           size: 18),
                         const SizedBox(width: 12),
                         Expanded(
@@ -4368,7 +4368,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                             note,
                             style: GoogleFonts.inter(
                               fontSize: 14,
-                              color: AppTheme.successColor.withOpacity(0.7),
+                              color: Theme.of(context).colorScheme.successColor.withOpacity(0.7),
                               fontStyle: FontStyle.italic))),
                       ])),
                 ],
@@ -4379,7 +4379,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.textTertiaryColor.withOpacity(0.05),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(16)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -4393,13 +4393,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         _buildVerseAction(
                           icon: isHighlight ? Icons.highlight_off : Icons.highlight,
                           label: isHighlight ? 'Surligné' : 'Surligner',
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           isActive: isHighlight,
                           onTap: () => _toggleHighlight(verse)),
                         _buildVerseAction(
                           icon: Icons.sticky_note_2,
                           label: note != null && note.isNotEmpty ? 'Éditer' : 'Note',
-                          color: AppTheme.successColor.withOpacity(0.7)!,
+                          color: Theme.of(context).colorScheme.successColor.withOpacity(0.7)!,
                           isActive: note != null && note.isNotEmpty,
                           onTap: () => _editNoteDialog(verse)),
                         _buildVerseAction(
@@ -4421,25 +4421,25 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: AppTheme.warningColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
               shape: BoxShape.circle),
             child: Icon(
               Icons.search_off,
               size: 64,
-              color: AppTheme.warningColor.withOpacity(0.3))),
+              color: Theme.of(context).colorScheme.warningColor.withOpacity(0.3))),
           const SizedBox(height: 24),
           Text(
             'Aucun résultat trouvé',
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textTertiaryColor.withOpacity(0.7))),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7))),
           const SizedBox(height: 8),
           Text(
             'Essayez avec d\'autres mots-clés\nou vérifiez l\'orthographe',
             style: GoogleFonts.inter(
               fontSize: 16,
-              color: AppTheme.textTertiaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
               height: 1.5),
             textAlign: TextAlign.center),
           const SizedBox(height: 32),
@@ -4454,7 +4454,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             label: const Text('Nouvelle recherche'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue[600],
-              foregroundColor: AppTheme.surfaceColor,
+              foregroundColor: Theme.of(context).colorScheme.surfaceColor,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)))),
@@ -4497,7 +4497,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           end: Alignment.bottomCenter,
           colors: [
             Colors.amber[50]!,
-            AppTheme.surfaceColor,
+            Theme.of(context).colorScheme.surfaceColor,
           ])),
       child: Column(
         children: [
@@ -4521,7 +4521,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
           end: Alignment.bottomRight,
           colors: [
             Colors.amber[600]!,
-            AppTheme.warningColor.withOpacity(0.6)!,
+            Theme.of(context).colorScheme.warningColor.withOpacity(0.6)!,
           ]),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
@@ -4539,11 +4539,11 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor.withOpacity(0.2),
+                    color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16)),
                   child: const Icon(
                     Icons.star,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 28)),
                 const SizedBox(width: 16),
                 Expanded(
@@ -4555,27 +4555,27 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.surfaceColor)),
+                          color: Theme.of(context).colorScheme.surfaceColor)),
                       Text(
                         favoritesCount > 0 
                             ? '$favoritesCount verset${favoritesCount > 1 ? 's' : ''} précieux'
                             : 'Collection de versets inspirants',
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.surfaceColor.withOpacity(0.9),
+                          color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9),
                           fontWeight: FontWeight.w500)),
                     ])),
                 if (favoritesCount > 0)
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: AppTheme.surfaceColor.withOpacity(0.2),
+                      color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       '$favoritesCount',
                       style: GoogleFonts.poppins(
                         fontSize: 16,
-                        color: AppTheme.surfaceColor,
+                        color: Theme.of(context).colorScheme.surfaceColor,
                         fontWeight: FontWeight.bold))),
               ]),
             
@@ -4618,22 +4618,22 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor.withOpacity(0.15),
+          color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppTheme.surfaceColor.withOpacity(0.2))),
+            color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.2))),
         child: Column(
           children: [
             Icon(
               icon,
-              color: AppTheme.surfaceColor,
+              color: Theme.of(context).colorScheme.surfaceColor,
               size: 20),
             const SizedBox(height: 4),
             Text(
               label,
               style: GoogleFonts.inter(
                 fontSize: 11,
-                color: AppTheme.surfaceColor.withOpacity(0.9),
+                color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9),
                 fontWeight: FontWeight.w500),
               textAlign: TextAlign.center),
           ])));
@@ -4648,7 +4648,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.amber[100]!, AppTheme.warningColor.withOpacity(0.1)!]),
+                colors: [Colors.amber[100]!, Theme.of(context).colorScheme.warningColor.withOpacity(0.1)!]),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
@@ -4666,13 +4666,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textTertiaryColor.withOpacity(0.7))),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7))),
           const SizedBox(height: 12),
           Text(
             'Commencez à créer votre collection\nde versets inspirants',
             style: GoogleFonts.inter(
               fontSize: 16,
-              color: AppTheme.textTertiaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
               height: 1.5),
             textAlign: TextAlign.center),
           const SizedBox(height: 32),
@@ -4693,7 +4693,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
         'title': 'Rechercher',
         'description': 'Trouvez des passages\npar thème',
         'icon': Icons.search,
-        'color': AppTheme.successColor,
+        'color': Theme.of(context).colorScheme.successColor,
         'onTap': () => _tabController.animateTo(2),
       },
     ];
@@ -4734,7 +4734,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       ]),
                     child: Icon(
                       discovery['icon'] as IconData,
-                      color: AppTheme.surfaceColor,
+                      color: Theme.of(context).colorScheme.surfaceColor,
                       size: 28)),
                   const SizedBox(height: 16),
                   Text(
@@ -4742,14 +4742,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: AppTheme.textTertiaryColor.withOpacity(0.7)),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.7)),
                     textAlign: TextAlign.center),
                   const SizedBox(height: 8),
                   Text(
                     discovery['description'] as String,
                     style: GoogleFonts.inter(
                       fontSize: 13,
-                      color: AppTheme.textTertiaryColor.withOpacity(0.5),
+                      color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5),
                       height: 1.3),
                     textAlign: TextAlign.center),
                 ])))))).toList());
@@ -4766,7 +4766,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.amber[50]!, AppTheme.warningColor.withOpacity(0.05)!]),
+                colors: [Colors.amber[50]!, Theme.of(context).colorScheme.warningColor.withOpacity(0.05)!]),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: Colors.amber.withOpacity(0.2))),
@@ -4779,7 +4779,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     borderRadius: BorderRadius.circular(16)),
                   child: const Icon(
                     Icons.auto_stories,
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     size: 24)),
                 const SizedBox(width: 16),
                 Expanded(
@@ -4839,7 +4839,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.surfaceColor,
+              Theme.of(context).colorScheme.surfaceColor,
               Colors.amber[25]!,
             ]),
           borderRadius: BorderRadius.circular(20),
@@ -4873,7 +4873,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.amber, AppTheme.warningColor]),
+                          colors: [Colors.amber, Theme.of(context).colorScheme.warningColor]),
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
@@ -4883,7 +4883,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         ]),
                       child: const Icon(
                         Icons.star,
-                        color: AppTheme.surfaceColor,
+                        color: Theme.of(context).colorScheme.surfaceColor,
                         size: 20)),
                     
                     const SizedBox(width: 16),
@@ -4910,23 +4910,23 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              color: AppTheme.primaryColor.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                               shape: BoxShape.circle),
                             child: Icon(
                               Icons.highlight,
                               size: 16,
-                              color: AppTheme.primaryColor)),
+                              color: Theme.of(context).colorScheme.primaryColor)),
                         if (note != null && note.isNotEmpty) ...[
                           if (isHighlight) const SizedBox(height: 4),
                           Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
-                              color: AppTheme.successColor.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.successColor.withOpacity(0.1),
                               shape: BoxShape.circle),
                             child: Icon(
                               Icons.sticky_note_2,
                               size: 16,
-                              color: AppTheme.successColor.withOpacity(0.7))),
+                              color: Theme.of(context).colorScheme.successColor.withOpacity(0.7))),
                         ],
                       ]),
                   ]),
@@ -4937,7 +4937,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: Colors.amber.withOpacity(0.1))),
@@ -4958,12 +4958,12 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                 fontSize: _fontSize + 2,
                                 height: _lineHeight,
                                 fontWeight: FontWeight.w500,
-                                color: AppTheme.textTertiaryColor.withOpacity(0.8))
+                                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8))
                             : GoogleFonts.crimsonText(
                                 fontSize: _fontSize + 4,
                                 height: _lineHeight,
                                 fontWeight: FontWeight.w500,
-                                color: AppTheme.textTertiaryColor.withOpacity(0.8),
+                                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.8),
                                 fontStyle: FontStyle.italic)),
                       const SizedBox(height: 16),
                       // Référence avec style
@@ -4973,7 +4973,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [Colors.amber[100]!, AppTheme.warningColor.withOpacity(0.1)!]),
+                              colors: [Colors.amber[100]!, Theme.of(context).colorScheme.warningColor.withOpacity(0.1)!]),
                             borderRadius: BorderRadius.circular(20)),
                           child: Text(
                             '${verse.book} ${verse.chapter}:${verse.verse}',
@@ -4990,16 +4990,16 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.successColor.withOpacity(0.05),
+                      color: Theme.of(context).colorScheme.successColor.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: AppTheme.successColor.withOpacity(0.2))),
+                        color: Theme.of(context).colorScheme.successColor.withOpacity(0.2))),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Icon(
                           Icons.sticky_note_2,
-                          color: AppTheme.successColor.withOpacity(0.7),
+                          color: Theme.of(context).colorScheme.successColor.withOpacity(0.7),
                           size: 18),
                         const SizedBox(width: 12),
                         Expanded(
@@ -5011,13 +5011,13 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                 style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
-                                  color: AppTheme.successColor.withOpacity(0.7))),
+                                  color: Theme.of(context).colorScheme.successColor.withOpacity(0.7))),
                               const SizedBox(height: 4),
                               Text(
                                 note,
                                 style: GoogleFonts.inter(
                                   fontSize: 14,
-                                  color: AppTheme.successColor.withOpacity(0.6),
+                                  color: Theme.of(context).colorScheme.successColor.withOpacity(0.6),
                                   fontStyle: FontStyle.italic)),
                             ])),
                       ])),
@@ -5030,7 +5030,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Colors.amber[50]!, AppTheme.warningColor.withOpacity(0.05)!]),
+                        colors: [Colors.amber[50]!, Theme.of(context).colorScheme.warningColor.withOpacity(0.05)!]),
                       borderRadius: BorderRadius.circular(16)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -5038,19 +5038,19 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         _buildVerseAction(
                           icon: Icons.star,
                           label: 'Retirer',
-                          color: AppTheme.errorColor.withOpacity(0.6)!,
+                          color: Theme.of(context).colorScheme.errorColor.withOpacity(0.6)!,
                           isActive: true,
                           onTap: () => _toggleFavorite(verse)),
                         _buildVerseAction(
                           icon: isHighlight ? Icons.highlight_off : Icons.highlight,
                           label: isHighlight ? 'Surligné' : 'Surligner',
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           isActive: isHighlight,
                           onTap: () => _toggleHighlight(verse)),
                         _buildVerseAction(
                           icon: Icons.sticky_note_2,
                           label: note != null && note.isNotEmpty ? 'Éditer' : 'Note',
-                          color: AppTheme.successColor.withOpacity(0.7)!,
+                          color: Theme.of(context).colorScheme.successColor.withOpacity(0.7)!,
                           isActive: note != null && note.isNotEmpty,
                           onTap: () => _editNoteDialog(verse)),
                         _buildVerseAction(
@@ -5078,7 +5078,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Export des favoris (bientôt disponible)'),
-        backgroundColor: AppTheme.warningColor,
+        backgroundColor: Theme.of(context).colorScheme.warningColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))));
   }
@@ -5089,7 +5089,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -5099,7 +5099,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: AppTheme.textTertiaryColor.withOpacity(0.3),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(2))),
             const SizedBox(height: 20),
             Text(
@@ -5138,7 +5138,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             child: Container(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
               decoration: BoxDecoration(
-                color: AppTheme.surfaceColor,
+                color: Theme.of(context).colorScheme.surfaceColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.03),
@@ -5159,7 +5159,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                           borderRadius: BorderRadius.circular(12)),
                         child: const Icon(
                           Icons.auto_stories_outlined, 
-                          color: AppTheme.surfaceColor, 
+                          color: Theme.of(context).colorScheme.surfaceColor, 
                           size: 22
                         )),
                       const SizedBox(width: 12),
@@ -5275,7 +5275,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                     return Container(
                       height: 200,
                       decoration: BoxDecoration(
-                        color: AppTheme.surfaceColor,
+                        color: Theme.of(context).colorScheme.surfaceColor,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: Color(0xFFE2E8F0))),
                       child: Center(
@@ -5351,14 +5351,14 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             Icon(
               icon,
               size: 16,
-              color: isSelected ? AppTheme.surfaceColor : Color(0xFF64748B)),
+              color: isSelected ? Theme.of(context).colorScheme.surfaceColor : Color(0xFF64748B)),
             const SizedBox(width: 6),
             Text(
               label,
               style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
-                color: isSelected ? AppTheme.surfaceColor : Color(0xFF64748B))),
+                color: isSelected ? Theme.of(context).colorScheme.surfaceColor : Color(0xFF64748B))),
           ])));
   }
 
@@ -5368,7 +5368,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         padding: EdgeInsets.all(20),
         child: Column(
@@ -5399,7 +5399,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               onPressed: () => Navigator.pop(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF6366F1),
-                foregroundColor: AppTheme.surfaceColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
                 padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
@@ -5499,7 +5499,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
             Icon(
               _notesSearchQuery.isNotEmpty ? Icons.search_off_rounded : Icons.sticky_note_2_outlined, 
               size: 64, 
-              color: AppTheme.textTertiaryColor.withOpacity(0.4)
+              color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.4)
             ),
             SizedBox(height: 16),
             Text(
@@ -5509,7 +5509,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               style: GoogleFonts.inter(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
             SizedBox(height: 8),
             Text(
               _notesSearchQuery.isNotEmpty
@@ -5518,7 +5518,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
                 fontSize: 14,
-                color: AppTheme.textTertiaryColor.withOpacity(0.5))),
+                color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.5))),
           ]));
     }
 
@@ -5575,7 +5575,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
       child: Container(
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: getCardAccentColor().withOpacity(0.15),
@@ -5629,7 +5629,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         : isHighlightItem 
                           ? Icons.highlight_rounded
                           : Icons.favorite_rounded,
-                      color: AppTheme.surfaceColor,
+                      color: Theme.of(context).colorScheme.surfaceColor,
                       size: 20)),
                   
                   SizedBox(width: 16),
@@ -5765,7 +5765,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                                 child: Icon(
                                   Icons.edit_note_rounded, 
                                   size: 16, 
-                                  color: AppTheme.surfaceColor
+                                  color: Theme.of(context).colorScheme.surfaceColor
                                 )),
                               SizedBox(width: 10),
                               Text(
@@ -5798,7 +5798,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       icon: Icon(Icons.menu_book_rounded, size: 16),
                       label: Text('Aller au verset'),
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: AppTheme.surfaceColor,
+                        foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                         backgroundColor: Color(0xFF6366F1),
                         elevation: 2,
                         shadowColor: Color(0xFF6366F1).withOpacity(0.3),
@@ -5813,7 +5813,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                       label: Text('Partager'),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Color(0xFF059669),
-                        backgroundColor: AppTheme.surfaceColor,
+                        backgroundColor: Theme.of(context).colorScheme.surfaceColor,
                         elevation: 0,
                         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                         shape: RoundedRectangleBorder(
@@ -5906,7 +5906,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         ])),
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: Icon(Icons.close, color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                      icon: Icon(Icons.close, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
                   ]),
                 
                 const SizedBox(height: 16),
@@ -5949,7 +5949,7 @@ class _BiblePageState extends State<BiblePage> with SingleTickerProviderStateMix
                         onPressed: () => Navigator.of(context).pop(),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF10B981),
-                          foregroundColor: AppTheme.surfaceColor,
+                          foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),
@@ -6070,7 +6070,7 @@ Verset: $book $chapter:$verse
           content: Text(
             'Mode sélection activé ! Tapez sur chaque verset pour l\'ajouter/retirer de la sélection.',
             style: TextStyle(fontSize: 14)),
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           duration: Duration(seconds: 3),
           behavior: SnackBarBehavior.floating));
     }
@@ -6094,14 +6094,14 @@ Verset: $book $chapter:$verse
         borderRadius: BorderRadius.circular(6),
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
             width: 3)));
     } else if (isSelected) {
       return BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
             width: 3)));
     } else if (isHighlighted) {
       return BoxDecoration(
@@ -6120,7 +6120,7 @@ Verset: $book $chapter:$verse
         margin: const EdgeInsets.all(16),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -6134,7 +6134,7 @@ Verset: $book $chapter:$verse
             // En-tête avec nombre de versets sélectionnés
             Row(
               children: [
-                Icon(Icons.check_circle, color: AppTheme.primaryColor, size: 24),
+                Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primaryColor, size: 24),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -6145,7 +6145,7 @@ Verset: $book $chapter:$verse
                       color: Color(0xFF1F2937)))),
                 IconButton(
                   onPressed: _exitMultiSelectMode,
-                  icon: Icon(Icons.close, color: AppTheme.textTertiaryColor.withOpacity(0.6))),
+                  icon: Icon(Icons.close, color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))),
               ]),
             
             const SizedBox(height: 20),
@@ -6198,7 +6198,7 @@ Verset: $book $chapter:$verse
                   'Annuler la sélection',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    color: AppTheme.textTertiaryColor.withOpacity(0.6))))),
+                    color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.6))))),
           ])));
   }
 

@@ -13,7 +13,7 @@ import '../services/services_firebase_service.dart';
 import '../services/forms_firebase_service.dart';
 import '../services/appointments_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/admin_navigation_wrapper.dart';
 import '../widgets/appointment_card.dart';
 import '../widgets/appointment_notifications_widget.dart';
@@ -64,14 +64,14 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
       'title': 'Mes Groupes',
       'subtitle': 'Groupes et communautés',
       'icon': Icons.groups,
-      'color': AppTheme.secondaryColor,
+      'color': Theme.of(context).colorScheme.secondaryColor,
       'route': 'groups',
     },
     {
       'title': 'Mes Événements',
       'subtitle': 'Événements à venir',
       'icon': Icons.event,
-      'color': AppTheme.tertiaryColor,
+      'color': Theme.of(context).colorScheme.tertiaryColor,
       'route': 'events',
     },
     {
@@ -198,7 +198,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -344,18 +344,18 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Tableau de bord'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
         actions: [
           // Toggle to admin view
           Container(
             margin: const EdgeInsets.only(right: 8),
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: IconButton(
@@ -383,7 +383,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                     child: Container(
                       padding: const EdgeInsets.all(2),
                       decoration: const BoxDecoration(
-                        color: AppTheme.errorColor,
+                        color: Theme.of(context).colorScheme.errorColor,
                         shape: BoxShape.circle,
                       ),
                       constraints: const BoxConstraints(
@@ -477,8 +477,8 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor,
-              AppTheme.primaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.primaryColor,
+              Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
             ],
           ),
         ),
@@ -585,7 +585,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => Container(
-        color: AppTheme.primaryColor.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
         child: Icon(
           Icons.person,
           size: 40,
@@ -593,7 +593,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
         ),
       ),
       errorWidget: (context, url, error) => Container(
-        color: AppTheme.primaryColor.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
         child: Icon(
           Icons.person,
           size: 40,
@@ -610,9 +610,9 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: AppTheme.secondaryColor.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
           border: Border.all(
-            color: AppTheme.secondaryColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.3),
             width: 1,
           ),
         ),
@@ -621,7 +621,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
           children: [
             Icon(
               Icons.campaign,
-              color: AppTheme.secondaryColor,
+              color: Theme.of(context).colorScheme.secondaryColor,
               size: 24,
             ),
             const SizedBox(width: 12),
@@ -634,7 +634,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.secondaryColor,
+                      color: Theme.of(context).colorScheme.secondaryColor,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -642,7 +642,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                     'Nouvelle série de prédications sur l\'amour de Dieu - Dimanche 10h',
                     style: TextStyle(
                       fontSize: 14,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -650,7 +650,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
             ),
             Icon(
               Icons.chevron_right,
-              color: AppTheme.secondaryColor,
+              color: Theme.of(context).colorScheme.secondaryColor,
             ),
           ],
         ),
@@ -669,9 +669,9 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: AppTheme.warningColor.withOpacity(0.1),
+          color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
           border: Border.all(
-            color: AppTheme.warningColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.warningColor.withOpacity(0.3),
             width: 1,
           ),
         ),
@@ -683,7 +683,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
               children: [
                 Icon(
                   Icons.notifications_active,
-                  color: AppTheme.warningColor,
+                  color: Theme.of(context).colorScheme.warningColor,
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -692,7 +692,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                   ),
                 ),
               ],
@@ -724,7 +724,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
           Icon(
             icon,
             size: 16,
-            color: AppTheme.warningColor,
+            color: Theme.of(context).colorScheme.warningColor,
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -736,14 +736,14 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 Text(
                   subtitle,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -762,7 +762,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
             'Mes Groupes',
             _userGroups.length.toString(),
             Icons.groups,
-            AppTheme.secondaryColor,
+            Theme.of(context).colorScheme.secondaryColor,
           ),
         ),
         const SizedBox(width: 12),
@@ -820,7 +820,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
               label,
               style: const TextStyle(
                 fontSize: 12,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ],
@@ -838,7 +838,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: AppTheme.textPrimaryColor,
+            color: Theme.of(context).colorScheme.textPrimaryColor,
           ),
         ),
         const SizedBox(height: 16),
@@ -927,7 +927,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
             TextButton(
@@ -993,7 +993,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
-            color: AppTheme.textPrimaryColor,
+            color: Theme.of(context).colorScheme.textPrimaryColor,
           ),
         ),
         const SizedBox(height: 16),
@@ -1019,7 +1019,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
               children: [
                 Icon(
                   Icons.event,
-                  color: AppTheme.tertiaryColor,
+                  color: Theme.of(context).colorScheme.tertiaryColor,
                   size: 20,
                 ),
                 const SizedBox(width: 8),
@@ -1028,7 +1028,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -1050,7 +1050,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
             width: 8,
             height: 8,
             decoration: BoxDecoration(
-              color: AppTheme.tertiaryColor,
+              color: Theme.of(context).colorScheme.tertiaryColor,
               shape: BoxShape.circle,
             ),
           ),
@@ -1064,14 +1064,14 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 Text(
                   _formatEventDate(event.startDate),
                   style: const TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -1095,7 +1095,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
               children: [
                 Icon(
                   Icons.groups,
-                  color: AppTheme.secondaryColor,
+                  color: Theme.of(context).colorScheme.secondaryColor,
                   size: 20,
                 ),
                 const SizedBox(width: 8),
@@ -1104,7 +1104,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -1140,14 +1140,14 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 Text(
                   '${group.dayName} à ${group.time}',
                   style: const TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -1197,7 +1197,7 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                 Text(
                   _formatAppointmentDate(appointment.dateTime),
                   style: TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                     fontSize: 14,
                   ),
                 ),
@@ -1240,17 +1240,17 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
   Color _getAppointmentStatusColor(String statut) {
     switch (statut) {
       case 'en_attente':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'confirme':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'refuse':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'termine':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       case 'annule':
-        return AppTheme.textTertiaryColor;
+        return Theme.of(context).colorScheme.textTertiaryColor;
       default:
-        return AppTheme.textTertiaryColor;
+        return Theme.of(context).colorScheme.textTertiaryColor;
     }
   }
 
@@ -1287,12 +1287,12 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     Icons.track_changes,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -1305,13 +1305,13 @@ class _MemberDashboardPageState extends State<MemberDashboardPage>
                         'Mes Suivis',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
                         'Suivis dont je suis responsable',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../image_upload.dart';
 import '../services/image_storage_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'image_gallery_widget.dart';
 
 class ImagePickerWidget extends StatefulWidget {
@@ -297,9 +297,9 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppTheme.primaryColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppTheme.primaryColor.withOpacity(0.3)),
+              border: Border.all(color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3)),
             ),
             child: Row(
               children: [
@@ -308,7 +308,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                   height: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                    valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
                   ),
                 ),
                 const SizedBox(width: 12),

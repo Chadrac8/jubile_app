@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../services/thematic_passage_service.dart';
+import '../../services/thematic_passage_service.dart';
 import '../bible_service.dart';
 
 class AddPassageDialog extends StatefulWidget {
@@ -294,7 +294,7 @@ class _AddPassageDialogState extends State<AddPassageDialog> {
                       onPressed: _isLoading ? null : _savePassage,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,
-                        foregroundColor: AppTheme.surfaceColor,
+                        foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12))),
@@ -441,7 +441,7 @@ class _AddPassageDialogState extends State<AddPassageDialog> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Passage ajouté avec succès'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       }
     } catch (e) {
       if (mounted) {
@@ -463,7 +463,7 @@ class _AddPassageDialogState extends State<AddPassageDialog> {
           builder: (context) => AlertDialog(
             title: Row(
               children: [
-                Icon(Icons.error_outline, color: AppTheme.errorColor,
+                Icon(Icons.error_outline, color: Theme.of(context).colorScheme.errorColor,
                 const SizedBox(width: 8),
                 Text(errorMessage),
               ]),

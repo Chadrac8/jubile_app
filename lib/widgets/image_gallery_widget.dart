@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../services/image_storage_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class ImageGalleryWidget extends StatefulWidget {
   final Function(String) onImageSelected;
@@ -222,7 +222,7 @@ class _ImageGalleryWidgetState extends State<ImageGalleryWidget> {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: isSelected 
-                    ? AppTheme.primaryColor 
+                    ? Theme.of(context).colorScheme.primaryColor 
                     : Colors.grey[300]!,
                 width: isSelected ? 3 : 1,
               ),
@@ -257,7 +257,7 @@ class _ImageGalleryWidgetState extends State<ImageGalleryWidget> {
                   Positioned.fill(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppTheme.primaryColor.withOpacity(0.3),
+                        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(7),
                       ),
                       child: const Center(

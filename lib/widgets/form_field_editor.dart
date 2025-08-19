@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/form_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormFieldEditor extends StatefulWidget {
   final CustomFormField field;
@@ -189,7 +189,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: const BoxDecoration(
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
@@ -236,7 +236,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: const BoxDecoration(
-                color: AppTheme.backgroundColor,
+                color: Theme.of(context).colorScheme.backgroundColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(12),
                   bottomRight: Radius.circular(12),
@@ -253,7 +253,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
                   ElevatedButton(
                     onPressed: _saveField,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primaryColor,
                       foregroundColor: Colors.white,
                     ),
                     child: const Text('Sauvegarder'),
@@ -386,7 +386,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
               icon: const Icon(Icons.add),
               label: const Text('Ajouter'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
               ),
             ),
@@ -398,7 +398,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: AppTheme.backgroundColor,
+              color: Theme.of(context).colorScheme.backgroundColor,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey.shade300),
             ),
@@ -407,13 +407,13 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
                 Icon(
                   Icons.list_alt,
                   size: 48,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Aucune option ajoutée',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -434,7 +434,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
                       onPressed: () => _editOption(index),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete, color: AppTheme.errorColor),
+                      icon: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                       onPressed: () => _removeOption(index),
                     ),
                   ],
@@ -482,7 +482,7 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
         Text(
           'Ce champ sera automatiquement pré-rempli avec les données de la personne connectée',
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
         ),
         const SizedBox(height: 24),
@@ -571,13 +571,13 @@ class _FormFieldEditorState extends State<FormFieldEditor> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppTheme.backgroundColor,
+                  color: Theme.of(context).colorScheme.backgroundColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   'Fonctionnalité disponible prochainement',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ),

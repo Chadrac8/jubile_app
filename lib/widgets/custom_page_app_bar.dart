@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../routes/simple_routes.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class CustomPageAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;

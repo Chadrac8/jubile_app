@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
-import '../services/reading_plan_service.dart';
+import '../../models/reading_plan.dart';
+import '../../services/reading_plan_service.dart';
 import 'reading_plan_form_view.dart';
 import 'reading_plan_detail_view.dart';
 
@@ -100,7 +100,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
                     value: 'delete',
                     child: Row(
                       children: [
-                        Icon(Icons.delete, color: AppTheme.errorColor),
+                        Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                         const SizedBox(width: 8),
                         const Text('Supprimer'),
                       ])),
@@ -147,7 +147,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600),
               tabs: const [
@@ -166,7 +166,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
           ? FloatingActionButton.extended(
               onPressed: _createNewPlan,
               backgroundColor: theme.colorScheme.primary,
-              foregroundColor: AppTheme.surfaceColor,
+              foregroundColor: Theme.of(context).colorScheme.surfaceColor,
               icon: const Icon(Icons.add),
               label: Text(
                 'Nouveau plan',
@@ -260,12 +260,12 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
                 title: 'Plans populaires',
                 value: '$popularPlans',
                 icon: Icons.star,
-                color: AppTheme.warningColor),
+                color: Theme.of(context).colorScheme.warningColor),
               _buildStatCard(
                 title: 'Durée moyenne',
                 value: '${avgDuration.round()} jours',
                 icon: Icons.calendar_today,
-                color: AppTheme.successColor),
+                color: Theme.of(context).colorScheme.successColor),
             ]),
           
           const SizedBox(height: 32),
@@ -378,7 +378,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
             label: const Text('Créer un plan'),
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.colorScheme.primary,
-              foregroundColor: AppTheme.surfaceColor)),
+              foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
         ]));
   }
 
@@ -437,14 +437,14 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
                                     horizontal: 6,
                                     vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: AppTheme.warningColor.withOpacity(0.2),
+                                    color: Theme.of(context).colorScheme.warningColor.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(8)),
                                   child: Text(
                                     'Populaire',
                                     style: GoogleFonts.inter(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w600,
-                                      color: AppTheme.warningColor))),
+                                      color: Theme.of(context).colorScheme.warningColor))),
                             ]),
                           Text(
                             plan.category,
@@ -484,7 +484,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
                           value: 'delete',
                           child: Row(
                             children: [
-                              Icon(Icons.delete, color: AppTheme.errorColor),
+                              Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
                               const SizedBox(width: 8),
                               const Text('Supprimer'),
                             ])),
@@ -679,7 +679,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
               Navigator.pop(context);
               _deletePlan(plan);
             },
-            style: TextButton.styleFrom(foregroundColor: AppTheme.errorColor),
+            style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer')),
         ]));
   }
@@ -701,7 +701,7 @@ class _ReadingPlansAdminViewState extends State<ReadingPlansAdminView>
               Navigator.pop(context);
               _bulkDelete();
             },
-            style: TextButton.styleFrom(foregroundColor: AppTheme.errorColor),
+            style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer')),
         ]));
   }

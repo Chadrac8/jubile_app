@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskListCard extends StatefulWidget {
   final TaskListModel taskList;
@@ -69,7 +69,7 @@ class _TaskListCardState extends State<TaskListCard>
     if (widget.taskList.color != null) {
       return Color(int.parse(widget.taskList.color!.replaceFirst('#', '0xFF')));
     }
-    return AppTheme.primaryColor;
+    return Theme.of(context).colorScheme.primaryColor;
   }
 
   IconData get _visibilityIcon {
@@ -117,7 +117,7 @@ class _TaskListCardState extends State<TaskListCard>
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: widget.isSelected
-              ? BorderSide(color: AppTheme.primaryColor, width: 2)
+              ? BorderSide(color: Theme.of(context).colorScheme.primaryColor, width: 2)
               : BorderSide.none,
         ),
         child: Container(
@@ -148,7 +148,7 @@ class _TaskListCardState extends State<TaskListCard>
                               ? Icons.check_circle
                               : Icons.radio_button_unchecked,
                           color: widget.isSelected
-                              ? AppTheme.primaryColor
+                              ? Theme.of(context).colorScheme.primaryColor
                               : Colors.grey,
                         ),
                       ),
@@ -176,14 +176,14 @@ class _TaskListCardState extends State<TaskListCard>
                             widget.taskList.name,
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: AppTheme.textPrimaryColor,
+                              color: Theme.of(context).colorScheme.textPrimaryColor,
                             ),
                           ),
                           if (widget.taskList.description.isNotEmpty)
                             Text(
                               widget.taskList.description,
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: AppTheme.textSecondaryColor,
+                                color: Theme.of(context).colorScheme.textSecondaryColor,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -193,7 +193,7 @@ class _TaskListCardState extends State<TaskListCard>
                     ),
                     Icon(
                       _visibilityIcon,
-                      color: AppTheme.textTertiaryColor,
+                      color: Theme.of(context).colorScheme.textTertiaryColor,
                       size: 20,
                     ),
                   ],
@@ -212,13 +212,13 @@ class _TaskListCardState extends State<TaskListCard>
                     _buildStatChip(
                       icon: Icons.task_alt,
                       label: '${widget.taskList.taskCount} tâches',
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                     const SizedBox(width: 12),
                     _buildStatChip(
                       icon: Icons.check_circle,
                       label: '${widget.taskList.completedTaskCount} terminées',
-                      color: AppTheme.successColor,
+                      color: Theme.of(context).colorScheme.successColor,
                     ),
                     const Spacer(),
                     _buildVisibilityBadge(),
@@ -251,7 +251,7 @@ class _TaskListCardState extends State<TaskListCard>
               'Progression',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             Text(
@@ -317,19 +317,19 @@ class _TaskListCardState extends State<TaskListCard>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: AppTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.backgroundColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.grey[300]!),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(_visibilityIcon, size: 14, color: AppTheme.textTertiaryColor),
+          Icon(_visibilityIcon, size: 14, color: Theme.of(context).colorScheme.textTertiaryColor),
           const SizedBox(width: 4),
           Text(
             widget.taskList.visibilityLabel,
             style: TextStyle(
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
               fontSize: 11,
               fontWeight: FontWeight.w500,
             ),
@@ -344,12 +344,12 @@ class _TaskListCardState extends State<TaskListCard>
     
     return Row(
       children: [
-        Icon(Icons.people, size: 16, color: AppTheme.textTertiaryColor),
+        Icon(Icons.people, size: 16, color: Theme.of(context).colorScheme.textTertiaryColor),
         const SizedBox(width: 6),
         Text(
           '$memberCount membre${memberCount > 1 ? 's' : ''}',
           style: TextStyle(
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
             fontSize: 12,
           ),
         ),

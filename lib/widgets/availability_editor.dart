@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import '../models/appointment_model.dart';
 import '../services/appointments_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AvailabilityEditor extends StatefulWidget {
   final String? responsableId;
@@ -91,7 +91,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Créneaux récurrents ajoutés avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -100,7 +100,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -133,7 +133,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Créneau spécifique ajouté avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -142,7 +142,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -178,7 +178,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Disponibilité supprimée'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -187,7 +187,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -223,14 +223,14 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         children: [
           Row(
             children: [
-              Icon(Icons.schedule, color: AppTheme.primaryColor),
+              Icon(Icons.schedule, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 12),
               const Expanded(
                 child: Text(
@@ -238,7 +238,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ),
@@ -253,7 +253,7 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                   icon: const Icon(Icons.repeat, size: 16),
                   label: const Text('Récurrence hebdo'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -265,8 +265,8 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                   icon: const Icon(Icons.event, size: 16),
                   label: const Text('Date spécifique'),
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: AppTheme.primaryColor,
-                    side: BorderSide(color: AppTheme.primaryColor),
+                    foregroundColor: Theme.of(context).colorScheme.primaryColor,
+                    side: BorderSide(color: Theme.of(context).colorScheme.primaryColor),
                   ),
                 ),
               ),
@@ -360,12 +360,12 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     disponibilite.type == 'recurrence_hebdo' ? Icons.repeat : Icons.event,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -376,14 +376,14 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                     ),
                   ),
                 ),
                 IconButton(
                   onPressed: () => _deleteDisponibilite(disponibilite.id),
                   icon: const Icon(Icons.delete_outline),
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
               ],
             ),
@@ -395,14 +395,14 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppTheme.secondaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       _formatJour(jour),
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppTheme.secondaryColor,
+                        color: Theme.of(context).colorScheme.secondaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -413,13 +413,13 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Icon(Icons.calendar_today, size: 16, color: AppTheme.textSecondaryColor),
+                  Icon(Icons.calendar_today, size: 16, color: Theme.of(context).colorScheme.textSecondaryColor),
                   const SizedBox(width: 8),
                   Text(
                     _formatDate(disponibilite.dateSpecifique!),
                     style: const TextStyle(
                       fontSize: 14,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -433,14 +433,14 @@ class _AvailabilityEditorState extends State<AvailabilityEditor>
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: AppTheme.tertiaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.tertiaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     '${creneau.debut} - ${creneau.fin}',
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppTheme.tertiaryColor,
+                      color: Theme.of(context).colorScheme.tertiaryColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

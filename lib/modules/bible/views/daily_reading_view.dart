@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
+import '../../models/reading_plan.dart';
 import '../bible_service.dart';
 import '../bible_model.dart';
 
@@ -158,7 +158,7 @@ class _DailyReadingViewState extends State<DailyReadingView> {
           if (_isCompleted)
             Icon(
               Icons.check_circle,
-              color: AppTheme.successColor),
+              color: Theme.of(context).colorScheme.successColor),
           const SizedBox(width: 16),
         ]),
       body: _isLoading
@@ -309,7 +309,7 @@ class _DailyReadingViewState extends State<DailyReadingView> {
               children: [
                 Icon(
                   Icons.lightbulb_outline,
-                  color: AppTheme.warningColor,
+                  color: Theme.of(context).colorScheme.warningColor,
                   size: 20),
                 const SizedBox(width: 8),
                 Text(
@@ -333,7 +333,7 @@ class _DailyReadingViewState extends State<DailyReadingView> {
               children: [
                 Icon(
                   Icons.favorite_outline,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                   size: 20),
                 const SizedBox(width: 8),
                 Text(
@@ -444,9 +444,9 @@ class _DailyReadingViewState extends State<DailyReadingView> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _isCompleted 
-                      ? AppTheme.successColor 
+                      ? Theme.of(context).colorScheme.successColor 
                       : theme.colorScheme.primary,
-                  foregroundColor: AppTheme.surfaceColor,
+                  foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12))),
@@ -456,7 +456,7 @@ class _DailyReadingViewState extends State<DailyReadingView> {
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(
-                          color: AppTheme.surfaceColor,
+                          color: Theme.of(context).colorScheme.surfaceColor,
                           strokeWidth: 2))
                     : Text(
                         _isCompleted ? 'Lecture terminée ✓' : 'Terminer la lecture',
@@ -480,7 +480,7 @@ class _DailyReadingViewState extends State<DailyReadingView> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Lecture du jour ${widget.day.day} terminée !'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         
         // Attendre un peu avant de fermer pour montrer le feedback
         await Future.delayed(const Duration(milliseconds: 1500));

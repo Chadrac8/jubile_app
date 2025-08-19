@@ -5,7 +5,7 @@ import '../services/pages_firebase_service.dart';
 import '../widgets/page_card.dart';
 import 'page_builder_page.dart';
 import 'page_preview_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PagesHomePage extends StatefulWidget {
 const PagesHomePage({super.key});
@@ -218,7 +218,7 @@ _showSnackBar('Erreur lors de la suppression: $e', Colors.red);
 void _copyPageUrl(CustomPageModel page) {
 final url = 'https://app.churchflow.com/pages/${page.slug}';
 Clipboard.setData(ClipboardData(text: url));
-_showSnackBar('URL copiée: ${page.slug}', AppTheme.primaryColor);
+_showSnackBar('URL copiée: ${page.slug}', Theme.of(context).colorScheme.primaryColor);
 }
 
 void _showSnackBar(String message, Color color) {
@@ -236,7 +236,7 @@ Widget build(BuildContext context) {
 return Scaffold(
 appBar: AppBar(
 title: const Text('Constructeur de Pages'),
-backgroundColor: AppTheme.primaryColor,
+backgroundColor: Theme.of(context).colorScheme.primaryColor,
 foregroundColor: Colors.white,
 elevation: 0,
 actions: [
@@ -280,7 +280,7 @@ floatingActionButton: ScaleTransition(
 scale: _fabAnimation,
 child: FloatingActionButton.extended(
 onPressed: _isSelectionMode ? null : _createNewPage,
-backgroundColor: AppTheme.primaryColor,
+backgroundColor: Theme.of(context).colorScheme.primaryColor,
 foregroundColor: Colors.white,
 icon: const Icon(Icons.add),
 label: const Text('Nouvelle Page'),
@@ -496,7 +496,7 @@ onPressed: _createNewPage,
 icon: const Icon(Icons.add),
 label: const Text('Créer une page'),
 style: ElevatedButton.styleFrom(
-backgroundColor: AppTheme.primaryColor,
+backgroundColor: Theme.of(context).colorScheme.primaryColor,
 foregroundColor: Colors.white,
 ),
 ),
@@ -550,7 +550,7 @@ if (index > 0) const SizedBox(height: 24),
 Text(
 category,
 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-color: AppTheme.primaryColor,
+color: Theme.of(context).colorScheme.primaryColor,
 fontWeight: FontWeight.bold,
 ),
 ),
@@ -569,10 +569,10 @@ Widget _buildTemplateCard(PageTemplate template) {
 return Card(
 child: ListTile(
 leading: CircleAvatar(
-backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
 child: Icon(
 template.iconName != null ? Icons.web_asset : Icons.web,
-color: AppTheme.primaryColor,
+color: Theme.of(context).colorScheme.primaryColor,
 ),
 ),
 title: Text(template.name),
@@ -711,7 +711,7 @@ final template = templates[index];
 return ListTile(
 leading: Icon(
 template.iconName != null ? Icons.web_asset : Icons.web,
-color: AppTheme.primaryColor,
+color: Theme.of(context).colorScheme.primaryColor,
 ),
 title: Text(template.name),
 subtitle: Text(template.description),

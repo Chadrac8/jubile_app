@@ -3,7 +3,7 @@ import '../models/prayer_model.dart';
 import '../services/prayers_firebase_service.dart';
 import '../widgets/prayer_card.dart';
 import '../widgets/prayer_search_filter_bar.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'prayer_form_page.dart';
 import 'prayer_detail_page.dart';
 
@@ -252,7 +252,7 @@ class _PrayersHomePageState extends State<PrayersHomePage>
                     'Total',
                     '${_stats!.totalPrayers}',
                     Icons.pan_tool,
-                    AppTheme.primaryColor,
+                    Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
                 Expanded(
@@ -456,9 +456,9 @@ class _PrayersHomePageState extends State<PrayersHomePage>
                     return Container(
                       decoration: _isSelectionMode && isSelected
                           ? BoxDecoration(
-                              color: AppTheme.primaryColor.withOpacity(0.1),
+                              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                               border: Border.all(
-                                color: AppTheme.primaryColor,
+                                color: Theme.of(context).colorScheme.primaryColor,
                                 width: 2,
                               ),
                             )

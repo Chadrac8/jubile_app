@@ -4,7 +4,7 @@ import '../models/appointment_model.dart';
 import '../models/person_model.dart';
 import '../services/appointments_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AppointmentBookingPage extends StatefulWidget {
   const AppointmentBookingPage({super.key});
@@ -182,7 +182,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Demande de rendez-vous envoyée avec succès !'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
         Navigator.pop(context, true);
@@ -199,7 +199,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -208,10 +208,10 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Nouveau Rendez-vous'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -277,8 +277,8 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              AppTheme.primaryColor,
-              AppTheme.primaryColor.withOpacity(0.8),
+              Theme.of(context).colorScheme.primaryColor,
+              Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
             ],
           ),
         ),
@@ -324,7 +324,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.person, color: AppTheme.primaryColor),
+                Icon(Icons.person, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Choisir un responsable',
@@ -365,17 +365,17 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             border: Border.all(
-              color: isSelected ? AppTheme.primaryColor : Colors.grey.shade300,
+              color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.grey.shade300,
               width: isSelected ? 2 : 1,
             ),
             borderRadius: BorderRadius.circular(8),
-            color: isSelected ? AppTheme.primaryColor.withOpacity(0.05) : null,
+            color: isSelected ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.05) : null,
           ),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 child: Text(
                   responsable.displayInitials,
                   style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -390,7 +390,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
                       responsable.fullName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: isSelected ? AppTheme.primaryColor : null,
+                        color: isSelected ? Theme.of(context).colorScheme.primaryColor : null,
                       ),
                     ),
                     if (responsable.roles.isNotEmpty)
@@ -398,14 +398,14 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
                         responsable.roles.join(', '),
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                       ),
                   ],
                 ),
               ),
               if (isSelected)
-                Icon(Icons.check_circle, color: AppTheme.primaryColor),
+                Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primaryColor),
             ],
           ),
         ),
@@ -424,7 +424,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.schedule, color: AppTheme.primaryColor),
+                Icon(Icons.schedule, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Choisir un créneau',
@@ -514,16 +514,16 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primaryColor : null,
+          color: isSelected ? Theme.of(context).colorScheme.primaryColor : null,
           border: Border.all(
-            color: isSelected ? AppTheme.primaryColor : Colors.grey.shade300,
+            color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.grey.shade300,
           ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           DateFormat('HH:mm').format(slot),
           style: TextStyle(
-            color: isSelected ? Colors.white : AppTheme.textPrimaryColor,
+            color: isSelected ? Colors.white : Theme.of(context).colorScheme.textPrimaryColor,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
@@ -542,7 +542,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.chat, color: AppTheme.primaryColor),
+                Icon(Icons.chat, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Motif du rendez-vous',
@@ -571,8 +571,8 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
                     });
                   },
                   backgroundColor: Colors.white,
-                  selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-                  checkmarkColor: AppTheme.primaryColor,
+                  selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
+                  checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                 );
               }).toList(),
             ),
@@ -613,7 +613,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.location_on, color: AppTheme.primaryColor),
+                Icon(Icons.location_on, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Modalité du rendez-vous',
@@ -632,7 +632,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
                 value: entry.key,
                 groupValue: _selectedLieu,
                 onChanged: (value) => setState(() => _selectedLieu = value!),
-                activeColor: AppTheme.primaryColor,
+                activeColor: Theme.of(context).colorScheme.primaryColor,
               );
             }),
           ],
@@ -652,7 +652,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.note, color: AppTheme.primaryColor),
+                Icon(Icons.note, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Notes personnelles (facultatif)',
@@ -691,7 +691,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.place, color: AppTheme.primaryColor),
+                Icon(Icons.place, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Lieu de rencontre',
@@ -730,7 +730,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
           children: [
             Row(
               children: [
-                Icon(Icons.phone, color: AppTheme.primaryColor),
+                Icon(Icons.phone, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Numéro de téléphone',
@@ -786,7 +786,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
               child: ElevatedButton(
                 onPressed: _isSaving ? null : _bookAppointment,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -829,7 +829,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
               '$label:',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ),
@@ -837,7 +837,7 @@ class _AppointmentBookingPageState extends State<AppointmentBookingPage>
             child: Text(
               value,
               style: const TextStyle(
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
           ),

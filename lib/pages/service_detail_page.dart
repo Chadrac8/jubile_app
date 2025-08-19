@@ -6,7 +6,7 @@ import '../widgets/service_sheet_editor.dart';
 import '../widgets/service_assignments_list.dart';
 import 'service_form_page.dart';
 import 'service_assignments_page.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 
 class ServiceDetailPage extends StatefulWidget {

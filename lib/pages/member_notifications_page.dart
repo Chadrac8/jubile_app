@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class MemberNotificationsPage extends StatefulWidget {
   const MemberNotificationsPage({super.key});
@@ -35,7 +35,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
       'timestamp': DateTime.now().subtract(const Duration(hours: 6)),
       'isRead': false,
       'icon': Icons.groups,
-      'color': AppTheme.secondaryColor,
+      'color': Theme.of(context).colorScheme.secondaryColor,
     },
     {
       'id': '3',
@@ -45,7 +45,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
       'timestamp': DateTime.now().subtract(const Duration(days: 1)),
       'isRead': true,
       'icon': Icons.event,
-      'color': AppTheme.tertiaryColor,
+      'color': Theme.of(context).colorScheme.tertiaryColor,
     },
     {
       'id': '4',
@@ -65,7 +65,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
       'timestamp': DateTime.now().subtract(const Duration(days: 3)),
       'isRead': true,
       'icon': Icons.campaign,
-      'color': AppTheme.warningColor,
+      'color': Theme.of(context).colorScheme.warningColor,
     },
   ];
 
@@ -147,7 +147,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: Row(
           children: [
@@ -157,7 +157,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
@@ -174,7 +174,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
         actions: [
           if (_unreadCount > 0)
             IconButton(
@@ -227,7 +227,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: isSelected ? Colors.white.withOpacity(0.3) : AppTheme.primaryColor,
+                        color: isSelected ? Colors.white.withOpacity(0.3) : Theme.of(context).colorScheme.primaryColor,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
@@ -247,10 +247,10 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                   _selectedFilter = entry.key;
                 });
               },
-              selectedColor: AppTheme.primaryColor,
+              selectedColor: Theme.of(context).colorScheme.primaryColor,
               checkmarkColor: Colors.white,
               labelStyle: TextStyle(
-                color: isSelected ? Colors.white : AppTheme.textPrimaryColor,
+                color: isSelected ? Colors.white : Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
           );
@@ -270,7 +270,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
             Icon(
               Icons.notifications_none,
               size: 64,
-              color: AppTheme.textSecondaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textSecondaryColor.withOpacity(0.5),
             ),
             const SizedBox(height: 16),
             Text(
@@ -279,14 +279,14 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                   : 'Aucune notification de ce type',
               style: const TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             const Text(
               'Vos notifications apparaîtront ici',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -365,7 +365,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: isRead ? FontWeight.w500 : FontWeight.bold,
-                              color: AppTheme.textPrimaryColor,
+                              color: Theme.of(context).colorScheme.textPrimaryColor,
                             ),
                           ),
                         ),
@@ -384,7 +384,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                     Text(
                       message,
                       style: TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                         height: 1.4,
                         fontWeight: isRead ? FontWeight.normal : FontWeight.w500,
                       ),
@@ -397,14 +397,14 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
                         Icon(
                           Icons.access_time,
                           size: 14,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                         const SizedBox(width: 4),
                         Text(
                           _formatTimestamp(timestamp),
                           style: const TextStyle(
                             fontSize: 12,
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                         const Spacer(),
@@ -418,7 +418,7 @@ class _MemberNotificationsPageState extends State<MemberNotificationsPage>
               PopupMenuButton<String>(
                 icon: Icon(
                   Icons.more_vert,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                   size: 20,
                 ),
                 onSelected: (action) {

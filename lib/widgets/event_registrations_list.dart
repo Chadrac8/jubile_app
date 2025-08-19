@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/event_model.dart';
 import '../services/events_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class EventRegistrationsList extends StatefulWidget {
   final EventModel event;
@@ -53,7 +53,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Fonctionnalité en cours de développement'),
-        backgroundColor: AppTheme.warningColor,
+        backgroundColor: Theme.of(context).colorScheme.warningColor,
       ),
     );
   }
@@ -70,7 +70,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                   ? '${registration.fullName} marqué présent'
                   : 'Présence annulée pour ${registration.fullName}',
             ),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -79,7 +79,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -102,7 +102,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
               foregroundColor: Colors.white,
             ),
             child: const Text('Oui, annuler'),
@@ -119,7 +119,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Inscription de ${registration.fullName} annulée'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -128,7 +128,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -144,7 +144,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${data.length} inscription(s) exportée(s)'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -155,7 +155,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -164,10 +164,10 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
 
   Color _getStatusColor(String status) {
     switch (status) {
-      case 'confirmed': return AppTheme.successColor;
-      case 'waiting': return AppTheme.warningColor;
-      case 'cancelled': return AppTheme.errorColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'confirmed': return Theme.of(context).colorScheme.successColor;
+      case 'waiting': return Theme.of(context).colorScheme.warningColor;
+      case 'cancelled': return Theme.of(context).colorScheme.errorColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -190,20 +190,20 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
             Icon(
               Icons.how_to_reg_outlined,
               size: 64,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 16),
             Text(
               'Inscriptions désactivées',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               'Les inscriptions ne sont pas activées pour cet événement',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -241,7 +241,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                       borderRadius: BorderRadius.circular(12),
                     ),
                     filled: true,
-                    fillColor: AppTheme.backgroundColor,
+                    fillColor: Theme.of(context).colorScheme.backgroundColor,
                   ),
                   onChanged: (value) => setState(() => _searchQuery = value),
                 ),
@@ -261,7 +261,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                             borderRadius: BorderRadius.circular(12),
                           ),
                           filled: true,
-                          fillColor: AppTheme.backgroundColor,
+                          fillColor: Theme.of(context).colorScheme.backgroundColor,
                         ),
                         items: _statusFilters.entries.map((entry) {
                           return DropdownMenuItem<String>(
@@ -280,7 +280,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                       onPressed: _addManualRegistration,
                       icon: const Icon(Icons.person_add),
                       style: IconButton.styleFrom(
-                        backgroundColor: AppTheme.primaryColor,
+                        backgroundColor: Theme.of(context).colorScheme.primaryColor,
                         foregroundColor: Colors.white,
                       ),
                       tooltip: 'Ajouter manuellement',
@@ -291,7 +291,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                       onPressed: _exportRegistrations,
                       icon: const Icon(Icons.download),
                       style: IconButton.styleFrom(
-                        backgroundColor: AppTheme.secondaryColor,
+                        backgroundColor: Theme.of(context).colorScheme.secondaryColor,
                         foregroundColor: Colors.white,
                       ),
                       tooltip: 'Exporter',
@@ -315,7 +315,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                         Icon(
                           Icons.error_outline,
                           size: 64,
-                          color: AppTheme.errorColor,
+                          color: Theme.of(context).colorScheme.errorColor,
                         ),
                         const SizedBox(height: 16),
                         Text(
@@ -357,13 +357,13 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                         Icon(
                           Icons.people_outline,
                           size: 64,
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                         const SizedBox(height: 16),
                         Text(
                           'Aucune inscription',
                           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -372,7 +372,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                               ? 'Aucun résultat pour les critères sélectionnés'
                               : 'Aucune inscription pour cet événement',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppTheme.textTertiaryColor,
+                            color: Theme.of(context).colorScheme.textTertiaryColor,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -423,13 +423,13 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
               children: [
                 // Avatar
                 CircleAvatar(
-                  backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   child: Text(
                     registration.firstName.isNotEmpty 
                         ? registration.firstName[0].toUpperCase()
                         : 'U',
                     style: TextStyle(
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -451,7 +451,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                       Text(
                         registration.email,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -485,13 +485,13 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                 Icon(
                   Icons.access_time,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 4),
                 Text(
                   'Inscrit le ${_formatDate(registration.registrationDate)}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 
@@ -500,13 +500,13 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                   Icon(
                     Icons.phone,
                     size: 16,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     registration.phone!,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -521,13 +521,13 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                   Icon(
                     registration.isPresent ? Icons.check_circle : Icons.radio_button_unchecked,
                     size: 16,
-                    color: registration.isPresent ? AppTheme.successColor : AppTheme.textTertiaryColor,
+                    color: registration.isPresent ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.textTertiaryColor,
                   ),
                   const SizedBox(width: 4),
                   Text(
                     registration.isPresent ? 'Présent' : 'Absence non marquée',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: registration.isPresent ? AppTheme.successColor : AppTheme.textTertiaryColor,
+                      color: registration.isPresent ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.textTertiaryColor,
                     ),
                   ),
                 ],
@@ -584,7 +584,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                     ),
                     label: Text(registration.isPresent ? 'Marquer absent' : 'Marquer présent'),
                     style: TextButton.styleFrom(
-                      foregroundColor: registration.isPresent ? AppTheme.warningColor : AppTheme.successColor,
+                      foregroundColor: registration.isPresent ? Theme.of(context).colorScheme.warningColor : Theme.of(context).colorScheme.successColor,
                     ),
                   ),
                 ],
@@ -598,7 +598,7 @@ class _EventRegistrationsListState extends State<EventRegistrationsList>
                     icon: const Icon(Icons.cancel_outlined, size: 16),
                     label: const Text('Annuler'),
                     style: TextButton.styleFrom(
-                      foregroundColor: AppTheme.errorColor,
+                      foregroundColor: Theme.of(context).colorScheme.errorColor,
                     ),
                   ),
                 ],

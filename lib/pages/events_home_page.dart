@@ -7,7 +7,7 @@ import '../widgets/event_search_filter_bar.dart';
 import '../widgets/event_calendar_view.dart';
 import 'event_detail_page.dart';
 import 'event_form_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class EventsHomePage extends StatefulWidget {
@@ -108,7 +108,7 @@ class _EventsHomePageState extends State<EventsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Événement créé avec succès'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     }
@@ -150,7 +150,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${_selectedEvents.length} événement(s) publié(s)'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
         _toggleSelectionMode();
@@ -160,7 +160,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -177,7 +177,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${_selectedEvents.length} événement(s) archivé(s)'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
         _toggleSelectionMode();
@@ -187,7 +187,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -211,7 +211,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('$duplicatedCount événement(s) dupliqué(s)'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
         _toggleSelectionMode();
@@ -221,7 +221,7 @@ class _EventsHomePageState extends State<EventsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -232,7 +232,7 @@ class _EventsHomePageState extends State<EventsHomePage>
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Export des événements en cours...'),
-        backgroundColor: AppTheme.warningColor,
+        backgroundColor: Theme.of(context).colorScheme.warningColor,
       ),
     );
     // TODO: Implement export functionality
@@ -255,7 +255,7 @@ class _EventsHomePageState extends State<EventsHomePage>
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
               foregroundColor: Colors.white,
             ),
             child: const Text('Supprimer'),
@@ -274,7 +274,7 @@ class _EventsHomePageState extends State<EventsHomePage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('${_selectedEvents.length} événement(s) supprimé(s)'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
           _toggleSelectionMode();
@@ -284,7 +284,7 @@ class _EventsHomePageState extends State<EventsHomePage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -295,7 +295,7 @@ class _EventsHomePageState extends State<EventsHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: Column(
         children: [
           // Header avec recherche et filtres
@@ -333,7 +333,7 @@ class _EventsHomePageState extends State<EventsHomePage>
                               'Événements',
                               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: AppTheme.textPrimaryColor,
+                                color: Theme.of(context).colorScheme.textPrimaryColor,
                               ),
                             ),
                           ),
@@ -361,9 +361,9 @@ class _EventsHomePageState extends State<EventsHomePage>
                   if (!_isSelectionMode && !_isCalendarView)
                     TabBar(
                       controller: _tabController,
-                      labelColor: AppTheme.primaryColor,
-                      unselectedLabelColor: AppTheme.textSecondaryColor,
-                      indicatorColor: AppTheme.primaryColor,
+                      labelColor: Theme.of(context).colorScheme.primaryColor,
+                      unselectedLabelColor: Theme.of(context).colorScheme.textSecondaryColor,
+                      indicatorColor: Theme.of(context).colorScheme.primaryColor,
                       tabs: const [
                         Tab(text: 'À venir'),
                         Tab(text: 'Passés'),
@@ -391,7 +391,7 @@ class _EventsHomePageState extends State<EventsHomePage>
               scale: _fabAnimation,
               child: FloatingActionButton.extended(
                 onPressed: _addNewEvent,
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
                 icon: const Icon(Icons.add),
                 label: const Text('Nouvel événement'),
@@ -419,7 +419,7 @@ class _EventsHomePageState extends State<EventsHomePage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -481,7 +481,7 @@ class _EventsHomePageState extends State<EventsHomePage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -524,27 +524,27 @@ class _EventsHomePageState extends State<EventsHomePage>
                   width: 120,
                   height: 120,
                   decoration: BoxDecoration(
-                    color: AppTheme.secondaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(60),
                   ),
                   child: Icon(
                     Icons.event_outlined,
                     size: 64,
-                    color: AppTheme.secondaryColor,
+                    color: Theme.of(context).colorScheme.secondaryColor,
                   ),
                 ),
                 const SizedBox(height: 24),
                 Text(
                   emptyMessage,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Créez votre premier événement pour commencer',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -554,7 +554,7 @@ class _EventsHomePageState extends State<EventsHomePage>
                   icon: const Icon(Icons.add),
                   label: const Text('Créer un événement'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   ),
@@ -617,7 +617,7 @@ class _EventsHomePageState extends State<EventsHomePage>
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.publish, color: AppTheme.successColor),
+              leading: const Icon(Icons.publish, color: Theme.of(context).colorScheme.successColor),
               title: const Text('Publier'),
               onTap: () {
                 Navigator.pop(context);
@@ -625,7 +625,7 @@ class _EventsHomePageState extends State<EventsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.archive, color: AppTheme.warningColor),
+              leading: const Icon(Icons.archive, color: Theme.of(context).colorScheme.warningColor),
               title: const Text('Archiver'),
               onTap: () {
                 Navigator.pop(context);
@@ -633,7 +633,7 @@ class _EventsHomePageState extends State<EventsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.copy, color: AppTheme.primaryColor),
+              leading: const Icon(Icons.copy, color: Theme.of(context).colorScheme.primaryColor),
               title: const Text('Dupliquer'),
               onTap: () {
                 Navigator.pop(context);
@@ -641,7 +641,7 @@ class _EventsHomePageState extends State<EventsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.download, color: AppTheme.secondaryColor),
+              leading: const Icon(Icons.download, color: Theme.of(context).colorScheme.secondaryColor),
               title: const Text('Exporter'),
               onTap: () {
                 Navigator.pop(context);
@@ -649,7 +649,7 @@ class _EventsHomePageState extends State<EventsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.delete, color: AppTheme.errorColor),
+              leading: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               title: const Text('Supprimer'),
               onTap: () {
                 Navigator.pop(context);

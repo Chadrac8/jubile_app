@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class EventSearchFilterBar extends StatefulWidget {
   final TextEditingController searchController;
@@ -158,12 +158,12 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                     height: 48,
                     decoration: BoxDecoration(
                       color: _isSearchFocused 
-                          ? AppTheme.primaryColor.withOpacity(0.05)
-                          : AppTheme.backgroundColor,
+                          ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.05)
+                          : Theme.of(context).colorScheme.backgroundColor,
                       borderRadius: BorderRadius.circular(24),
                       border: Border.all(
                         color: _isSearchFocused 
-                            ? AppTheme.primaryColor
+                            ? Theme.of(context).colorScheme.primaryColor
                             : Colors.transparent,
                         width: 2,
                       ),
@@ -176,8 +176,8 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                         prefixIcon: Icon(
                           Icons.search,
                           color: _isSearchFocused 
-                              ? AppTheme.primaryColor 
-                              : AppTheme.textTertiaryColor,
+                              ? Theme.of(context).colorScheme.primaryColor 
+                              : Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                         suffixIcon: widget.searchController.text.isNotEmpty
                             ? IconButton(
@@ -186,7 +186,7 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                                   widget.onSearchChanged('');
                                 },
                                 icon: const Icon(Icons.clear),
-                                color: AppTheme.textTertiaryColor,
+                                color: Theme.of(context).colorScheme.textTertiaryColor,
                               )
                             : null,
                         border: InputBorder.none,
@@ -206,12 +206,12 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                   height: 48,
                   decoration: BoxDecoration(
                     color: _isFilterExpanded || _totalActiveFilters > 0
-                        ? AppTheme.primaryColor
-                        : AppTheme.backgroundColor,
+                        ? Theme.of(context).colorScheme.primaryColor
+                        : Theme.of(context).colorScheme.backgroundColor,
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
                       color: _isFilterExpanded || _totalActiveFilters > 0
-                          ? AppTheme.primaryColor
+                          ? Theme.of(context).colorScheme.primaryColor
                           : Colors.transparent,
                       width: 2,
                     ),
@@ -224,7 +224,7 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                           Icons.tune,
                           color: _isFilterExpanded || _totalActiveFilters > 0
                               ? Colors.white
-                              : AppTheme.textTertiaryColor,
+                              : Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                       ),
                       if (_totalActiveFilters > 0)
@@ -234,7 +234,7 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                           child: Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
-                              color: AppTheme.errorColor,
+                              color: Theme.of(context).colorScheme.errorColor,
                               shape: BoxShape.circle,
                             ),
                             constraints: const BoxConstraints(
@@ -272,10 +272,10 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                   width: double.infinity,
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   decoration: BoxDecoration(
-                    color: AppTheme.backgroundColor.withOpacity(0.5),
+                    color: Theme.of(context).colorScheme.backgroundColor.withOpacity(0.5),
                     border: Border(
                       top: BorderSide(
-                        color: AppTheme.textTertiaryColor.withOpacity(0.2),
+                        color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2),
                       ),
                     ),
                   ),
@@ -320,12 +320,12 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                             selected: isSelected,
                             onSelected: (selected) => _onTypeFilterChanged(type['value']!, selected),
                             backgroundColor: Colors.white,
-                            selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-                            checkmarkColor: AppTheme.primaryColor,
+                            selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
+                            checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                             side: BorderSide(
                               color: isSelected 
-                                  ? AppTheme.primaryColor 
-                                  : AppTheme.textTertiaryColor.withOpacity(0.3),
+                                  ? Theme.of(context).colorScheme.primaryColor 
+                                  : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
                             ),
                           );
                         }).toList(),
@@ -351,12 +351,12 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                             selected: isSelected,
                             onSelected: (selected) => _onStatusFilterChanged(status['value']!, selected),
                             backgroundColor: Colors.white,
-                            selectedColor: AppTheme.secondaryColor.withOpacity(0.2),
-                            checkmarkColor: AppTheme.secondaryColor,
+                            selectedColor: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.2),
+                            checkmarkColor: Theme.of(context).colorScheme.secondaryColor,
                             side: BorderSide(
                               color: isSelected 
-                                  ? AppTheme.secondaryColor 
-                                  : AppTheme.textTertiaryColor.withOpacity(0.3),
+                                  ? Theme.of(context).colorScheme.secondaryColor 
+                                  : Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
                             ),
                           );
                         }).toList(),
@@ -383,15 +383,15 @@ class _EventSearchFilterBarState extends State<EventSearchFilterBar>
                                   : 'Sélectionner',
                             ),
                             style: OutlinedButton.styleFrom(
-                              foregroundColor: AppTheme.primaryColor,
-                              side: BorderSide(color: AppTheme.primaryColor),
+                              foregroundColor: Theme.of(context).colorScheme.primaryColor,
+                              side: BorderSide(color: Theme.of(context).colorScheme.primaryColor),
                             ),
                           ),
                           if (widget.startDate != null)
                             IconButton(
                               onPressed: () => _onDateRangeChanged(null, null),
                               icon: const Icon(Icons.clear, size: 18),
-                              color: AppTheme.textTertiaryColor,
+                              color: Theme.of(context).colorScheme.textTertiaryColor,
                             ),
                         ],
                       ),

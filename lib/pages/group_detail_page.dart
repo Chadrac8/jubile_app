@@ -12,7 +12,7 @@ import '../widgets/group_member_attendance_stats.dart';
 import 'group_form_page.dart';
 import 'group_meeting_page.dart';
 import 'group_attendance_stats_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class GroupDetailPage extends StatefulWidget {
@@ -941,7 +941,7 @@ class _GroupDetailPageState extends State<GroupDetailPage> with TickerProviderSt
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${_getResourceTypeLabel(type)} modifié avec succès !'),
-                    backgroundColor: AppTheme.successColor,
+                    backgroundColor: Theme.of(context).colorScheme.successColor,
                   ),
                 );
               }
@@ -951,7 +951,7 @@ class _GroupDetailPageState extends State<GroupDetailPage> with TickerProviderSt
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${_getResourceTypeLabel(type)} ajouté avec succès !'),
-                    backgroundColor: AppTheme.successColor,
+                    backgroundColor: Theme.of(context).colorScheme.successColor,
                     action: SnackBarAction(
                       label: 'Voir',
                       textColor: Colors.white,
@@ -998,7 +998,7 @@ class _GroupDetailPageState extends State<GroupDetailPage> with TickerProviderSt
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Ressource supprimée avec succès !'),
-                      backgroundColor: AppTheme.successColor,
+                      backgroundColor: Theme.of(context).colorScheme.successColor,
                     ),
                   );
                 }

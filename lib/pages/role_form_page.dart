@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/person_model.dart';
 import '../models/role_model.dart';
 import '../services/roles_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class RoleFormPage extends StatefulWidget {
   final RoleModel? role;
@@ -169,7 +169,7 @@ class _RoleFormPageState extends State<RoleFormPage>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.role == null ? 'Nouveau rôle' : 'Modifier le rôle'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -228,7 +228,7 @@ class _RoleFormPageState extends State<RoleFormPage>
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _isLoading ? null : _saveRole,
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         icon: _isLoading 
             ? const SizedBox(
@@ -318,7 +318,7 @@ class _RoleFormPageState extends State<RoleFormPage>
                   color: Color(int.parse(color.replaceFirst('#', '0xFF'))),
                   shape: BoxShape.circle,
                   border: isSelected
-                      ? Border.all(color: AppTheme.primaryColor, width: 3)
+                      ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 3)
                       : null,
                 ),
                 child: isSelected
@@ -436,7 +436,7 @@ class _RoleFormPageState extends State<RoleFormPage>
                 subtitle: Text('$selectedInCategory/${permissions.length} sélectionnée${selectedInCategory > 1 ? 's' : ''}'),
                 leading: Icon(
                   _getCategoryIcon(category),
-                  color: selectedInCategory > 0 ? AppTheme.primaryColor : Colors.grey,
+                  color: selectedInCategory > 0 ? Theme.of(context).colorScheme.primaryColor : Colors.grey,
                 ),
                 children: permissions.map((permission) {
                   final isSelected = _selectedPermissions.contains(permission);
@@ -457,7 +457,7 @@ class _RoleFormPageState extends State<RoleFormPage>
                         }
                       });
                     },
-                    activeColor: AppTheme.primaryColor,
+                    activeColor: Theme.of(context).colorScheme.primaryColor,
                   );
                 }).toList(),
               ),
@@ -480,7 +480,7 @@ class _RoleFormPageState extends State<RoleFormPage>
               : 'Ce rôle est désactivé et ne peut pas être assigné'),
           value: _isActive,
           onChanged: (value) => setState(() => _isActive = value),
-          activeColor: AppTheme.primaryColor,
+          activeColor: Theme.of(context).colorScheme.primaryColor,
         ),
       ],
     );
@@ -499,7 +499,7 @@ class _RoleFormPageState extends State<RoleFormPage>
           children: [
             Row(
               children: [
-                Icon(icon, color: AppTheme.primaryColor),
+                Icon(icon, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 12),
                 Text(
                   title,

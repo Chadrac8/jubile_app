@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/form_model.dart';
 import '../services/forms_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormResponsesList extends StatefulWidget {
   final FormModel form;
@@ -59,7 +59,7 @@ class _FormResponsesListState extends State<FormResponsesList>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Export de ${responses.length} réponses prêt'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -67,7 +67,7 @@ class _FormResponsesListState extends State<FormResponsesList>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de l\'export: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -80,7 +80,7 @@ class _FormResponsesListState extends State<FormResponsesList>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Réponse marquée comme traitée'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -88,7 +88,7 @@ class _FormResponsesListState extends State<FormResponsesList>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -96,10 +96,10 @@ class _FormResponsesListState extends State<FormResponsesList>
 
   Color _getStatusColor(String status) {
     switch (status) {
-      case 'submitted': return AppTheme.warningColor;
-      case 'processed': return AppTheme.successColor;
-      case 'archived': return AppTheme.textTertiaryColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'submitted': return Theme.of(context).colorScheme.warningColor;
+      case 'processed': return Theme.of(context).colorScheme.successColor;
+      case 'archived': return Theme.of(context).colorScheme.textTertiaryColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -156,7 +156,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
-                    fillColor: AppTheme.backgroundColor,
+                    fillColor: Theme.of(context).colorScheme.backgroundColor,
                   ),
                 ),
               ),
@@ -166,7 +166,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                 icon: const Icon(Icons.download),
                 label: const Text('Exporter'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                   foregroundColor: Colors.white,
                 ),
               ),
@@ -227,7 +227,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -238,7 +238,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                 Text(
                   snapshot.error.toString(),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -250,7 +250,7 @@ class _FormResponsesListState extends State<FormResponsesList>
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
             ),
           );
         }
@@ -274,13 +274,13 @@ class _FormResponsesListState extends State<FormResponsesList>
                 Icon(
                   Icons.inbox_outlined,
                   size: 64,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Aucune réponse trouvée',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -289,7 +289,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       ? 'Les réponses apparaîtront ici une fois le formulaire soumis'
                       : 'Publiez le formulaire pour commencer à recevoir des réponses',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -333,7 +333,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                     child: Text(
                       submission.fullName.substring(0, 1).toUpperCase(),
                       style: TextStyle(
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -353,7 +353,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                           Text(
                             submission.email!,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppTheme.textSecondaryColor,
+                              color: Theme.of(context).colorScheme.textSecondaryColor,
                             ),
                           ),
                       ],
@@ -384,7 +384,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       Text(
                         _formatDate(submission.submittedAt),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                       ),
                     ],
@@ -397,7 +397,7 @@ class _FormResponsesListState extends State<FormResponsesList>
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppTheme.backgroundColor,
+                  color: Theme.of(context).colorScheme.backgroundColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
@@ -407,7 +407,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       'Aperçu des réponses',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -451,7 +451,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       Text(
                         '+${submission.responses.length - 3} autres réponses',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
@@ -468,7 +468,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       label: const Text('Test'),
                       backgroundColor: Color(0x1AFFA000), // 10% opacity of warningColor (#FFA000)
                       labelStyle: TextStyle(
-                        color: AppTheme.warningColor,
+                        color: Theme.of(context).colorScheme.warningColor,
                         fontSize: 10,
                       ),
                     ),
@@ -479,7 +479,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                       icon: const Icon(Icons.check, size: 16),
                       label: const Text('Marquer comme traité'),
                       style: TextButton.styleFrom(
-                        foregroundColor: AppTheme.successColor,
+                        foregroundColor: Theme.of(context).colorScheme.successColor,
                       ),
                     ),
                   TextButton.icon(
@@ -487,7 +487,7 @@ class _FormResponsesListState extends State<FormResponsesList>
                     icon: const Icon(Icons.visibility, size: 16),
                     label: const Text('Voir détails'),
                     style: TextButton.styleFrom(
-                      foregroundColor: AppTheme.primaryColor,
+                      foregroundColor: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                 ],
@@ -545,7 +545,7 @@ class _SubmissionDetailsDialog extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: const BoxDecoration(
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
@@ -639,7 +639,7 @@ class _SubmissionDetailsDialog extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: const BoxDecoration(
-                color: AppTheme.backgroundColor,
+                color: Theme.of(context).colorScheme.backgroundColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(12),
                   bottomRight: Radius.circular(12),
@@ -690,7 +690,7 @@ class _SubmissionDetailsDialog extends StatelessWidget {
               '$label:',
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ),

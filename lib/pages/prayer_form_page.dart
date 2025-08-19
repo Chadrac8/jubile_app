@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/prayer_model.dart';
 import '../services/prayers_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PrayerFormPage extends StatefulWidget {
   final PrayerModel? prayer;
@@ -210,7 +210,7 @@ class _PrayerFormPageState extends State<PrayerFormPage> {
               child: Text(
                 'SAUVEGARDER',
                 style: TextStyle(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -434,7 +434,7 @@ class _PrayerFormPageState extends State<PrayerFormPage> {
                               tag,
                               style: const TextStyle(fontSize: 12),
                             ),
-                            backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                            backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                             deleteIcon: const Icon(Icons.close, size: 16),
                             onDeleted: () {
                               setState(() {

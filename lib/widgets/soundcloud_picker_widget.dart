@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../services/soundcloud_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 /// Widget de sélection et validation d'URLs SoundCloud
 /// 
@@ -178,7 +178,7 @@ class _SoundCloudPickerWidgetState extends State<SoundCloudPickerWidget> {
           Icons.audiotrack,
           color: _urlInfo?.isValid == true 
               ? Colors.green 
-              : AppTheme.primaryColor,
+              : Theme.of(context).colorScheme.primaryColor,
         ),
         suffixIcon: Row(
           mainAxisSize: MainAxisSize.min,
@@ -405,7 +405,7 @@ class _SoundCloudPickerWidgetState extends State<SoundCloudPickerWidget> {
           ),
           label: Text(_showHelp ? 'Masquer l\'aide' : 'Afficher l\'aide'),
           style: TextButton.styleFrom(
-            foregroundColor: AppTheme.primaryColor,
+            foregroundColor: Theme.of(context).colorScheme.primaryColor,
           ),
         ),
         

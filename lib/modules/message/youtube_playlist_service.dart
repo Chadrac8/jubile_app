@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/youtube_playlist_model.dart';
+import '../../models/youtube_playlist_model.dart';
 
 /// Service pour gérer les playlists YouTube de William Marrion Branham
 class YouTubePlaylistService {

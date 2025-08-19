@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'bible_service.dart';
 import 'bible_model.dart';
 
@@ -121,7 +121,7 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.surfaceColor,
+      backgroundColor: Theme.of(context).colorScheme.surfaceColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -135,10 +135,10 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         border: Border(
           bottom: BorderSide(
-            color: AppTheme.textTertiaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1),
             width: 1))),
       child: Column(
         children: [
@@ -153,10 +153,10 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
                 child: Container(
                   height: 46,
                   decoration: BoxDecoration(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                     borderRadius: BorderRadius.circular(12),
                     border: _searchFocusNode.hasFocus
-                        ? Border.all(color: AppTheme.primaryColor, width: 2)
+                        ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 2)
                         : null),
                   child: TextField(
                     controller: _searchController,
@@ -165,18 +165,18 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
                     decoration: InputDecoration(
                       hintText: 'Rechercher dans la Bible...',
                       hintStyle: GoogleFonts.inter(
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                         fontSize: 16),
                       prefixIcon: Icon(
                         Icons.search,
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                         size: 22),
                       suffixIcon: _searchController.text.isNotEmpty
                           ? IconButton(
                               onPressed: _clearSearch,
                               icon: Icon(
                                 Icons.clear,
-                                color: AppTheme.textTertiaryColor,
+                                color: Theme.of(context).colorScheme.textTertiaryColor,
                                 size: 20),
                               splashRadius: 16)
                           : null,
@@ -198,7 +198,7 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
                 '${_searchResults.length} résultat${_searchResults.length > 1 ? 's' : ''} pour "$_searchQuery"',
                 style: GoogleFonts.inter(
                   fontSize: 14,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                   fontWeight: FontWeight.w500))),
         ]));
   }
@@ -230,7 +230,7 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
             'Recherche en cours...',
             style: TextStyle(
               fontSize: 16,
-              color: AppTheme.textTertiaryColor)),
+              color: Theme.of(context).colorScheme.textTertiaryColor)),
         ]));
   }
 
@@ -248,9 +248,9 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.1)),
+        border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.1)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -279,14 +279,14 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6)),
                 child: Text(
                   '${verse.book} ${verse.chapter}:${verse.verse}',
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor))),
+                    color: Theme.of(context).colorScheme.primaryColor))),
               
               const SizedBox(height: 12),
               
@@ -361,20 +361,20 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
             Icon(
               Icons.search_off,
               size: 64,
-              color: AppTheme.textTertiaryColor),
+              color: Theme.of(context).colorScheme.textTertiaryColor),
             const SizedBox(height: 16),
             Text(
               'Aucun résultat trouvé',
               style: GoogleFonts.inter(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.textTertiaryColor)),
+                color: Theme.of(context).colorScheme.textTertiaryColor)),
             const SizedBox(height: 8),
             Text(
               'Essayez avec d\'autres mots-clés',
               style: GoogleFonts.inter(
                 fontSize: 16,
-                color: AppTheme.textTertiaryColor)),
+                color: Theme.of(context).colorScheme.textTertiaryColor)),
           ])));
   }
 
@@ -418,7 +418,7 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
       child: ListTile(
         leading: Icon(
           Icons.history,
-          color: AppTheme.textTertiaryColor,
+          color: Theme.of(context).colorScheme.textTertiaryColor,
           size: 20),
         title: Text(
           query,
@@ -433,7 +433,7 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
           },
           icon: Icon(
             Icons.close,
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
             size: 18),
           splashRadius: 16),
         onTap: () {
@@ -455,9 +455,9 @@ class _BibleSearchPageState extends State<BibleSearchPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: AppTheme.textTertiaryColor,
+          color: Theme.of(context).colorScheme.textTertiaryColor,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.2))),
+          border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.2))),
         child: Text(
           search,
           style: GoogleFonts.inter(

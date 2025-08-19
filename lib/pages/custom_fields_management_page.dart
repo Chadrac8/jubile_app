@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/custom_field_model.dart';
 import '../services/custom_fields_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'custom_field_form_page.dart';
 
 class CustomFieldsManagementPage extends StatefulWidget {

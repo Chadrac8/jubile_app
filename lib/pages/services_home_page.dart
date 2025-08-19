@@ -9,7 +9,7 @@ import 'service_detail_page.dart';
 import 'service_form_page.dart';
 import 'teams_management_page.dart';
 import 'assignments_overview_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class ServicesHomePage extends StatefulWidget {

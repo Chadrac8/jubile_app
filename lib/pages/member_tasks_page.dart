@@ -5,7 +5,7 @@ import '../auth/auth_service.dart';
 import '../widgets/task_card.dart';
 import '../widgets/task_calendar_view.dart';
 import 'task_detail_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class MemberTasksPage extends StatefulWidget {
   const MemberTasksPage({super.key});
@@ -87,7 +87,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -127,7 +127,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Tâche marquée comme ${task.statusLabel.toLowerCase()}'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -136,7 +136,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -190,7 +190,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
                     children: [
                       Icon(
                         _selectedFilter == entry.key ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                       const SizedBox(width: 8),
                       Text(entry.value),
@@ -210,7 +210,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
                     children: [
                       Icon(
                         _selectedPriority == entry.key ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                       const SizedBox(width: 8),
                       Text(entry.value),
@@ -253,13 +253,13 @@ class _MemberTasksPageState extends State<MemberTasksPage>
   Widget _buildHeader() {
     return Container(
       padding: const EdgeInsets.all(16),
-      color: AppTheme.backgroundColor,
+      color: Theme.of(context).colorScheme.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.filter_list, color: AppTheme.primaryColor),
+              Icon(Icons.filter_list, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 8),
               Text(
                 'Filtres actifs',
@@ -275,12 +275,12 @@ class _MemberTasksPageState extends State<MemberTasksPage>
             children: [
               Chip(
                 label: Text(_filterLabels[_selectedFilter]!),
-                backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
               ),
               if (_selectedPriority != 'all')
                 Chip(
                   label: Text(_priorityLabels[_selectedPriority]!),
-                  backgroundColor: AppTheme.secondaryColor.withOpacity(0.1),
+                  backgroundColor: Theme.of(context).colorScheme.secondaryColor.withOpacity(0.1),
                 ),
             ],
           ),
@@ -295,10 +295,10 @@ class _MemberTasksPageState extends State<MemberTasksPage>
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.warningColor.withOpacity(0.1),
+        color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppTheme.warningColor.withOpacity(0.3),
+          color: Theme.of(context).colorScheme.warningColor.withOpacity(0.3),
         ),
       ),
       child: Column(
@@ -308,13 +308,13 @@ class _MemberTasksPageState extends State<MemberTasksPage>
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                Icon(Icons.notifications_active, color: AppTheme.warningColor),
+                Icon(Icons.notifications_active, color: Theme.of(context).colorScheme.warningColor),
                 const SizedBox(width: 8),
                 Text(
                   'Rappels (${_reminders.length})',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.warningColor,
+                    color: Theme.of(context).colorScheme.warningColor,
                   ),
                 ),
               ],
@@ -325,7 +325,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
               dense: true,
               leading: Icon(
                 _getReminderIcon(reminder.type),
-                color: AppTheme.warningColor,
+                color: Theme.of(context).colorScheme.warningColor,
                 size: 20,
               ),
               title: Text(_getReminderTitle(reminder.type)),
@@ -368,7 +368,7 @@ class _MemberTasksPageState extends State<MemberTasksPage>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error, size: 64, color: AppTheme.errorColor),
+                Icon(Icons.error, size: 64, color: Theme.of(context).colorScheme.errorColor),
                 const SizedBox(height: 16),
                 Text('Erreur: ${snapshot.error}'),
                 const SizedBox(height: 16),

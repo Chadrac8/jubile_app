@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../models/home_config_model.dart';
-import '../services/home_config_service.dart';
-import '../services/image_upload_service.dart';
-import '../theme.dart';
+import '../../models/home_config_model.dart';
+import '../../services/home_config_service.dart';
+import '../../services/image_upload_service.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class HomeConfigAdminPage extends StatefulWidget {
   const HomeConfigAdminPage({super.key});
@@ -60,7 +60,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }
@@ -92,7 +92,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Image de couverture mise à jour avec succès'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       }
     } catch (e) {
       setState(() {
@@ -102,7 +102,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de l\'upload: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }
@@ -124,7 +124,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Image de test ajoutée. Cliquez sur "Sauvegarder" pour confirmer.'),
-          backgroundColor: AppTheme.warningColor));
+          backgroundColor: Theme.of(context).colorScheme.warningColor));
     } catch (e) {
       setState(() {
         _isSaving = false;
@@ -133,7 +133,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de l\'ajout de l\'image de test: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }
@@ -168,7 +168,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Configuration sauvegardée avec succès'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       }
     } catch (e) {
       setState(() {
@@ -178,7 +178,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sauvegarde: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }
@@ -203,8 +203,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configuration Accueil'),
-        backgroundColor: AppTheme.primaryColor,
-        foregroundColor: AppTheme.surfaceColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor,
         actions: [
           if (_isSaving)
             const Padding(
@@ -245,8 +245,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                 child: ElevatedButton(
                   onPressed: _isSaving ? null : _saveConfiguration,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
-                    foregroundColor: AppTheme.surfaceColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                     padding: const EdgeInsets.symmetric(vertical: 16)),
                   child: _isSaving
                       ? const Row(
@@ -284,7 +284,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
               children: [
                 Icon(
                   Icons.image,
-                  color: AppTheme.primaryColor),
+                  color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   'Image de couverture',
@@ -304,7 +304,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return Container(
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -312,13 +312,13 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                               const Icon(
                                 Icons.error_outline,
                                 size: 48,
-                                color: AppTheme.textTertiaryColor),
+                                color: Theme.of(context).colorScheme.textTertiaryColor),
                               const SizedBox(height: 8),
                               Text(
                                 'Erreur: $error',
                                 style: const TextStyle(
                                   fontSize: 12,
-                                  color: AppTheme.errorColor),
+                                  color: Theme.of(context).colorScheme.errorColor),
                                 textAlign: TextAlign.center),
                             ])));
                     },
@@ -338,9 +338,9 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
               Container(
                 height: 200,
                 decoration: BoxDecoration(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppTheme.textTertiaryColor)),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
                 child: const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -348,11 +348,11 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                       Icon(
                         Icons.image_not_supported,
                         size: 48,
-                        color: AppTheme.textTertiaryColor),
+                        color: Theme.of(context).colorScheme.textTertiaryColor),
                       SizedBox(height: 8),
                       Text(
                         'Aucune image de couverture',
-                        style: TextStyle(color: AppTheme.textTertiaryColor)),
+                        style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor)),
                     ]))),
               const SizedBox(height: 16),
             ],
@@ -368,8 +368,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                       ? 'Changer l\'image de couverture'
                       : 'Ajouter une image de couverture'),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: AppTheme.primaryColor,
-                  side: BorderSide(color: AppTheme.primaryColor)))),
+                  foregroundColor: Theme.of(context).colorScheme.primaryColor,
+                  side: BorderSide(color: Theme.of(context).colorScheme.primaryColor)))),
             const SizedBox(height: 12),
             
             // Bouton de test avec image par défaut
@@ -380,8 +380,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                 icon: const Icon(Icons.image),
                 label: const Text('Ajouter une image de test'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.warningColor,
-                  foregroundColor: AppTheme.surfaceColor,
+                  backgroundColor: Theme.of(context).colorScheme.warningColor,
+                  foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                   padding: const EdgeInsets.symmetric(vertical: 12)))),
           ])));
   }
@@ -397,7 +397,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
               children: [
                 Icon(
                   Icons.auto_stories,
-                  color: AppTheme.primaryColor),
+                  color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   'Verset du jour',
@@ -447,7 +447,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
               children: [
                 Icon(
                   Icons.play_circle,
-                  color: AppTheme.primaryColor),
+                  color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   'Dernière prédication',
@@ -484,7 +484,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
             Text(
               'Formats acceptés: youtube.com/watch?v=... ou youtu.be/...',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textTertiaryColor)),
+                color: Theme.of(context).colorScheme.textTertiaryColor)),
             
             // Aperçu vidéo si URL valide
             if (_sermonUrlController.text.isNotEmpty) ...[
@@ -510,7 +510,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
-                                  color: AppTheme.textTertiaryColor,
+                                  color: Theme.of(context).colorScheme.textTertiaryColor,
                                   child: const Center(
                                     child: Icon(Icons.error_outline)));
                               }))),
@@ -530,8 +530,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                 icon: const Icon(Icons.search),
                 label: const Text('Rechercher une vidéo YouTube'),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: AppTheme.primaryColor,
-                  side: BorderSide(color: AppTheme.primaryColor)))),
+                  foregroundColor: Theme.of(context).colorScheme.primaryColor,
+                  side: BorderSide(color: Theme.of(context).colorScheme.primaryColor)))),
           ])));
   }
 
@@ -595,8 +595,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                       ? Icons.check_circle 
                       : Icons.error,
                   color: (_homeConfig?.coverImageUrl != null && _homeConfig!.coverImageUrl!.isNotEmpty) 
-                      ? AppTheme.successColor 
-                      : AppTheme.errorColor),
+                      ? Theme.of(context).colorScheme.successColor 
+                      : Theme.of(context).colorScheme.errorColor),
                 const SizedBox(width: 8),
                 Text(
                   (_homeConfig?.coverImageUrl != null && _homeConfig!.coverImageUrl!.isNotEmpty) 
@@ -605,8 +605,8 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: (_homeConfig?.coverImageUrl != null && _homeConfig!.coverImageUrl!.isNotEmpty) 
-                        ? AppTheme.successColor 
-                        : AppTheme.errorColor)),
+                        ? Theme.of(context).colorScheme.successColor 
+                        : Theme.of(context).colorScheme.errorColor)),
               ]),
           ])));
   }
@@ -628,7 +628,7 @@ class _HomeConfigAdminPageState extends State<HomeConfigAdminPage> {
               style: TextStyle(
                 fontFamily: 'monospace',
                 fontSize: 12,
-                color: value == 'NULL' ? AppTheme.errorColor : Colors.black87))),
+                color: value == 'NULL' ? Theme.of(context).colorScheme.errorColor : Colors.black87))),
         ]));
   }
 }

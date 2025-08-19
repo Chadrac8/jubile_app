@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_article.dart';
-import '../services/bible_article_service.dart';
+import '../../models/bible_article.dart';
+import '../../services/bible_article_service.dart';
 import 'bible_article_detail_view.dart';
 import 'bible_article_form_view.dart';
 
@@ -275,14 +275,14 @@ class _BibleArticlesListViewState extends State<BibleArticlesListView> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
-                        color: AppTheme.warningColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).colorScheme.warningColor.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12)),
                       child: Text(
                         'Brouillon',
                         style: GoogleFonts.inter(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
-                          color: AppTheme.warningColor))),
+                          color: Theme.of(context).colorScheme.warningColor))),
                   if (widget.showAdminTools)
                     PopupMenuButton<String>(
                       onSelected: (value) => _handleArticleAction(value, article),
@@ -311,9 +311,9 @@ class _BibleArticlesListViewState extends State<BibleArticlesListView> {
                           value: 'delete',
                           child: Row(
                             children: [
-                              Icon(Icons.delete_outline, size: 18, color: AppTheme.errorColor),
+                              Icon(Icons.delete_outline, size: 18, color: Theme.of(context).colorScheme.errorColor),
                               const SizedBox(width: 8),
-                              Text('Supprimer', style: TextStyle(color: AppTheme.errorColor)),
+                              Text('Supprimer', style: TextStyle(color: Theme.of(context).colorScheme.errorColor)),
                             ])),
                       ]),
                 ]),
@@ -487,7 +487,7 @@ class _BibleArticlesListViewState extends State<BibleArticlesListView> {
               Navigator.pop(context);
               _deleteArticle(article);
             },
-            style: TextButton.styleFrom(foregroundColor: AppTheme.errorColor),
+            style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer')),
         ]));
   }

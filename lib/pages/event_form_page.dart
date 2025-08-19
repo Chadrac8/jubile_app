@@ -4,7 +4,7 @@ import '../models/event_model.dart';
 import '../models/person_model.dart';
 import '../services/events_firebase_service.dart';
 import '../services/firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../image_upload.dart';
 import '../services/image_storage_service.dart' as ImageStorage;
 import 'firebase_storage_diagnostic_page.dart';
@@ -213,7 +213,7 @@ class _EventFormPageState extends State<EventFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sélection de l\'image: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
             duration: const Duration(seconds: 5),
             action: SnackBarAction(
               label: 'Diagnostic',
@@ -296,7 +296,7 @@ class _EventFormPageState extends State<EventFormPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -310,10 +310,10 @@ class _EventFormPageState extends State<EventFormPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: Text(widget.event == null ? 'Nouvel événement' : 'Modifier l\'événement'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -516,7 +516,7 @@ class _EventFormPageState extends State<EventFormPage>
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.backgroundColor),
+        border: Border.all(color: Theme.of(context).colorScheme.backgroundColor),
       ),
       child: _imageUrl != null
           ? Stack(
@@ -550,7 +550,7 @@ class _EventFormPageState extends State<EventFormPage>
                     onPressed: _pickEventImage,
                     icon: const Icon(Icons.edit),
                     style: IconButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primaryColor,
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -569,10 +569,10 @@ class _EventFormPageState extends State<EventFormPage>
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          color: AppTheme.backgroundColor,
+          color: Theme.of(context).colorScheme.backgroundColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppTheme.textTertiaryColor.withOpacity(0.3),
+            color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3),
             style: BorderStyle.solid,
           ),
         ),
@@ -582,13 +582,13 @@ class _EventFormPageState extends State<EventFormPage>
             Icon(
               Icons.add_photo_alternate,
               size: 48,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 8),
             Text(
               'Ajouter une image',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
             ),
           ],
@@ -625,12 +625,12 @@ class _EventFormPageState extends State<EventFormPage>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
                     icon,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 20,
                   ),
                 ),
@@ -668,7 +668,7 @@ class _EventFormPageState extends State<EventFormPage>
           borderRadius: BorderRadius.circular(12),
         ),
         filled: true,
-        fillColor: AppTheme.backgroundColor,
+        fillColor: Theme.of(context).colorScheme.backgroundColor,
       ),
       validator: validator,
       keyboardType: keyboardType,
@@ -693,7 +693,7 @@ class _EventFormPageState extends State<EventFormPage>
           borderRadius: BorderRadius.circular(12),
         ),
         filled: true,
-        fillColor: AppTheme.backgroundColor,
+        fillColor: Theme.of(context).colorScheme.backgroundColor,
       ),
       items: items.map((item) {
         return DropdownMenuItem<String>(
@@ -717,12 +717,12 @@ class _EventFormPageState extends State<EventFormPage>
             borderRadius: BorderRadius.circular(12),
           ),
           filled: true,
-          fillColor: AppTheme.backgroundColor,
+          fillColor: Theme.of(context).colorScheme.backgroundColor,
         ),
         child: Text(
           date != null ? _formatDate(date) : (isOptional ? 'Non définie' : 'Sélectionner'),
           style: TextStyle(
-            color: date != null ? AppTheme.textPrimaryColor : AppTheme.textTertiaryColor,
+            color: date != null ? Theme.of(context).colorScheme.textPrimaryColor : Theme.of(context).colorScheme.textTertiaryColor,
           ),
         ),
       ),
@@ -740,12 +740,12 @@ class _EventFormPageState extends State<EventFormPage>
             borderRadius: BorderRadius.circular(12),
           ),
           filled: true,
-          fillColor: AppTheme.backgroundColor,
+          fillColor: Theme.of(context).colorScheme.backgroundColor,
         ),
         child: Text(
           time != null ? time.format(context) : (isOptional ? 'Non définie' : 'Sélectionner'),
           style: TextStyle(
-            color: time != null ? AppTheme.textPrimaryColor : AppTheme.textTertiaryColor,
+            color: time != null ? Theme.of(context).colorScheme.textPrimaryColor : Theme.of(context).colorScheme.textTertiaryColor,
           ),
         ),
       ),
@@ -792,7 +792,7 @@ class _EventFormPageState extends State<EventFormPage>
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            border: Border.all(color: AppTheme.textTertiaryColor.withOpacity(0.3)),
+            border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor.withOpacity(0.3)),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
@@ -801,8 +801,8 @@ class _EventFormPageState extends State<EventFormPage>
                 : '${_selectedResponsibleIds.length} responsable(s) sélectionné(s)',
             style: TextStyle(
               color: _selectedResponsibleIds.isEmpty 
-                  ? AppTheme.textTertiaryColor 
-                  : AppTheme.textPrimaryColor,
+                  ? Theme.of(context).colorScheme.textTertiaryColor 
+                  : Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
         ),
@@ -831,7 +831,7 @@ class _EventFormPageState extends State<EventFormPage>
                 borderRadius: BorderRadius.circular(12),
               ),
               filled: true,
-              fillColor: AppTheme.backgroundColor,
+              fillColor: Theme.of(context).colorScheme.backgroundColor,
               helperText: 'Laissez vide pour un nombre illimité',
             ),
             keyboardType: TextInputType.number,
@@ -878,7 +878,7 @@ class _EventFormPageState extends State<EventFormPage>
                 borderRadius: BorderRadius.circular(12),
               ),
               filled: true,
-              fillColor: AppTheme.backgroundColor,
+              fillColor: Theme.of(context).colorScheme.backgroundColor,
             ),
             items: const [
               DropdownMenuItem(value: 'brouillon', child: Text('Brouillon')),

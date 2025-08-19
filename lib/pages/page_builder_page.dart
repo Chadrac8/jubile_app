@@ -7,7 +7,7 @@ import '../widgets/page_components/component_editor.dart';
 import '../widgets/page_components/component_renderer.dart';
 import '../widgets/image_picker_widget.dart';
 
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PageBuilderPage extends StatefulWidget {
   final CustomPageModel? page;
@@ -666,7 +666,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.page != null ? 'Modifier la page' : 'Nouvelle page'),
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           elevation: 0,
           actions: [
@@ -682,7 +682,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                   onPressed: _isLoading ? null : _savePage,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: AppTheme.primaryColor,
+                    foregroundColor: Theme.of(context).colorScheme.primaryColor,
                   ),
                   child: _isLoading
                       ? const SizedBox(
@@ -699,7 +699,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
         floatingActionButton: !_isPreviewMode && _tabController.index == 1
             ? FloatingActionButton(
                 onPressed: _showComponentSelector,
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 child: const Icon(Icons.add, color: Colors.white),
               )
             : null,
@@ -719,9 +719,9 @@ class _PageBuilderPageState extends State<PageBuilderPage>
               color: Colors.white,
               child: TabBar(
                 controller: _tabController,
-                labelColor: AppTheme.primaryColor,
+                labelColor: Theme.of(context).colorScheme.primaryColor,
                 unselectedLabelColor: Colors.grey[600],
-                indicatorColor: AppTheme.primaryColor,
+                indicatorColor: Theme.of(context).colorScheme.primaryColor,
                 indicatorWeight: 3.0,
                 tabs: const [
                   Tab(
@@ -1502,12 +1502,12 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
                       Icons.settings,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       size: 24,
                     ),
                   ),
@@ -1519,7 +1519,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                         'Informations de la page',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                         ),
                       ),
                       Text(
@@ -1754,10 +1754,10 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                       const SizedBox(height: 8),
                       SliderTheme(
                         data: SliderTheme.of(context).copyWith(
-                          activeTrackColor: AppTheme.primaryColor,
-                          thumbColor: AppTheme.primaryColor,
-                          overlayColor: AppTheme.primaryColor.withOpacity(0.1),
-                          valueIndicatorColor: AppTheme.primaryColor,
+                          activeTrackColor: Theme.of(context).colorScheme.primaryColor,
+                          thumbColor: Theme.of(context).colorScheme.primaryColor,
+                          overlayColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                          valueIndicatorColor: Theme.of(context).colorScheme.primaryColor,
                         ),
                         child: Slider(
                           value: _componentSpacing,
@@ -1800,10 +1800,10 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                       const SizedBox(height: 8),
                       SliderTheme(
                         data: SliderTheme.of(context).copyWith(
-                          activeTrackColor: AppTheme.primaryColor,
-                          thumbColor: AppTheme.primaryColor,
-                          overlayColor: AppTheme.primaryColor.withOpacity(0.1),
-                          valueIndicatorColor: AppTheme.primaryColor,
+                          activeTrackColor: Theme.of(context).colorScheme.primaryColor,
+                          thumbColor: Theme.of(context).colorScheme.primaryColor,
+                          overlayColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
+                          valueIndicatorColor: Theme.of(context).colorScheme.primaryColor,
                         ),
                         child: Slider(
                           value: _componentMargin,
@@ -1854,7 +1854,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                                 height: 30,
                                 margin: EdgeInsets.symmetric(horizontal: _componentMargin),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.primaryColor.withOpacity(0.3),
+                                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Center(
@@ -1862,7 +1862,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                                     'Composant 1',
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -1874,7 +1874,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                                 height: 30,
                                 margin: EdgeInsets.symmetric(horizontal: _componentMargin),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.primaryColor.withOpacity(0.3),
+                                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Center(
@@ -1882,7 +1882,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                                     'Composant 2',
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -1960,12 +1960,12 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor.withOpacity(0.1),
+                    color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
                     Icons.extension,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 24,
                   ),
                 ),
@@ -1977,7 +1977,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                       'Composants',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                     ),
                     Text(
@@ -2027,7 +2027,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
               icon: const Icon(Icons.add),
               label: const Text('Ajouter un composant'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
               ),
             ),
@@ -2082,13 +2082,13 @@ class _PageBuilderPageState extends State<PageBuilderPage>
       children: [
         Row(
           children: [
-            Icon(icon, size: 20, color: AppTheme.primaryColor),
+            Icon(icon, size: 20, color: Theme.of(context).colorScheme.primaryColor),
             const SizedBox(width: 8),
             Text(
               title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
             ),
           ],
@@ -2148,7 +2148,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                 children: [
                   Icon(
                     Icons.add_circle_outline,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     size: 28,
                   ),
                   const SizedBox(width: 12),
@@ -2156,7 +2156,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                     'Ajouter un composant',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                 ],
@@ -2212,12 +2212,12 @@ class _PageBuilderPageState extends State<PageBuilderPage>
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: AppTheme.primaryColor.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
             _getCategoryIcon(categoryName),
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
             size: 20,
           ),
         ),
@@ -2419,7 +2419,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -2450,17 +2450,17 @@ class _PageBuilderPageState extends State<PageBuilderPage>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppTheme.primaryColor.withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                 width: 2,
                 style: BorderStyle.solid,
               ),
-              color: AppTheme.primaryColor.withOpacity(0.05),
+              color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  AppTheme.primaryColor.withOpacity(0.05),
-                  AppTheme.primaryColor.withOpacity(0.02),
+                  Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
+                  Theme.of(context).colorScheme.primaryColor.withOpacity(0.02),
                 ],
               ),
             ),
@@ -2473,20 +2473,20 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withOpacity(0.1),
+                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       Icons.add_photo_alternate,
                       size: 48,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                     ),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'Ajouter une image de couverture',
                     style: TextStyle(
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -2554,7 +2554,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
@@ -2664,7 +2664,7 @@ class _PageBuilderPageState extends State<PageBuilderPage>
                                   children: [
                                     Icon(
                                       _getCategoryIconForImage(option['category']!),
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       size: 24,
                                     ),
                                     const SizedBox(height: 4),

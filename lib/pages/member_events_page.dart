@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../models/event_model.dart';
 import '../services/events_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class MemberEventsPage extends StatefulWidget {
@@ -123,7 +123,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement des événements'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -157,7 +157,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Inscription à "${event.title}" confirmée'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -166,7 +166,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de l\'inscription : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -203,7 +203,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
             child: const Text('Confirmer'),
           ),
@@ -225,7 +225,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Inscription annulée avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -234,7 +234,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur lors de l\'annulation : $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -245,12 +245,12 @@ class _MemberEventsPageState extends State<MemberEventsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Mes Événements'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -277,7 +277,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -318,7 +318,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primaryColor : Colors.transparent,
+          color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -326,14 +326,14 @@ class _MemberEventsPageState extends State<MemberEventsPage>
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+              color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
               size: 20,
             ),
             const SizedBox(width: 8),
             Text(
               title,
               style: TextStyle(
-                color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+                color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -342,7 +342,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.white.withOpacity(0.3) : AppTheme.primaryColor,
+                  color: isSelected ? Colors.white.withOpacity(0.3) : Theme.of(context).colorScheme.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -370,21 +370,21 @@ class _MemberEventsPageState extends State<MemberEventsPage>
             Icon(
               Icons.event_outlined,
               size: 64,
-              color: AppTheme.textSecondaryColor.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.textSecondaryColor.withOpacity(0.5),
             ),
             const SizedBox(height: 16),
             const Text(
               'Aucun événement inscrit',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             const Text(
               'Explorez les événements disponibles pour participer aux activités de l\'église',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -426,14 +426,14 @@ class _MemberEventsPageState extends State<MemberEventsPage>
             Icon(
               Icons.check_circle_outline,
               size: 64,
-              color: AppTheme.successColor,
+              color: Theme.of(context).colorScheme.successColor,
             ),
             SizedBox(height: 16),
             Text(
               'Vous êtes inscrit à tous les événements !',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
           ],
@@ -506,8 +506,8 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: registration.isConfirmed
-                          ? AppTheme.successColor
-                          : AppTheme.warningColor,
+                          ? Theme.of(context).colorScheme.successColor
+                          : Theme.of(context).colorScheme.warningColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -560,13 +560,13 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                     Icon(
                       Icons.access_time,
                       size: 16,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       _formatEventDateTime(event),
                       style: const TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -578,14 +578,14 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                     Icon(
                       Icons.location_on,
                       size: 16,
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         event.location,
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ),
@@ -597,7 +597,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                   Text(
                     event.description,
                     style: const TextStyle(
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                       height: 1.4,
                     ),
                     maxLines: 2,
@@ -631,7 +631,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                         icon: const Icon(Icons.cancel, size: 18),
                         label: const Text('Se désinscrire'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.errorColor,
+                          backgroundColor: Theme.of(context).colorScheme.errorColor,
                         ),
                       ),
                     ),
@@ -684,7 +684,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
@@ -705,7 +705,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
               Text(
                 event.description,
                 style: const TextStyle(
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                   height: 1.4,
                 ),
                 maxLines: 3,
@@ -721,13 +721,13 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                 Icon(
                   Icons.access_time,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   _formatEventDateTime(event),
                   style: const TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
@@ -738,14 +738,14 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                 Icon(
                   Icons.location_on,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     event.location,
                     style: const TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ),
@@ -763,7 +763,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
                 icon: Icon(isRegistrationOpen ? Icons.add : Icons.lock),
                 label: Text(isRegistrationOpen ? 'S\'inscrire' : 'Inscriptions fermées'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isRegistrationOpen ? eventColor : AppTheme.textSecondaryColor,
+                  backgroundColor: isRegistrationOpen ? eventColor : Theme.of(context).colorScheme.textSecondaryColor,
                 ),
               ),
             ),
@@ -813,7 +813,7 @@ class _MemberEventsPageState extends State<MemberEventsPage>
       case 'reunion':
         return Colors.teal;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/admin_branham_sermon_model.dart';
-import '../models/branham_sermon_model.dart';
+import '../../models/admin_branham_sermon_model.dart';
+import '../../models/branham_sermon_model.dart';
 
 /// Service pour gérer les prédications de Branham depuis la vue admin
 class AdminBranhamSermonService {

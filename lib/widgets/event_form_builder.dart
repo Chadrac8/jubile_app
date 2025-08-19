@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/event_model.dart';
 import '../services/events_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class EventFormBuilder extends StatefulWidget {
   final EventModel event;
@@ -48,7 +48,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -116,7 +116,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Formulaire sauvegardé'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -125,7 +125,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -231,7 +231,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
               Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
               foregroundColor: Colors.white,
             ),
             child: const Text('Supprimer'),
@@ -243,12 +243,12 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
 
   Color _getFieldColor(String type) {
     switch (type) {
-      case 'text': case 'textarea': return AppTheme.primaryColor;
-      case 'email': return AppTheme.secondaryColor;
-      case 'phone': return AppTheme.tertiaryColor;
-      case 'number': return AppTheme.warningColor;
-      case 'select': case 'checkbox': return AppTheme.successColor;
-      default: return AppTheme.textSecondaryColor;
+      case 'text': case 'textarea': return Theme.of(context).colorScheme.primaryColor;
+      case 'email': return Theme.of(context).colorScheme.secondaryColor;
+      case 'phone': return Theme.of(context).colorScheme.tertiaryColor;
+      case 'number': return Theme.of(context).colorScheme.warningColor;
+      case 'select': case 'checkbox': return Theme.of(context).colorScheme.successColor;
+      default: return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -274,20 +274,20 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
             Icon(
               Icons.assignment_outlined,
               size: 64,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
             ),
             const SizedBox(height: 16),
             Text(
               'Inscriptions désactivées',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               'Les inscriptions ne sont pas activées pour cet événement',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppTheme.textTertiaryColor,
+                color: Theme.of(context).colorScheme.textTertiaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -297,7 +297,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -333,7 +333,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                       IconButton(
                         onPressed: () => setState(() => _isEditMode = !_isEditMode),
                         icon: Icon(_isEditMode ? Icons.save : Icons.edit),
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                       ),
                     ],
                   ),
@@ -342,7 +342,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                     Text(
                       _eventForm!.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                   ],
@@ -356,7 +356,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                             icon: const Icon(Icons.add),
                             label: const Text('Ajouter un champ'),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppTheme.primaryColor,
+                              backgroundColor: Theme.of(context).colorScheme.primaryColor,
                               foregroundColor: Colors.white,
                             ),
                           ),
@@ -365,7 +365,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                         ElevatedButton(
                           onPressed: _saveEventForm,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.successColor,
+                            backgroundColor: Theme.of(context).colorScheme.successColor,
                             foregroundColor: Colors.white,
                           ),
                           child: const Text('Sauvegarder'),
@@ -401,20 +401,20 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                     Icon(
                       Icons.assignment_outlined,
                       size: 64,
-                      color: AppTheme.textTertiaryColor,
+                      color: Theme.of(context).colorScheme.textTertiaryColor,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'Aucun champ',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Ajoutez des champs pour créer votre formulaire d\'inscription',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppTheme.textTertiaryColor,
+                        color: Theme.of(context).colorScheme.textTertiaryColor,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -425,7 +425,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                         icon: const Icon(Icons.add),
                         label: const Text('Ajouter un champ'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.primaryColor,
+                          backgroundColor: Theme.of(context).colorScheme.primaryColor,
                           foregroundColor: Colors.white,
                         ),
                       ),
@@ -490,13 +490,13 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
-                                color: AppTheme.errorColor.withOpacity(0.1),
+                                color: Theme.of(context).colorScheme.errorColor.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
                                 'Obligatoire',
                                 style: TextStyle(
-                                  color: AppTheme.errorColor,
+                                  color: Theme.of(context).colorScheme.errorColor,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -507,7 +507,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                       Text(
                         _fieldTypes.firstWhere((t) => t['value'] == field.type)['label'],
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -517,12 +517,12 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
                   IconButton(
                     onPressed: () => _editField(field),
                     icon: const Icon(Icons.edit, size: 18),
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   IconButton(
                     onPressed: () => _deleteField(field),
                     icon: const Icon(Icons.delete, size: 18),
-                    color: AppTheme.errorColor,
+                    color: Theme.of(context).colorScheme.errorColor,
                   ),
                 ],
               ],
@@ -532,7 +532,7 @@ class _EventFormBuilderState extends State<EventFormBuilder> {
               Text(
                 field.helpText!,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ),
             ],

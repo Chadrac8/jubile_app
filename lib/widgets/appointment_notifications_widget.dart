@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/appointment_notification_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AppointmentNotificationsWidget extends StatefulWidget {
   const AppointmentNotificationsWidget({super.key});
@@ -55,15 +55,15 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
   Color _getNotificationColor(String type) {
     switch (type) {
       case 'new_appointment':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       case 'confirmed':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'cancelled':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'reminder':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       default:
-        return AppTheme.textSecondaryColor;
+        return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -115,7 +115,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                     children: [
                       Icon(
                         Icons.notifications_active,
-                        color: AppTheme.primaryColor,
+                        color: Theme.of(context).colorScheme.primaryColor,
                         size: 24,
                       ),
                       const SizedBox(width: 12),
@@ -125,7 +125,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: AppTheme.textPrimaryColor,
+                            color: Theme.of(context).colorScheme.textPrimaryColor,
                           ),
                         ),
                       ),
@@ -147,7 +147,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                       child: Text(
                         '+${notifications.length - 3} autres notifications',
                         style: TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                           fontSize: 14,
                         ),
                       ),
@@ -211,7 +211,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -219,7 +219,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                       message,
                       style: TextStyle(
                         fontSize: 13,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -230,7 +230,7 @@ class _AppointmentNotificationsWidgetState extends State<AppointmentNotification
                         _formatRelativeTime(createdAt),
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppTheme.textTertiaryColor,
+                          color: Theme.of(context).colorScheme.textTertiaryColor,
                         ),
                       ),
                     ],

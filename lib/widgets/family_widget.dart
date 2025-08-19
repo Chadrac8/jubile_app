@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/person_model.dart';
 import '../services/firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FamilyWidget extends StatefulWidget {
   final PersonModel person;

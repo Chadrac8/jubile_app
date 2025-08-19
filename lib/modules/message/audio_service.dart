@@ -1,4 +1,4 @@
-import '../models/sermon_model.dart';
+import '../../models/sermon_model.dart';
 
 /// Service pour gérer la lecture audio des prédications
 class AudioService {

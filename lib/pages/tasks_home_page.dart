@@ -9,7 +9,7 @@ import '../widgets/task_search_filter_bar.dart';
 import 'task_form_page.dart';
 import 'task_list_form_page.dart';
 import 'task_detail_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TasksHomePage extends StatefulWidget {
   const TasksHomePage({super.key});
@@ -163,7 +163,7 @@ class _TasksHomePageState extends State<TasksHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -179,7 +179,7 @@ class _TasksHomePageState extends State<TasksHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Tâches marquées comme terminées'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     }
@@ -202,7 +202,7 @@ class _TasksHomePageState extends State<TasksHomePage>
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.errorColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer'),
           ),
         ],
@@ -221,7 +221,7 @@ class _TasksHomePageState extends State<TasksHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Éléments supprimés'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -346,7 +346,7 @@ class _TasksHomePageState extends State<TasksHomePage>
             child: _isSelectionMode
                 ? FloatingActionButton(
                     onPressed: _toggleSelectionMode,
-                    backgroundColor: AppTheme.errorColor,
+                    backgroundColor: Theme.of(context).colorScheme.errorColor,
                     child: const Icon(Icons.close),
                   )
                 : FloatingActionButton.extended(
@@ -391,7 +391,7 @@ class _TasksHomePageState extends State<TasksHomePage>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.error, size: 64, color: AppTheme.errorColor),
+                Icon(Icons.error, size: 64, color: Theme.of(context).colorScheme.errorColor),
                 const SizedBox(height: 16),
                 Text('Erreur: ${snapshot.error}'),
                 const SizedBox(height: 16),
@@ -601,7 +601,7 @@ class _TasksHomePageState extends State<TasksHomePage>
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Icon(Icons.view_list, color: _currentView == 'lists' ? AppTheme.primaryColor : null),
+              leading: Icon(Icons.view_list, color: _currentView == 'lists' ? Theme.of(context).colorScheme.primaryColor : null),
               title: const Text('Listes'),
               onTap: () {
                 Navigator.pop(context);
@@ -609,7 +609,7 @@ class _TasksHomePageState extends State<TasksHomePage>
               },
             ),
             ListTile(
-              leading: Icon(Icons.view_agenda, color: _currentView == 'tasks' ? AppTheme.primaryColor : null),
+              leading: Icon(Icons.view_agenda, color: _currentView == 'tasks' ? Theme.of(context).colorScheme.primaryColor : null),
               title: const Text('Tâches'),
               onTap: () {
                 Navigator.pop(context);
@@ -617,7 +617,7 @@ class _TasksHomePageState extends State<TasksHomePage>
               },
             ),
             ListTile(
-              leading: Icon(Icons.view_kanban, color: _currentView == 'kanban' ? AppTheme.primaryColor : null),
+              leading: Icon(Icons.view_kanban, color: _currentView == 'kanban' ? Theme.of(context).colorScheme.primaryColor : null),
               title: const Text('Kanban'),
               onTap: () {
                 Navigator.pop(context);
@@ -625,7 +625,7 @@ class _TasksHomePageState extends State<TasksHomePage>
               },
             ),
             ListTile(
-              leading: Icon(Icons.calendar_today, color: _currentView == 'calendar' ? AppTheme.primaryColor : null),
+              leading: Icon(Icons.calendar_today, color: _currentView == 'calendar' ? Theme.of(context).colorScheme.primaryColor : null),
               title: const Text('Calendrier'),
               onTap: () {
                 Navigator.pop(context);
@@ -689,7 +689,7 @@ class _TasksHomePageState extends State<TasksHomePage>
           children: [
             if (_selectedTasks.isNotEmpty) ...[
               ListTile(
-                leading: const Icon(Icons.check_circle, color: AppTheme.successColor),
+                leading: const Icon(Icons.check_circle, color: Theme.of(context).colorScheme.successColor),
                 title: const Text('Marquer comme terminé'),
                 onTap: () {
                   Navigator.pop(context);
@@ -714,7 +714,7 @@ class _TasksHomePageState extends State<TasksHomePage>
               ),
             ],
             ListTile(
-              leading: const Icon(Icons.delete, color: AppTheme.errorColor),
+              leading: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               title: const Text('Supprimer'),
               onTap: () {
                 Navigator.pop(context);
@@ -761,7 +761,7 @@ class _TemplateSelectionDialog extends StatelessWidget {
             return ListTile(
               leading: Icon(
                 template.type == 'task' ? Icons.task_alt : Icons.list_alt,
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
               ),
               title: Text(template.name),
               subtitle: Text(template.description),
@@ -790,7 +790,7 @@ class _TemplateSelectionDialog extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${template.name} créé avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -799,7 +799,7 @@ class _TemplateSelectionDialog extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }

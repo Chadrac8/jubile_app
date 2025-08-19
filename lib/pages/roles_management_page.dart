@@ -5,7 +5,7 @@ import '../services/roles_firebase_service.dart';
 import '../widgets/role_card.dart';
 import 'role_form_page.dart';
 import 'role_assignments_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class RolesManagementPage extends StatefulWidget {
   const RolesManagementPage({super.key});
@@ -279,7 +279,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
         title: _isSelectionMode
             ? Text('${_selectedRoles.length} rôle(s) sélectionné(s)')
             : const Text('Gestion des Rôles'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         leading: _isSelectionMode
@@ -355,7 +355,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
               scale: _fabAnimation,
               child: FloatingActionButton.extended(
                 onPressed: _addNewRole,
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
                 icon: const Icon(Icons.add),
                 label: const Text('Nouveau rôle'),
@@ -391,7 +391,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                 borderSide: BorderSide.none,
               ),
               filled: true,
-              fillColor: AppTheme.backgroundColor,
+              fillColor: Theme.of(context).colorScheme.backgroundColor,
             ),
           ),
           const SizedBox(height: 12),
@@ -402,7 +402,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                   title: const Text('Rôles actifs uniquement'),
                   value: _showActiveOnly,
                   onChanged: _onActiveFilterChanged,
-                  activeColor: AppTheme.primaryColor,
+                  activeColor: Theme.of(context).colorScheme.primaryColor,
                   dense: true,
                 ),
               ),
@@ -492,7 +492,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                     icon: const Icon(Icons.add),
                     label: const Text('Créer un rôle'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primaryColor,
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -544,7 +544,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
             ),
             leading: Icon(
               _getCategoryIcon(category),
-              color: AppTheme.primaryColor,
+              color: Theme.of(context).colorScheme.primaryColor,
             ),
             children: permissions.map((permission) {
               return ListTile(
@@ -579,7 +579,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                 'Total des rôles',
                 stats['totalRoles'].toString(),
                 Icons.security,
-                AppTheme.primaryColor,
+                Theme.of(context).colorScheme.primaryColor,
               ),
               const SizedBox(height: 16),
               Row(
@@ -589,7 +589,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                       'Rôles actifs',
                       stats['activeRoles'].toString(),
                       Icons.check_circle,
-                      AppTheme.successColor,
+                      Theme.of(context).colorScheme.successColor,
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -598,7 +598,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                       'Rôles inactifs',
                       stats['inactiveRoles'].toString(),
                       Icons.cancel,
-                      AppTheme.warningColor,
+                      Theme.of(context).colorScheme.warningColor,
                     ),
                   ),
                 ],
@@ -633,7 +633,7 @@ class _RolesManagementPageState extends State<RolesManagementPage>
                           title: Text(role.name),
                           trailing: Chip(
                             label: Text('$usage personne${usage > 1 ? 's' : ''}'),
-                            backgroundColor: usage > 0 ? AppTheme.primaryColor.withOpacity(0.1) : Colors.grey[200],
+                            backgroundColor: usage > 0 ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1) : Colors.grey[200],
                           ),
                         ),
                       );

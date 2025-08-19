@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../services/roles_firebase_service.dart';
 import '../auth/auth_service.dart';
 
@@ -69,8 +69,8 @@ class RouteGuard {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Accès refusé'),
-        backgroundColor: AppTheme.errorColor,
-        foregroundColor: AppTheme.surfaceColor),
+        backgroundColor: Theme.of(context).colorScheme.errorColor,
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -80,19 +80,19 @@ class RouteGuard {
               Icon(
                 Icons.lock_outline,
                 size: 100,
-                color: AppTheme.textTertiaryColor),
+                color: Theme.of(context).colorScheme.textTertiaryColor),
               const SizedBox(height: 24),
               Text(
                 'Accès non autorisé',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textTertiaryColor),
+                  color: Theme.of(context).colorScheme.textTertiaryColor),
                 textAlign: TextAlign.center),
               const SizedBox(height: 16),
               Text(
                 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppTheme.textTertiaryColor),
+                  color: Theme.of(context).colorScheme.textTertiaryColor),
                 textAlign: TextAlign.center),
               const SizedBox(height: 32),
               ElevatedButton.icon(

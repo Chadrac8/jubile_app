@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_study.dart';
-import '../services/bible_study_service.dart';
+import '../../models/bible_study.dart';
+import '../../services/bible_study_service.dart';
 import 'bible_study_detail_view.dart';
 
 class BibleStudiesListView extends StatefulWidget {
@@ -157,7 +157,7 @@ class _BibleStudiesListViewState extends State<BibleStudiesListView> {
                         fontSize: 14,
                         fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                         color: isSelected 
-                            ? AppTheme.surfaceColor 
+                            ? Theme.of(context).colorScheme.surfaceColor 
                             : theme.colorScheme.onSurface)),
                     selected: isSelected,
                     onSelected: (selected) {
@@ -168,7 +168,7 @@ class _BibleStudiesListViewState extends State<BibleStudiesListView> {
                     },
                     backgroundColor: theme.colorScheme.surface,
                     selectedColor: theme.colorScheme.primary,
-                    checkmarkColor: AppTheme.surfaceColor,
+                    checkmarkColor: Theme.of(context).colorScheme.surfaceColor,
                     side: BorderSide(
                       color: isSelected 
                           ? theme.colorScheme.primary 
@@ -282,14 +282,14 @@ class _BibleStudiesListViewState extends State<BibleStudiesListView> {
                                 margin: const EdgeInsets.only(left: 8),
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.warningColor.withOpacity(0.1),
+                                  color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(12)),
                                 child: Text(
                                   'Populaire',
                                   style: GoogleFonts.inter(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600,
-                                    color: AppTheme.warningColor))),
+                                    color: Theme.of(context).colorScheme.warningColor))),
                           ]),
                         const SizedBox(height: 4),
                         Text(

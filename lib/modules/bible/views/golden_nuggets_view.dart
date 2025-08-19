@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../theme.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../theme.dart';
-import '../models/branham_quote.dart';
+import '../../models/branham_quote.dart';
 import '../../../theme.dart';
 import '../../../services/branham_scraping_service.dart';
 import '../../../theme.dart';
@@ -200,28 +200,28 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.textTertiaryColor,
+      backgroundColor: Theme.of(context).colorScheme.textTertiaryColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.surfaceColor,
+        backgroundColor: Theme.of(context).colorScheme.surfaceColor,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppTheme.textTertiaryColor),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.textTertiaryColor),
           onPressed: () => Navigator.pop(context)),
         title: Text(
           'Pépites d\'or',
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: AppTheme.textTertiaryColor)),
+            color: Theme.of(context).colorScheme.textTertiaryColor)),
         actions: [
           IconButton(
-            icon: Icon(Icons.refresh, color: AppTheme.textTertiaryColor),
+            icon: Icon(Icons.refresh, color: Theme.of(context).colorScheme.textTertiaryColor),
             onPressed: _loadQuotes),
         ],
         bottom: TabBar(
           controller: _tabController,
           labelColor: Colors.amber[700],
-          unselectedLabelColor: AppTheme.textTertiaryColor,
+          unselectedLabelColor: Theme.of(context).colorScheme.textTertiaryColor,
           indicatorColor: Colors.amber[700],
           tabs: [
             Tab(text: 'Aujourd\'hui'),
@@ -239,7 +239,7 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                     'Chargement des pépites d\'or...',
                     style: GoogleFonts.inter(
                       fontSize: 16,
-                      color: AppTheme.textTertiaryColor)),
+                      color: Theme.of(context).colorScheme.textTertiaryColor)),
                 ]))
           : TabBarView(
               controller: _tabController,
@@ -261,13 +261,13 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
             style: GoogleFonts.poppins(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textTertiaryColor)),
+              color: Theme.of(context).colorScheme.textTertiaryColor)),
           SizedBox(height: 8),
           Text(
             'Méditation quotidienne avec William Marrion Branham',
             style: GoogleFonts.inter(
               fontSize: 16,
-              color: AppTheme.textTertiaryColor)),
+              color: Theme.of(context).colorScheme.textTertiaryColor)),
           SizedBox(height: 24),
           
           if (_dailyQuotes.isNotEmpty)
@@ -282,7 +282,7 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
             style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textTertiaryColor)),
+              color: Theme.of(context).colorScheme.textTertiaryColor)),
           SizedBox(height: 16),
           
           ...(_quotes.take(3).map((quote) => 
@@ -298,7 +298,7 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
       children: [
         Container(
           padding: EdgeInsets.all(20),
-          color: AppTheme.surfaceColor,
+          color: Theme.of(context).colorScheme.surfaceColor,
           child: Column(
             children: [
               TextField(
@@ -306,13 +306,13 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                 onChanged: _onSearchChanged,
                 decoration: InputDecoration(
                   hintText: 'Rechercher une citation...',
-                  prefixIcon: Icon(Icons.search, color: AppTheme.textTertiaryColor),
+                  prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.textTertiaryColor),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: AppTheme.textTertiaryColor)),
+                    borderSide: BorderSide(color: Theme.of(context).colorScheme.textTertiaryColor)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: AppTheme.textTertiaryColor)),
+                    borderSide: BorderSide(color: Theme.of(context).colorScheme.textTertiaryColor)),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Colors.amber[700]!)))),
@@ -332,7 +332,7 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                         labelStyle: TextStyle(
                           color: _selectedCategory == category
                               ? Colors.amber[700]
-                              : AppTheme.textTertiaryColor)))).toList())),
+                              : Theme.of(context).colorScheme.textTertiaryColor)))).toList())),
             ])),
         
         Expanded(
@@ -344,19 +344,19 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                       Icon(
                         Icons.search_off,
                         size: 64,
-                        color: AppTheme.textTertiaryColor),
+                        color: Theme.of(context).colorScheme.textTertiaryColor),
                       SizedBox(height: 16),
                       Text(
                         'Aucune citation trouvée',
                         style: GoogleFonts.inter(
                           fontSize: 18,
-                          color: AppTheme.textTertiaryColor)),
+                          color: Theme.of(context).colorScheme.textTertiaryColor)),
                       SizedBox(height: 8),
                       Text(
                         'Essayez avec d\'autres mots-clés',
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: AppTheme.textTertiaryColor)),
+                          color: Theme.of(context).colorScheme.textTertiaryColor)),
                     ]))
               : ListView.builder(
                   padding: EdgeInsets.all(20),
@@ -378,19 +378,19 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                 Icon(
                   Icons.star_border,
                   size: 64,
-                  color: AppTheme.textTertiaryColor),
+                  color: Theme.of(context).colorScheme.textTertiaryColor),
                 SizedBox(height: 16),
                 Text(
                   'Aucune citation favorite',
                   style: GoogleFonts.inter(
                     fontSize: 18,
-                    color: AppTheme.textTertiaryColor)),
+                    color: Theme.of(context).colorScheme.textTertiaryColor)),
                 SizedBox(height: 8),
                 Text(
                   'Ajoutez vos citations préférées en tapant sur l\'étoile',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    color: AppTheme.textTertiaryColor),
+                    color: Theme.of(context).colorScheme.textTertiaryColor),
                   textAlign: TextAlign.center),
               ]))
         : ListView.builder(
@@ -411,9 +411,9 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
             ? LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.amber[50]!, AppTheme.warningColor])
+                colors: [Colors.amber[50]!, Theme.of(context).colorScheme.warningColor])
             : null,
-        color: isHighlighted ? null : AppTheme.surfaceColor,
+        color: isHighlighted ? null : Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(16),
         border: isHighlighted
             ? Border.all(color: Colors.amber.withOpacity(0.3))
@@ -434,11 +434,11 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
               Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: isHighlighted ? Colors.amber[100] : AppTheme.textTertiaryColor,
+                  color: isHighlighted ? Colors.amber[100] : Theme.of(context).colorScheme.textTertiaryColor,
                   borderRadius: BorderRadius.circular(8)),
                 child: Icon(
                   Icons.format_quote,
-                  color: isHighlighted ? Colors.amber[700] : AppTheme.textTertiaryColor,
+                  color: isHighlighted ? Colors.amber[700] : Theme.of(context).colorScheme.textTertiaryColor,
                   size: 20)),
               SizedBox(width: 12),
               Expanded(
@@ -450,12 +450,12 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
-                        color: isHighlighted ? Colors.amber[700] : AppTheme.textTertiaryColor)),
+                        color: isHighlighted ? Colors.amber[700] : Theme.of(context).colorScheme.textTertiaryColor)),
                     Text(
                       _formatDate(quote.date),
                       style: GoogleFonts.inter(
                         fontSize: 11,
-                        color: AppTheme.textTertiaryColor)),
+                        color: Theme.of(context).colorScheme.textTertiaryColor)),
                   ])),
               IconButton(
                 onPressed: () => _toggleFavorite(quote),
@@ -465,12 +465,12 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
                       : Icons.star_border,
                   color: _favoriteQuotes.contains(quote)
                       ? Colors.amber[700]
-                      : AppTheme.textTertiaryColor)),
+                      : Theme.of(context).colorScheme.textTertiaryColor)),
               IconButton(
                 onPressed: () => _shareQuote(quote),
                 icon: Icon(
                   Icons.share,
-                  color: AppTheme.textTertiaryColor)),
+                  color: Theme.of(context).colorScheme.textTertiaryColor)),
             ]),
           
           SizedBox(height: 16),
@@ -481,7 +481,7 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
               fontSize: 18,
               fontStyle: FontStyle.italic,
               height: 1.4,
-              color: AppTheme.textTertiaryColor,
+              color: Theme.of(context).colorScheme.textTertiaryColor,
               fontWeight: FontWeight.w500)),
           
           SizedBox(height: 16),
@@ -491,14 +491,14 @@ class _GoldenNuggetsViewState extends State<GoldenNuggetsView>
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: isHighlighted ? Colors.amber[100] : AppTheme.textTertiaryColor,
+                color: isHighlighted ? Colors.amber[100] : Theme.of(context).colorScheme.textTertiaryColor,
                 borderRadius: BorderRadius.circular(20)),
               child: Text(
                 quote.reference,
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: isHighlighted ? Colors.amber[800] : AppTheme.textTertiaryColor)))),
+                  color: isHighlighted ? Colors.amber[800] : Theme.of(context).colorScheme.textTertiaryColor)))),
         ]));
   }
 

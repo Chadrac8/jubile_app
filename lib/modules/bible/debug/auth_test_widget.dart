@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../services/thematic_passage_service.dart';
+import '../../services/thematic_passage_service.dart';
 
 /// Widget de test pour l'authentification et les opérations de création/modification
 class AuthTestWidget extends StatefulWidget {
@@ -93,7 +93,7 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
         themeId: themeId,
         name: 'Test Thème Modifié',
         description: 'Description modifiée',
-        color: AppTheme.successColor,
+        color: Theme.of(context).colorScheme.successColor,
         icon: Icons.favorite,
         isPublic: false);
       
@@ -168,7 +168,7 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
       appBar: AppBar(
         title: const Text('Test Authentification'),
         backgroundColor: Colors.blue,
-        foregroundColor: AppTheme.surfaceColor),
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -179,20 +179,20 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: _currentUser != null ? AppTheme.successColor : AppTheme.errorColor,
+                color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.errorColor,
                 border: Border.all(
-                  color: _currentUser != null ? AppTheme.successColor : AppTheme.errorColor),
+                  color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.errorColor),
                 borderRadius: BorderRadius.circular(8)),
               child: Row(
                 children: [
                   Icon(
                     _currentUser != null ? Icons.check_circle : Icons.error,
-                    color: _currentUser != null ? AppTheme.successColor : AppTheme.errorColor),
+                    color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.errorColor),
                   const SizedBox(width: 8),
                   Text(
                     _currentUser != null ? 'Connecté' : 'Non connecté',
                     style: TextStyle(
-                      color: _currentUser != null ? AppTheme.successColor : AppTheme.errorColor,
+                      color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.errorColor,
                       fontWeight: FontWeight.bold)),
                 ])),
             
@@ -210,8 +210,8 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
                   child: ElevatedButton(
                     onPressed: _isLoading ? null : _signOut,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.errorColor,
-                      foregroundColor: AppTheme.surfaceColor),
+                      backgroundColor: Theme.of(context).colorScheme.errorColor,
+                      foregroundColor: Theme.of(context).colorScheme.surfaceColor),
                     child: const Text('Déconnexion'))),
               ]),
             
@@ -221,7 +221,7 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
               onPressed: _isLoading ? null : _checkAuthStatus,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                foregroundColor: AppTheme.surfaceColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 minimumSize: const Size(double.infinity, 48)),
               child: const Text('Retester les opérations')),
             
@@ -238,9 +238,9 @@ class _AuthTestWidgetState extends State<AuthTestWidget> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppTheme.textTertiaryColor)),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
                 child: SingleChildScrollView(
                   child: Text(
                     _statusText,

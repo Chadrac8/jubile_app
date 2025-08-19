@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_study.dart';
-import '../services/bible_study_service.dart';
+import '../../models/bible_study.dart';
+import '../../services/bible_study_service.dart';
 
 class BibleStudyLessonView extends StatefulWidget {
   final BibleStudy study;
@@ -60,7 +60,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Leçon terminée avec succès !'),
-          backgroundColor: AppTheme.successColor));
+          backgroundColor: Theme.of(context).colorScheme.successColor));
 
       // Naviguer vers la prochaine leçon si elle existe
       if (widget.lessonIndex < widget.study.lessons.length - 1) {
@@ -72,7 +72,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur: $e'),
-          backgroundColor: AppTheme.errorColor));
+          backgroundColor: Theme.of(context).colorScheme.errorColor));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -151,7 +151,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
           style: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: AppTheme.surfaceColor)),
+            color: Theme.of(context).colorScheme.surfaceColor)),
         background: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -172,11 +172,11 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
                     'Leçon ${widget.lessonIndex + 1} sur ${widget.study.lessons.length}',
                     style: GoogleFonts.inter(
                       fontSize: 14,
-                      color: AppTheme.surfaceColor.withOpacity(0.9))),
+                      color: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.9))),
                   const SizedBox(height: 8),
                   LinearProgressIndicator(
                     value: (widget.lessonIndex + 1) / widget.study.lessons.length,
-                    backgroundColor: AppTheme.surfaceColor.withOpacity(0.3),
+                    backgroundColor: Theme.of(context).colorScheme.surfaceColor.withOpacity(0.3),
                     valueColor: const AlwaysStoppedAnimation<Color>(Colors.white)),
                 ]))))),
       actions: [
@@ -185,7 +185,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
             padding: EdgeInsets.all(8),
             child: Icon(
               Icons.check_circle,
-              color: AppTheme.successColor)),
+              color: Theme.of(context).colorScheme.successColor)),
       ]);
   }
 
@@ -333,7 +333,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
                               style: GoogleFonts.inter(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
-                                color: AppTheme.surfaceColor)))),
+                                color: Theme.of(context).colorScheme.surfaceColor)))),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
@@ -459,7 +459,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
                     : _markLessonComplete,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _isLessonCompleted 
-                      ? AppTheme.successColor 
+                      ? Theme.of(context).colorScheme.successColor 
                       : theme.colorScheme.primary,
                   padding: const EdgeInsets.symmetric(vertical: 16)),
                 child: _isLoading 
@@ -475,7 +475,7 @@ class _BibleStudyLessonViewState extends State<BibleStudyLessonView> {
                             : 'Terminer la leçon',
                         style: GoogleFonts.inter(
                           fontWeight: FontWeight.w600,
-                          color: AppTheme.surfaceColor)))),
+                          color: Theme.of(context).colorScheme.surfaceColor)))),
           ])));
   }
 

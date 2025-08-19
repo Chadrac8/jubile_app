@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/bible_article.dart';
-import '../services/bible_article_service.dart';
+import '../../models/bible_article.dart';
+import '../../services/bible_article_service.dart';
 import '../views/bible_articles_list_view.dart';
 import '../views/bible_article_detail_view.dart';
 
@@ -97,11 +97,11 @@ class _BibleArticleHomeWidgetState extends State<BibleArticleHomeWidget> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppTheme.surfaceColor.withValues(alpha: 0.2),
+              color: Theme.of(context).colorScheme.surfaceColor.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12)),
             child: Icon(
               Icons.article_outlined,
-              color: AppTheme.surfaceColor,
+              color: Theme.of(context).colorScheme.surfaceColor,
               size: 24)),
           const SizedBox(width: 16),
           Expanded(
@@ -113,20 +113,20 @@ class _BibleArticleHomeWidgetState extends State<BibleArticleHomeWidget> {
                   style: GoogleFonts.inter(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.surfaceColor)),
+                    color: Theme.of(context).colorScheme.surfaceColor)),
                 const SizedBox(height: 4),
                 Text(
                   'Enrichissez votre compréhension des Écritures',
                   style: GoogleFonts.inter(
                     fontSize: 14,
-                    color: AppTheme.surfaceColor.withValues(alpha: 0.9))),
+                    color: Theme.of(context).colorScheme.surfaceColor.withValues(alpha: 0.9))),
               ])),
           if (widget.isAdmin)
             IconButton(
               onPressed: () => _navigateToAdmin(),
               icon: const Icon(
                 Icons.admin_panel_settings_outlined,
-                color: AppTheme.surfaceColor),
+                color: Theme.of(context).colorScheme.surfaceColor),
               tooltip: 'Administration'),
         ]));
   }
@@ -148,14 +148,14 @@ class _BibleArticleHomeWidgetState extends State<BibleArticleHomeWidget> {
               icon: Icons.visibility_outlined,
               value: '${_stats['totalViews'] ?? 0}',
               label: 'Lectures',
-              color: AppTheme.warningColor)),
+              color: Theme.of(context).colorScheme.warningColor)),
           const SizedBox(width: 16),
           Expanded(
             child: _buildStatItem(
               icon: Icons.category_outlined,
               value: '${_stats['categoriesCount'] ?? 0}',
               label: 'Catégories',
-              color: AppTheme.successColor)),
+              color: Theme.of(context).colorScheme.successColor)),
         ]));
   }
 
@@ -351,7 +351,7 @@ class _BibleArticleHomeWidgetState extends State<BibleArticleHomeWidget> {
                   fontWeight: FontWeight.w600)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.primaryColor,
-                foregroundColor: AppTheme.surfaceColor,
+                foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12))))),

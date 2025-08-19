@@ -3,7 +3,7 @@ import '../models/appointment_model.dart';
 import '../models/person_model.dart';
 import '../services/appointments_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/appointment_card.dart';
 import 'appointment_booking_page.dart';
 import 'appointment_detail_page.dart';
@@ -98,7 +98,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
             child: const Text('Oui, annuler'),
           ),
@@ -117,7 +117,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Rendez-vous annulé avec succès'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -126,7 +126,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -185,10 +185,10 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Mes Rendez-vous'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -211,7 +211,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _bookNewAppointment,
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );
@@ -221,7 +221,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.primaryColor,
+        color: Theme.of(context).colorScheme.primaryColor,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(24),
           bottomRight: Radius.circular(24),
@@ -268,10 +268,10 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
                   setState(() => _selectedFilter = entry.key);
                 },
                 backgroundColor: Colors.white,
-                selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-                checkmarkColor: AppTheme.primaryColor,
+                selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
+                checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                 labelStyle: TextStyle(
-                  color: isSelected ? AppTheme.primaryColor : AppTheme.textPrimaryColor,
+                  color: isSelected ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textPrimaryColor,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -303,20 +303,20 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Erreur lors du chargement',
                   style: TextStyle(
                     fontSize: 18,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   '${snapshot.error}',
-                  style: TextStyle(color: AppTheme.textTertiaryColor),
+                  style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -374,7 +374,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
           Icon(
             icon,
             size: 80,
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
           ),
           const SizedBox(height: 24),
           Text(
@@ -382,7 +382,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
+              color: Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 8),
@@ -390,7 +390,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
             subtitle,
             style: TextStyle(
               fontSize: 16,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -401,7 +401,7 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
               icon: const Icon(Icons.add),
               label: const Text('Prendre rendez-vous'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
@@ -432,27 +432,27 @@ class _MemberAppointmentsPageState extends State<MemberAppointmentsPage>
 
     switch (appointment.statut) {
       case 'en_attente':
-        color = AppTheme.warningColor;
+        color = Theme.of(context).colorScheme.warningColor;
         icon = Icons.schedule;
         break;
       case 'confirme':
-        color = AppTheme.successColor;
+        color = Theme.of(context).colorScheme.successColor;
         icon = Icons.check_circle;
         break;
       case 'refuse':
-        color = AppTheme.errorColor;
+        color = Theme.of(context).colorScheme.errorColor;
         icon = Icons.cancel;
         break;
       case 'termine':
-        color = AppTheme.primaryColor;
+        color = Theme.of(context).colorScheme.primaryColor;
         icon = Icons.check;
         break;
       case 'annule':
-        color = AppTheme.textTertiaryColor;
+        color = Theme.of(context).colorScheme.textTertiaryColor;
         icon = Icons.event_busy;
         break;
       default:
-        color = AppTheme.textTertiaryColor;
+        color = Theme.of(context).colorScheme.textTertiaryColor;
         icon = Icons.help;
     }
 

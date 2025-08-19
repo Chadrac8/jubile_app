@@ -8,7 +8,7 @@ import '../services/groups_firebase_service.dart';
 import '../services/firebase_service.dart';
 import '../image_upload.dart';
 import '../services/image_storage_service.dart' as ImageStorage;
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'firebase_storage_diagnostic_page.dart';
 
 class GroupFormPage extends StatefulWidget {
@@ -844,7 +844,7 @@ class _GroupFormPageState extends State<GroupFormPage>
                           icon: const Icon(Icons.delete, size: 16),
                           label: const Text('Supprimer'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.errorColor,
+                            backgroundColor: Theme.of(context).colorScheme.errorColor,
                             foregroundColor: Colors.white,
                           ),
                         ),

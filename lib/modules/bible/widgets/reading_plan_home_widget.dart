@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/reading_plan.dart';
-import '../services/reading_plan_service.dart';
+import '../../models/reading_plan.dart';
+import '../../services/reading_plan_service.dart';
 import '../views/reading_plans_home_page.dart';
 
 class ReadingPlanHomeWidget extends StatefulWidget {
@@ -213,13 +213,13 @@ class _ReadingPlanHomeWidgetState extends State<ReadingPlanHomeWidget> {
                                   horizontal: 6,
                                   vertical: 2),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.successColor.withOpacity(0.2),
+                                  color: Theme.of(context).colorScheme.successColor.withOpacity(0.2),
                                   borderRadius: BorderRadius.circular(8)),
                                 child: Text(
                                   '✓',
                                   style: GoogleFonts.inter(
                                     fontSize: 12,
-                                    color: AppTheme.successColor,
+                                    color: Theme.of(context).colorScheme.successColor,
                                     fontWeight: FontWeight.bold))),
                           ]),
                       ])),
@@ -280,12 +280,12 @@ class _ReadingPlanHomeWidgetState extends State<ReadingPlanHomeWidget> {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isCompleted 
-            ? AppTheme.successColor.withOpacity(0.1)
+            ? Theme.of(context).colorScheme.successColor.withOpacity(0.1)
             : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isCompleted 
-              ? AppTheme.successColor.withOpacity(0.3)
+              ? Theme.of(context).colorScheme.successColor.withOpacity(0.3)
               : theme.colorScheme.outline.withOpacity(0.2))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,7 +296,7 @@ class _ReadingPlanHomeWidgetState extends State<ReadingPlanHomeWidget> {
                 isCompleted ? Icons.check_circle : Icons.today,
                 size: 16,
                 color: isCompleted 
-                    ? AppTheme.successColor 
+                    ? Theme.of(context).colorScheme.successColor 
                     : theme.colorScheme.primary),
               const SizedBox(width: 6),
               Text(
@@ -305,7 +305,7 @@ class _ReadingPlanHomeWidgetState extends State<ReadingPlanHomeWidget> {
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: isCompleted 
-                      ? AppTheme.successColor
+                      ? Theme.of(context).colorScheme.successColor
                       : theme.colorScheme.primary)),
             ]),
           const SizedBox(height: 6),

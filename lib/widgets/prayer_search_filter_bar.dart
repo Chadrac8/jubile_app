@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/prayer_model.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class PrayerSearchFilterBar extends StatefulWidget {
   final TextEditingController searchController;
@@ -152,17 +152,17 @@ class _PrayerSearchFilterBarState extends State<PrayerSearchFilterBar>
                 Container(
                   decoration: BoxDecoration(
                     color: _hasActiveFilters 
-                        ? AppTheme.primaryColor.withOpacity(0.1)
+                        ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1)
                         : Colors.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(25),
                     border: _hasActiveFilters 
-                        ? Border.all(color: AppTheme.primaryColor, width: 1)
+                        ? Border.all(color: Theme.of(context).colorScheme.primaryColor, width: 1)
                         : null,
                   ),
                   child: IconButton(
                     icon: Icon(
                       Icons.tune,
-                      color: _hasActiveFilters ? AppTheme.primaryColor : Colors.grey,
+                      color: _hasActiveFilters ? Theme.of(context).colorScheme.primaryColor : Colors.grey,
                     ),
                     onPressed: _toggleFilters,
                     tooltip: 'Filtres',
@@ -225,7 +225,7 @@ class _PrayerSearchFilterBarState extends State<PrayerSearchFilterBar>
                             widget.onTypeChanged(null);
                           }
                         },
-                        selectedColor: AppTheme.primaryColor.withOpacity(0.2),
+                        selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
                         backgroundColor: Colors.grey.withOpacity(0.1),
                       ),
                       // Options par type

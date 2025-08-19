@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/dynamic_list_model.dart';
 import '../services/dynamic_lists_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/custom_card.dart';
 
 /// Page de construction/édition d'une liste dynamique
@@ -161,7 +161,7 @@ class _DynamicListBuilderPageState extends State<DynamicListBuilderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
         title: Text(
@@ -278,7 +278,7 @@ class _DynamicListBuilderPageState extends State<DynamicListBuilderPage> {
               style: GoogleFonts.poppins(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
             const SizedBox(height: 24),
@@ -444,7 +444,7 @@ class _DynamicListBuilderPageState extends State<DynamicListBuilderPage> {
       child: ListTile(
         leading: Icon(
           _getFieldIcon(field.fieldType),
-          color: AppTheme.primaryColor,
+          color: Theme.of(context).colorScheme.primaryColor,
         ),
         title: Text(field.displayName),
         subtitle: Text('Type: ${field.fieldType}'),

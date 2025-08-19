@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../modules/songs/models/song_model.dart';
 import '../modules/songs/services/songs_firebase_service.dart';
@@ -180,7 +180,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.info, color: AppTheme.errorColor),
+                Icon(Icons.info, color: Theme.of(context).colorScheme.errorColor),
                 const SizedBox(height: 16),
                 Text('Erreur: ${snapshot.error}'),
                 const SizedBox(height: 16),
@@ -197,13 +197,13 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.info, color: AppTheme.textTertiaryColor),
+                Icon(Icons.info, color: Theme.of(context).colorScheme.textTertiaryColor),
                 const SizedBox(height: 16),
                 Text(
                   _showDraftsOnly 
                       ? 'Aucun chant en brouillon'
                       : 'Aucun chant disponible',
-                  style: TextStyle(color: AppTheme.textTertiaryColor)),
+                  style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor)),
               ]));
         }
 
@@ -227,7 +227,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
                   
                   Text(
                     '${songs.length} chant(s) affiché(s)',
-                    style: TextStyle(color: AppTheme.textTertiaryColor)),
+                    style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor)),
                 ])),
             
             // Liste
@@ -274,7 +274,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
                             const SizedBox(width: 8),
                             Text(
                               'Visibilité: ${song.visibility}',
-                              style: TextStyle(fontSize: 12, color: AppTheme.textTertiaryColor)),
+                              style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.textTertiaryColor)),
                           ]),
                       ]),
                     secondary: IconButton(
@@ -288,13 +288,13 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
   Color _getStatusColor(String status) {
     switch (status.toLowerCase()) {
       case 'published':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'draft':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'pending':
         return Colors.blue;
       case 'archived':
-        return AppTheme.textTertiaryColor;
+        return Theme.of(context).colorScheme.textTertiaryColor;
       default:
         return Colors.black;
     }
@@ -347,7 +347,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
           SnackBar(
             content: Text(
               '${_selectedSongs.length} chant(s) mis à jour vers le statut "$_bulkStatusTarget"'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         
         setState(() {
           _selectedSongs.clear();
@@ -359,7 +359,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la mise à jour: $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     } finally {
       if (mounted) {
@@ -413,7 +413,7 @@ class _SongsBulkManagerState extends State<SongsBulkManager> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                     borderRadius: BorderRadius.circular(4)),
                   child: Text(
                     song.lyrics.length > 200 

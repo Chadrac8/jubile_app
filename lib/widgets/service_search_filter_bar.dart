@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 class ServiceSearchFilterBar extends StatefulWidget {
   final TextEditingController searchController;

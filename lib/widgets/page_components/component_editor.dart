@@ -6,7 +6,7 @@ import '../../services/image_action_service.dart';
 import '../../services/component_action_service.dart';
 import '../../services/youtube_service.dart';
 import '../../services/soundcloud_service.dart';
-import '../../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../image_picker_widget.dart';
 import '../youtube_picker_widget.dart';
 import '../soundcloud_picker_widget.dart';
@@ -115,7 +115,7 @@ class _ComponentEditorState extends State<ComponentEditor> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor,
+                color: Theme.of(context).colorScheme.primaryColor,
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
               ),
               child: Row(
@@ -208,7 +208,7 @@ class _ComponentEditorState extends State<ComponentEditor> {
                   ElevatedButton(
                     onPressed: _saveComponent,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primaryColor,
                       foregroundColor: Colors.white,
                     ),
                     child: const Text('Sauvegarder'),
@@ -860,7 +860,7 @@ class _ComponentEditorState extends State<ComponentEditor> {
     if (!urlInfo.isValid) return const SizedBox.shrink();
     
     return Card(
-      color: AppTheme.primaryColor.withOpacity(0.05),
+      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -870,14 +870,14 @@ class _ComponentEditorState extends State<ComponentEditor> {
               children: [
                 Icon(
                   _getVideoContentIcon(urlInfo.contentType),
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   'Type: ${urlInfo.displayType}',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],
@@ -980,7 +980,7 @@ class _ComponentEditorState extends State<ComponentEditor> {
               icon: const Icon(Icons.add, size: 16),
               label: const Text('Ajouter'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
                 minimumSize: const Size(0, 32),
               ),
@@ -1270,9 +1270,9 @@ class _ComponentEditorState extends State<ComponentEditor> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: const TabBar(
-              labelColor: AppTheme.primaryColor,
+              labelColor: Theme.of(context).colorScheme.primaryColor,
               unselectedLabelColor: Colors.grey,
-              indicatorColor: AppTheme.primaryColor,
+              indicatorColor: Theme.of(context).colorScheme.primaryColor,
               tabs: [
                 Tab(
                   icon: Icon(Icons.audiotrack),
@@ -3508,7 +3508,7 @@ class _ComponentEditorState extends State<ComponentEditor> {
               icon: const Icon(Icons.add),
               label: const Text('Ajouter'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
               ),
             ),

@@ -6,7 +6,7 @@ import '../widgets/group_card.dart';
 import '../widgets/group_search_filter_bar.dart';
 import 'group_detail_page.dart';
 import 'group_form_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class GroupsHomePage extends StatefulWidget {

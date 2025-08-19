@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/form_model.dart';
 import '../services/forms_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'form_public_page.dart';
 
 class MemberFormsPage extends StatefulWidget {
@@ -88,7 +88,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -112,12 +112,12 @@ class _MemberFormsPageState extends State<MemberFormsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Formulaires'),
         elevation: 0,
         backgroundColor: Colors.transparent,
-        foregroundColor: AppTheme.textPrimaryColor,
+        foregroundColor: Theme.of(context).colorScheme.textPrimaryColor,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -144,7 +144,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -185,7 +185,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppTheme.primaryColor : Colors.transparent,
+          color: isSelected ? Theme.of(context).colorScheme.primaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -193,14 +193,14 @@ class _MemberFormsPageState extends State<MemberFormsPage>
           children: [
             Icon(
               icon,
-              color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+              color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
               size: 20,
             ),
             const SizedBox(width: 8),
             Text(
               title,
               style: TextStyle(
-                color: isSelected ? Colors.white : AppTheme.textSecondaryColor,
+                color: isSelected ? Colors.white : Theme.of(context).colorScheme.textSecondaryColor,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
@@ -209,7 +209,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.white.withOpacity(0.3) : AppTheme.primaryColor,
+                  color: isSelected ? Colors.white.withOpacity(0.3) : Theme.of(context).colorScheme.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -237,21 +237,21 @@ class _MemberFormsPageState extends State<MemberFormsPage>
             Icon(
               Icons.assignment_outlined,
               size: 64,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             SizedBox(height: 16),
             Text(
               'Aucun formulaire disponible',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             SizedBox(height: 8),
             Text(
               'Les formulaires à remplir apparaîtront ici',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -280,21 +280,21 @@ class _MemberFormsPageState extends State<MemberFormsPage>
             Icon(
               Icons.assignment_turned_in_outlined,
               size: 64,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             SizedBox(height: 16),
             Text(
               'Aucune réponse soumise',
               style: TextStyle(
                 fontSize: 18,
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
             ),
             SizedBox(height: 8),
             Text(
               'Vos réponses aux formulaires apparaîtront ici',
               style: TextStyle(
-                color: AppTheme.textSecondaryColor,
+                color: Theme.of(context).colorScheme.textSecondaryColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -351,7 +351,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
@@ -368,7 +368,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: AppTheme.successColor,
+                      color: Theme.of(context).colorScheme.successColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Text(
@@ -388,7 +388,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
               Text(
                 form.description,
                 style: const TextStyle(
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                   height: 1.4,
                 ),
                 maxLines: 3,
@@ -404,13 +404,13 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                 Icon(
                   Icons.quiz,
                   size: 16,
-                  color: AppTheme.textSecondaryColor,
+                  color: Theme.of(context).colorScheme.textSecondaryColor,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   '${form.fields.length} questions',
                   style: const TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -418,13 +418,13 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                   Icon(
                     Icons.schedule,
                     size: 16,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     'Ferme le ${_formatDate(form.closeDate!)}',
                     style: const TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -438,13 +438,13 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                   Icon(
                     Icons.people,
                     size: 16,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     'Limité à ${form.submissionLimit} réponses',
                     style: const TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                     ),
                   ),
                 ],
@@ -471,7 +471,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: canSubmit 
                       ? _getFormColor(form.accessibility) 
-                      : AppTheme.textSecondaryColor,
+                      : Theme.of(context).colorScheme.textSecondaryColor,
                 ),
               ),
             ),
@@ -517,13 +517,13 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textPrimaryColor,
+                          color: Theme.of(context).colorScheme.textPrimaryColor,
                         ),
                       ),
                       Text(
                         'Soumis le ${_formatDateTime(submission.submittedAt)}',
                         style: const TextStyle(
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                         ),
                       ),
                     ],
@@ -564,7 +564,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                       'Aperçu des réponses :',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        color: AppTheme.textPrimaryColor,
+                        color: Theme.of(context).colorScheme.textPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -575,7 +575,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                           '• ${entry.key}: ${_truncateText(entry.value.toString(), 50)}',
                           style: const TextStyle(
                             fontSize: 12,
-                            color: AppTheme.textSecondaryColor,
+                            color: Theme.of(context).colorScheme.textSecondaryColor,
                           ),
                         ),
                       ),
@@ -585,7 +585,7 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                         '... et ${submission.responses.length - 3} autres réponses',
                         style: const TextStyle(
                           fontSize: 12,
-                          color: AppTheme.textSecondaryColor,
+                          color: Theme.of(context).colorScheme.textSecondaryColor,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
@@ -599,10 +599,10 @@ class _MemberFormsPageState extends State<MemberFormsPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppTheme.warningColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.warningColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6),
                   border: Border.all(
-                    color: AppTheme.warningColor.withOpacity(0.3),
+                    color: Theme.of(context).colorScheme.warningColor.withOpacity(0.3),
                   ),
                 ),
                 child: Row(
@@ -611,14 +611,14 @@ class _MemberFormsPageState extends State<MemberFormsPage>
                     Icon(
                       Icons.science,
                       size: 14,
-                      color: AppTheme.warningColor,
+                      color: Theme.of(context).colorScheme.warningColor,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       'Soumission',
                       style: TextStyle(
                         fontSize: 12,
-                        color: AppTheme.warningColor,
+                        color: Theme.of(context).colorScheme.warningColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -635,15 +635,15 @@ class _MemberFormsPageState extends State<MemberFormsPage>
   Color _getFormColor(String accessibility) {
     switch (accessibility) {
       case 'public':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'membres':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       case 'groupe':
-        return AppTheme.secondaryColor;
+        return Theme.of(context).colorScheme.secondaryColor;
       case 'role':
-        return AppTheme.tertiaryColor;
+        return Theme.of(context).colorScheme.tertiaryColor;
       default:
-        return AppTheme.textSecondaryColor;
+        return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 
@@ -665,13 +665,13 @@ class _MemberFormsPageState extends State<MemberFormsPage>
   Color _getSubmissionStatusColor(String status) {
     switch (status) {
       case 'submitted':
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
       case 'processed':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'archived':
-        return AppTheme.textSecondaryColor;
+        return Theme.of(context).colorScheme.textSecondaryColor;
       default:
-        return AppTheme.textSecondaryColor;
+        return Theme.of(context).colorScheme.textSecondaryColor;
     }
   }
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/reading_plan.dart';
+import '../../models/reading_plan.dart';
 
 class ReadingPlanService {
   static const String _userProgressKey = 'user_reading_progress';

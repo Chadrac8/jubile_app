@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/thematic_passage_model.dart';
-import '../services/thematic_passage_service.dart';
+import '../../models/thematic_passage_model.dart';
+import '../../services/thematic_passage_service.dart';
 import '../bible_service.dart';
 import '../widgets/theme_creation_dialog.dart';
 import '../widgets/add_passage_dialog.dart';
@@ -326,9 +326,9 @@ class _ThematicPassagesViewState extends State<ThematicPassagesView>
                             value: 'delete',
                             child: Row(
                               children: [
-                                Icon(Icons.delete, size: 16, color: AppTheme.errorColor,
+                                Icon(Icons.delete, size: 16, color: Theme.of(context).colorScheme.errorColor,
                                 SizedBox(width: 8),
-                                Text('Supprimer', style: TextStyle(color: AppTheme.errorColor),
+                                Text('Supprimer', style: TextStyle(color: Theme.of(context).colorScheme.errorColor),
                               ])),
                         ]),
                     ]))));
@@ -412,7 +412,7 @@ class _ThematicPassagesViewState extends State<ThematicPassagesView>
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Fonctionnalité de connexion à implémenter'),
-                        backgroundColor: AppTheme.warningColor));
+                        backgroundColor: Theme.of(context).colorScheme.warningColor));
                   },
                   icon: const Icon(Icons.login),
                   label: Text(
@@ -473,7 +473,7 @@ class _ThematicPassagesViewState extends State<ThematicPassagesView>
             child: Text(
               'Supprimer',
               style: GoogleFonts.inter(
-                color: AppTheme.errorColor,
+                color: Theme.of(context).colorScheme.errorColor,
                 fontWeight: FontWeight.w600))),
         ]));
   }

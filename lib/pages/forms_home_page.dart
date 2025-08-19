@@ -5,7 +5,7 @@ import '../services/forms_firebase_service.dart';
 import '../widgets/form_card.dart';
 import 'form_builder_page.dart';
 import 'form_detail_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class FormsHomePage extends StatefulWidget {
   const FormsHomePage({super.key});
@@ -112,7 +112,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Formulaire créé avec succès'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     }
@@ -144,7 +144,7 @@ class _FormsHomePageState extends State<FormsHomePage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Formulaire créé à partir du modèle'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -154,7 +154,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors du chargement des modèles: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -196,7 +196,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${_selectedForms.length} formulaire(s) publié(s)'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -204,7 +204,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la publication: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -225,7 +225,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${_selectedForms.length} formulaire(s) archivé(s)'),
-          backgroundColor: AppTheme.successColor,
+          backgroundColor: Theme.of(context).colorScheme.successColor,
         ),
       );
     } catch (e) {
@@ -233,7 +233,7 @@ class _FormsHomePageState extends State<FormsHomePage>
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de l\'archivage: $e'),
-          backgroundColor: AppTheme.errorColor,
+          backgroundColor: Theme.of(context).colorScheme.errorColor,
         ),
       );
     }
@@ -256,7 +256,7 @@ class _FormsHomePageState extends State<FormsHomePage>
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
               foregroundColor: Colors.white,
             ),
             child: const Text('Supprimer'),
@@ -280,7 +280,7 @@ class _FormsHomePageState extends State<FormsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${_selectedForms.length} formulaire(s) supprimé(s)'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       } catch (e) {
@@ -288,7 +288,7 @@ class _FormsHomePageState extends State<FormsHomePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la suppression: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -302,7 +302,7 @@ class _FormsHomePageState extends State<FormsHomePage>
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Lien copié dans le presse-papiers'),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       ),
     );
   }
@@ -310,10 +310,10 @@ class _FormsHomePageState extends State<FormsHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Formulaires'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -366,7 +366,7 @@ class _FormsHomePageState extends State<FormsHomePage>
         scale: _fabAnimation,
         child: FloatingActionButton.extended(
           onPressed: _showCreateOptions,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           foregroundColor: Colors.white,
           icon: const Icon(Icons.add),
           label: const Text('Nouveau'),
@@ -401,7 +401,7 @@ class _FormsHomePageState extends State<FormsHomePage>
                 borderSide: BorderSide.none,
               ),
               filled: true,
-              fillColor: AppTheme.backgroundColor,
+              fillColor: Theme.of(context).colorScheme.backgroundColor,
             ),
           ),
           const SizedBox(height: 12),
@@ -469,7 +469,7 @@ class _FormsHomePageState extends State<FormsHomePage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -480,7 +480,7 @@ class _FormsHomePageState extends State<FormsHomePage>
                 Text(
                   snapshot.error.toString(),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -492,7 +492,7 @@ class _FormsHomePageState extends State<FormsHomePage>
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.primaryColor),
             ),
           );
         }
@@ -507,20 +507,20 @@ class _FormsHomePageState extends State<FormsHomePage>
                 Icon(
                   Icons.description_outlined,
                   size: 64,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Aucun formulaire trouvé',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Commencez par créer votre premier formulaire',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.textTertiaryColor,
+                    color: Theme.of(context).colorScheme.textTertiaryColor,
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -529,7 +529,7 @@ class _FormsHomePageState extends State<FormsHomePage>
                   icon: const Icon(Icons.add),
                   label: const Text('Créer un formulaire'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -597,7 +597,7 @@ class _FormsHomePageState extends State<FormsHomePage>
             ),
             const SizedBox(height: 24),
             ListTile(
-              leading: const Icon(Icons.add_circle_outline, color: AppTheme.primaryColor),
+              leading: const Icon(Icons.add_circle_outline, color: Theme.of(context).colorScheme.primaryColor),
               title: const Text('Formulaire vierge'),
               subtitle: const Text('Commencer avec un formulaire vide'),
               onTap: () {
@@ -606,7 +606,7 @@ class _FormsHomePageState extends State<FormsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.content_copy, color: AppTheme.secondaryColor),
+              leading: const Icon(Icons.content_copy, color: Theme.of(context).colorScheme.secondaryColor),
               title: const Text('À partir d\'un modèle'),
               subtitle: const Text('Utiliser un modèle prédéfini'),
               onTap: () {
@@ -637,7 +637,7 @@ class _FormsHomePageState extends State<FormsHomePage>
             ),
             const SizedBox(height: 24),
             ListTile(
-              leading: const Icon(Icons.publish, color: AppTheme.successColor),
+              leading: const Icon(Icons.publish, color: Theme.of(context).colorScheme.successColor),
               title: const Text('Publier'),
               onTap: () {
                 Navigator.pop(context);
@@ -645,7 +645,7 @@ class _FormsHomePageState extends State<FormsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.archive, color: AppTheme.warningColor),
+              leading: const Icon(Icons.archive, color: Theme.of(context).colorScheme.warningColor),
               title: const Text('Archiver'),
               onTap: () {
                 Navigator.pop(context);
@@ -653,7 +653,7 @@ class _FormsHomePageState extends State<FormsHomePage>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.delete, color: AppTheme.errorColor),
+              leading: const Icon(Icons.delete, color: Theme.of(context).colorScheme.errorColor),
               title: const Text('Supprimer'),
               onTap: () {
                 Navigator.pop(context);
@@ -690,7 +690,7 @@ class _TemplateSelectionDialog extends StatelessWidget {
                 subtitle: Text(template.description),
                 trailing: Chip(
                   label: Text(template.category),
-                  backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                 ),
                 onTap: () => Navigator.of(context).pop(template),
               ),

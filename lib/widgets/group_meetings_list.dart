@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/group_model.dart';
 import '../services/groups_firebase_service.dart';
 import '../pages/group_meeting_page.dart';
-// Removed unused import '../theme.dart';
+// Removed unused import '../../compatibility/app_theme_bridge.dart';
 
 class GroupMeetingsList extends StatefulWidget {
   final GroupModel group;

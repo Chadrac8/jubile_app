@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
-import '../models/reading_plan.dart';
+import '../../models/reading_plan.dart';
 
 class ReadingPlanFormView extends StatefulWidget {
   final ReadingPlan? plan;
@@ -125,7 +125,7 @@ class _ReadingPlanFormViewState extends State<ReadingPlanFormView>
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: theme.colorScheme.primary),
-              labelColor: AppTheme.surfaceColor,
+              labelColor: Theme.of(context).colorScheme.surfaceColor,
               unselectedLabelColor: theme.colorScheme.onSurface.withOpacity(0.6),
               labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w600),
               tabs: const [
@@ -819,7 +819,7 @@ class _ReadingPlanFormViewState extends State<ReadingPlanFormView>
                   ? 'Plan créé avec succès' 
                   : 'Plan mis à jour avec succès'
             ),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
         
         widget.onSaved?.call();
         Navigator.pop(context);

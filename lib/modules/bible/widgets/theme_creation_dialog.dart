@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/thematic_passage_model.dart';
-import '../services/thematic_passage_service.dart';
+import '../../models/thematic_passage_model.dart';
+import '../../services/thematic_passage_service.dart';
 
 class ThemeCreationDialog extends StatefulWidget {
   final BiblicalTheme? themeToEdit;
@@ -28,10 +28,10 @@ class _ThemeCreationDialogState extends State<ThemeCreationDialog> {
 
   final List<Color> _availableColors = [
     Colors.blue,
-    AppTheme.successColor,
-    AppTheme.warningColor,
+    Theme.of(context).colorScheme.successColor,
+    Theme.of(context).colorScheme.warningColor,
     Colors.purple,
-    AppTheme.errorColor,
+    Theme.of(context).colorScheme.errorColor,
     Colors.teal,
     Colors.pink,
     Colors.indigo,
@@ -196,7 +196,7 @@ class _ThemeCreationDialogState extends State<ThemeCreationDialog> {
                       child: isSelected
                           ? Icon(
                               Icons.check,
-                              color: AppTheme.surfaceColor,
+                              color: Theme.of(context).colorScheme.surfaceColor,
                               size: 20)
                           : null));
                 }).toList()),
@@ -279,7 +279,7 @@ class _ThemeCreationDialogState extends State<ThemeCreationDialog> {
                       onPressed: _isLoading ? null : _saveTheme,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: _selectedColor,
-                        foregroundColor: AppTheme.surfaceColor,
+                        foregroundColor: Theme.of(context).colorScheme.surfaceColor,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12))),
@@ -352,7 +352,7 @@ class _ThemeCreationDialogState extends State<ThemeCreationDialog> {
           builder: (context) => AlertDialog(
             title: Row(
               children: [
-                Icon(Icons.error_outline, color: AppTheme.errorColor,
+                Icon(Icons.error_outline, color: Theme.of(context).colorScheme.errorColor,
                 const SizedBox(width: 8),
                 Text(errorMessage),
               ]),

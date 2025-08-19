@@ -3,7 +3,7 @@ import 'package:fl_chart/fl_chart.dart';
 import '../models/appointment_model.dart';
 import '../services/appointments_firebase_service.dart';
 // Removed unused import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AppointmentStatisticsWidget extends StatefulWidget {
   final String? responsableId;
@@ -120,14 +120,14 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         children: [
           Row(
             children: [
-              Icon(Icons.analytics, color: AppTheme.primaryColor),
+              Icon(Icons.analytics, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 12),
               const Text(
                 'Vue d\'ensemble',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -145,19 +145,19 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
                 'Total',
                 _statistics!.totalAppointments.toString(),
                 Icons.event_available,
-                AppTheme.primaryColor,
+                Theme.of(context).colorScheme.primaryColor,
               ),
               _buildStatCard(
                 'En attente',
                 _statistics!.pendingAppointments.toString(),
                 Icons.schedule,
-                AppTheme.warningColor,
+                Theme.of(context).colorScheme.warningColor,
               ),
               _buildStatCard(
                 'Confirmés',
                 _statistics!.confirmedAppointments.toString(),
                 Icons.check_circle,
-                AppTheme.successColor,
+                Theme.of(context).colorScheme.successColor,
               ),
               _buildStatCard(
                 'Terminés',
@@ -171,13 +171,13 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
           _buildRateIndicator(
             'Taux de confirmation',
             _statistics!.confirmationRate,
-            AppTheme.successColor,
+            Theme.of(context).colorScheme.successColor,
           ),
           const SizedBox(height: 8),
           _buildRateIndicator(
             'Taux de finalisation',
             _statistics!.completionRate,
-            AppTheme.primaryColor,
+            Theme.of(context).colorScheme.primaryColor,
           ),
         ],
       ),
@@ -210,7 +210,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
             label,
             style: TextStyle(
               fontSize: 12,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -231,7 +231,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
             Text(
@@ -273,14 +273,14 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         children: [
           Row(
             children: [
-              Icon(Icons.show_chart, color: AppTheme.primaryColor),
+              Icon(Icons.show_chart, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 12),
               const Text(
                 'Rendez-vous par mois',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -333,7 +333,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         barRods: [
           BarChartRodData(
             toY: count,
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
             width: 20,
             borderRadius: BorderRadius.circular(4),
           ),
@@ -367,14 +367,14 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         children: [
           Row(
             children: [
-              Icon(Icons.pie_chart, color: AppTheme.primaryColor),
+              Icon(Icons.pie_chart, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 12),
               const Text(
                 'Répartition par statut',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -400,10 +400,10 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildLegendItem('En attente', AppTheme.warningColor, _statistics!.pendingAppointments),
-                    _buildLegendItem('Confirmés', AppTheme.successColor, _statistics!.confirmedAppointments),
+                    _buildLegendItem('En attente', Theme.of(context).colorScheme.warningColor, _statistics!.pendingAppointments),
+                    _buildLegendItem('Confirmés', Theme.of(context).colorScheme.successColor, _statistics!.confirmedAppointments),
                     _buildLegendItem('Terminés', Colors.green, _statistics!.completedAppointments),
-                    _buildLegendItem('Annulés', AppTheme.errorColor, _statistics!.cancelledAppointments),
+                    _buildLegendItem('Annulés', Theme.of(context).colorScheme.errorColor, _statistics!.cancelledAppointments),
                   ],
                 ),
               ),
@@ -420,14 +420,14 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
 
     return [
       PieChartSectionData(
-        color: AppTheme.warningColor,
+        color: Theme.of(context).colorScheme.warningColor,
         value: _statistics!.pendingAppointments.toDouble(),
         title: '${((_statistics!.pendingAppointments / total) * 100).toStringAsFixed(1)}%',
         radius: 50,
         titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       PieChartSectionData(
-        color: AppTheme.successColor,
+        color: Theme.of(context).colorScheme.successColor,
         value: _statistics!.confirmedAppointments.toDouble(),
         title: '${((_statistics!.confirmedAppointments / total) * 100).toStringAsFixed(1)}%',
         radius: 50,
@@ -441,7 +441,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         titleStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
       ),
       PieChartSectionData(
-        color: AppTheme.errorColor,
+        color: Theme.of(context).colorScheme.errorColor,
         value: _statistics!.cancelledAppointments.toDouble(),
         title: '${((_statistics!.cancelledAppointments / total) * 100).toStringAsFixed(1)}%',
         radius: 50,
@@ -469,7 +469,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
               label,
               style: const TextStyle(
                 fontSize: 14,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
           ),
@@ -478,7 +478,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
+              color: Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
         ],
@@ -505,14 +505,14 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
         children: [
           Row(
             children: [
-              Icon(Icons.location_on, color: AppTheme.primaryColor),
+              Icon(Icons.location_on, color: Theme.of(context).colorScheme.primaryColor),
               const SizedBox(width: 12),
               const Text(
                 'Répartition par lieu',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
             ],
@@ -537,17 +537,17 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
     switch (lieu) {
       case 'en_personne':
         icon = Icons.place;
-        color = AppTheme.primaryColor;
+        color = Theme.of(context).colorScheme.primaryColor;
         label = 'En personne';
         break;
       case 'appel_video':
         icon = Icons.videocam;
-        color = AppTheme.secondaryColor;
+        color = Theme.of(context).colorScheme.secondaryColor;
         label = 'Appel vidéo';
         break;
       case 'telephone':
         icon = Icons.phone;
-        color = AppTheme.tertiaryColor;
+        color = Theme.of(context).colorScheme.tertiaryColor;
         label = 'Téléphone';
         break;
       default:
@@ -574,7 +574,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: AppTheme.textPrimaryColor,
+                color: Theme.of(context).colorScheme.textPrimaryColor,
               ),
             ),
           ),
@@ -591,7 +591,7 @@ class _AppointmentStatisticsWidgetState extends State<AppointmentStatisticsWidge
             '(${(percentage * 100).toStringAsFixed(1)}%)',
             style: TextStyle(
               fontSize: 12,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
           ),
         ],

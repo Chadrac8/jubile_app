@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../services/thematic_passage_service.dart';
+import '../../services/thematic_passage_service.dart';
 import '../widgets/add_passage_dialog.dart';
 import '../widgets/theme_creation_dialog.dart';
 
@@ -70,7 +70,7 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Créez d\'abord un thème de test'),
-          backgroundColor: AppTheme.warningColor));
+          backgroundColor: Theme.of(context).colorScheme.warningColor));
       return;
     }
 
@@ -164,7 +164,7 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
       appBar: AppBar(
         title: const Text('Test Passages Bibliques'),
         backgroundColor: Colors.blue,
-        foregroundColor: AppTheme.surfaceColor),
+        foregroundColor: Theme.of(context).colorScheme.surfaceColor),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -175,9 +175,9 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: _currentUser != null ? AppTheme.successColor : AppTheme.warningColor,
+                color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.warningColor,
                 border: Border.all(
-                  color: _currentUser != null ? AppTheme.successColor : AppTheme.warningColor),
+                  color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.warningColor),
                 borderRadius: BorderRadius.circular(8)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,13 +186,13 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
                     children: [
                       Icon(
                         _currentUser != null ? Icons.check_circle : Icons.warning,
-                        color: _currentUser != null ? AppTheme.successColor : AppTheme.warningColor),
+                        color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.warningColor),
                       const SizedBox(width: 8),
                       Text(
                         'État de l\'authentification',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: _currentUser != null ? AppTheme.successColor : AppTheme.warningColor)),
+                          color: _currentUser != null ? Theme.of(context).colorScheme.successColor : Theme.of(context).colorScheme.warningColor)),
                     ]),
                   const SizedBox(height: 8),
                   Text(_currentUser != null 
@@ -222,35 +222,35 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
                   label: const Text('1. Créer thème test'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : _showAddPassageDialog,
                   icon: const Icon(Icons.library_books),
                   label: const Text('2. Dialog ajout passage'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.successColor,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    backgroundColor: Theme.of(context).colorScheme.successColor,
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : _testDirectAdd,
                   icon: const Icon(Icons.flash_on),
                   label: const Text('3. Test ajout direct'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : _showCreateThemeDialog,
                   icon: const Icon(Icons.create),
                   label: const Text('4. Dialog création thème'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.warningColor,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    backgroundColor: Theme.of(context).colorScheme.warningColor,
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
                 ElevatedButton.icon(
                   onPressed: _isLoading ? null : _cleanup,
                   icon: const Icon(Icons.delete),
                   label: const Text('5. Nettoyer'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.errorColor,
-                    foregroundColor: AppTheme.surfaceColor)),
+                    backgroundColor: Theme.of(context).colorScheme.errorColor,
+                    foregroundColor: Theme.of(context).colorScheme.surfaceColor)),
               ]),
 
             const SizedBox(height: 20),
@@ -266,9 +266,9 @@ class _PassageTestWidgetState extends State<PassageTestWidget> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: AppTheme.textTertiaryColor)),
+                  border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

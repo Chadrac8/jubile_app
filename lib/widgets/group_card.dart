@@ -4,7 +4,7 @@ import 'dart:convert';
 import '../models/group_model.dart';
 import '../models/person_model.dart';
 import '../services/groups_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 
 class GroupCard extends StatefulWidget {

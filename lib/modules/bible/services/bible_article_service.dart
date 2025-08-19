@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/bible_article.dart';
+import '../../models/bible_article.dart';
 
 class BibleArticleService {
   static const String _articlesKey = 'bible_articles';

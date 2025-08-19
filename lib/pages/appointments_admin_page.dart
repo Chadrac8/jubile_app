@@ -4,7 +4,7 @@ import '../models/person_model.dart';
 import '../services/appointments_firebase_service.dart';
 import '../services/firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/appointment_card.dart';
 import '../widgets/availability_editor.dart';
 import '../widgets/appointment_statistics_widget.dart';
@@ -123,7 +123,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.errorColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Refuser'),
           ),
         ],
@@ -177,7 +177,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.errorColor,
+        backgroundColor: Theme.of(context).colorScheme.errorColor,
       ),
     );
   }
@@ -186,7 +186,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       ),
     );
   }
@@ -200,10 +200,10 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Gestion des rendez-vous'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
         bottom: TabBar(
@@ -285,10 +285,10 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
                   setState(() => _selectedFilter = entry.key);
                 },
                 backgroundColor: Colors.white,
-                selectedColor: AppTheme.primaryColor.withOpacity(0.2),
-                checkmarkColor: AppTheme.primaryColor,
+                selectedColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.2),
+                checkmarkColor: Theme.of(context).colorScheme.primaryColor,
                 labelStyle: TextStyle(
-                  color: isSelected ? AppTheme.primaryColor : AppTheme.textPrimaryColor,
+                  color: isSelected ? Theme.of(context).colorScheme.primaryColor : Theme.of(context).colorScheme.textPrimaryColor,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
@@ -347,20 +347,20 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
                 Icon(
                   Icons.error_outline,
                   size: 64,
-                  color: AppTheme.errorColor,
+                  color: Theme.of(context).colorScheme.errorColor,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'Erreur lors du chargement',
                   style: TextStyle(
                     fontSize: 18,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   '${snapshot.error}',
-                  style: TextStyle(color: AppTheme.textTertiaryColor),
+                  style: TextStyle(color: Theme.of(context).colorScheme.textTertiaryColor),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -393,7 +393,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
           Icon(
             Icons.event_available,
             size: 80,
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
           ),
           const SizedBox(height: 24),
           Text(
@@ -401,7 +401,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: AppTheme.textPrimaryColor,
+              color: Theme.of(context).colorScheme.textPrimaryColor,
             ),
           ),
           const SizedBox(height: 8),
@@ -409,7 +409,7 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
             'Les rendez-vous correspondant à vos filtres apparaîtront ici',
             style: TextStyle(
               fontSize: 16,
-              color: AppTheme.textSecondaryColor,
+              color: Theme.of(context).colorScheme.textSecondaryColor,
             ),
             textAlign: TextAlign.center,
           ),
@@ -432,27 +432,27 @@ class _AppointmentsAdminPageState extends State<AppointmentsAdminPage>
 
     switch (appointment.statut) {
       case 'en_attente':
-        color = AppTheme.warningColor;
+        color = Theme.of(context).colorScheme.warningColor;
         icon = Icons.schedule;
         break;
       case 'confirme':
-        color = AppTheme.successColor;
+        color = Theme.of(context).colorScheme.successColor;
         icon = Icons.check_circle;
         break;
       case 'refuse':
-        color = AppTheme.errorColor;
+        color = Theme.of(context).colorScheme.errorColor;
         icon = Icons.cancel;
         break;
       case 'termine':
-        color = AppTheme.primaryColor;
+        color = Theme.of(context).colorScheme.primaryColor;
         icon = Icons.check;
         break;
       case 'annule':
-        color = AppTheme.textTertiaryColor;
+        color = Theme.of(context).colorScheme.textTertiaryColor;
         icon = Icons.event_busy;
         break;
       default:
-        color = AppTheme.textTertiaryColor;
+        color = Theme.of(context).colorScheme.textTertiaryColor;
         icon = Icons.help;
     }
 

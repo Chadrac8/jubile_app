@@ -5,7 +5,7 @@ import '../models/person_model.dart';
 import '../services/appointments_firebase_service.dart';
 import '../services/firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class AppointmentDetailPage extends StatefulWidget {
   final AppointmentModel appointment;
@@ -82,7 +82,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
       'Annuler le rendez-vous',
       'Êtes-vous sûr de vouloir annuler ce rendez-vous ?',
       'Annuler',
-      AppTheme.errorColor,
+      Theme.of(context).colorScheme.errorColor,
     );
 
     if (confirmed) {
@@ -107,7 +107,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
       'Confirmer le rendez-vous',
       'Voulez-vous confirmer ce rendez-vous ?',
       'Confirmer',
-      AppTheme.successColor,
+      Theme.of(context).colorScheme.successColor,
     );
 
     if (confirmed) {
@@ -215,7 +215,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, controller.text),
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.errorColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Refuser'),
           ),
         ],
@@ -255,7 +255,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.errorColor,
+        backgroundColor: Theme.of(context).colorScheme.errorColor,
       ),
     );
   }
@@ -264,7 +264,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       ),
     );
   }
@@ -287,10 +287,10 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
     }
 
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: AppBar(
         title: const Text('Détail du rendez-vous'),
-        backgroundColor: AppTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
@@ -328,32 +328,32 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
 
     switch (_currentAppointment!.statut) {
       case 'en_attente':
-        statusColor = AppTheme.warningColor;
+        statusColor = Theme.of(context).colorScheme.warningColor;
         statusIcon = Icons.schedule;
         statusText = 'En attente de confirmation';
         break;
       case 'confirme':
-        statusColor = AppTheme.successColor;
+        statusColor = Theme.of(context).colorScheme.successColor;
         statusIcon = Icons.check_circle;
         statusText = 'Confirmé';
         break;
       case 'refuse':
-        statusColor = AppTheme.errorColor;
+        statusColor = Theme.of(context).colorScheme.errorColor;
         statusIcon = Icons.cancel;
         statusText = 'Refusé';
         break;
       case 'termine':
-        statusColor = AppTheme.primaryColor;
+        statusColor = Theme.of(context).colorScheme.primaryColor;
         statusIcon = Icons.check;
         statusText = 'Terminé';
         break;
       case 'annule':
-        statusColor = AppTheme.textTertiaryColor;
+        statusColor = Theme.of(context).colorScheme.textTertiaryColor;
         statusIcon = Icons.event_busy;
         statusText = 'Annulé';
         break;
       default:
-        statusColor = AppTheme.textTertiaryColor;
+        statusColor = Theme.of(context).colorScheme.textTertiaryColor;
         statusIcon = Icons.help;
         statusText = 'Statut inconnu';
     }
@@ -408,7 +408,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           children: [
             Row(
               children: [
-                Icon(Icons.info, color: AppTheme.primaryColor),
+                Icon(Icons.info, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Informations',
@@ -446,7 +446,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           children: [
             Row(
               children: [
-                Icon(Icons.people, color: AppTheme.primaryColor),
+                Icon(Icons.people, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Participants',
@@ -480,7 +480,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           children: [
             Row(
               children: [
-                Icon(Icons.note, color: AppTheme.primaryColor),
+                Icon(Icons.note, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Notes du membre',
@@ -513,7 +513,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           children: [
             Row(
               children: [
-                Icon(Icons.lock, color: AppTheme.primaryColor),
+                Icon(Icons.lock, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Notes privées',
@@ -552,7 +552,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
           children: [
             Row(
               children: [
-                Icon(Icons.settings, color: AppTheme.primaryColor),
+                Icon(Icons.settings, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 const Text(
                   'Actions',
@@ -574,7 +574,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                         icon: const Icon(Icons.check),
                         label: const Text('Confirmer'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.successColor,
+                          backgroundColor: Theme.of(context).colorScheme.successColor,
                           foregroundColor: Colors.white,
                         ),
                       ),
@@ -586,7 +586,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                         icon: const Icon(Icons.close),
                         label: const Text('Refuser'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.errorColor,
+                          backgroundColor: Theme.of(context).colorScheme.errorColor,
                           foregroundColor: Colors.white,
                         ),
                       ),
@@ -602,7 +602,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                     icon: const Icon(Icons.check_circle),
                     label: const Text('Marquer comme terminé'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryColor,
+                      backgroundColor: Theme.of(context).colorScheme.primaryColor,
                       foregroundColor: Colors.white,
                     ),
                   ),
@@ -618,7 +618,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                   icon: const Icon(Icons.cancel),
                   label: Text(isResponsable ? 'Annuler le rendez-vous' : 'Annuler ma demande'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.errorColor,
+                    backgroundColor: Theme.of(context).colorScheme.errorColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -634,7 +634,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                   icon: const Icon(Icons.video_call),
                   label: const Text('Rejoindre l\'appel vidéo'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.secondaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.secondaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -649,7 +649,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                   icon: const Icon(Icons.phone),
                   label: const Text('Appeler'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.tertiaryColor,
+                    backgroundColor: Theme.of(context).colorScheme.tertiaryColor,
                     foregroundColor: Colors.white,
                   ),
                 ),
@@ -669,7 +669,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, size: 20, color: AppTheme.textTertiaryColor),
+            Icon(icon, size: 20, color: Theme.of(context).colorScheme.textTertiaryColor),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -679,7 +679,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                     label,
                     style: TextStyle(
                       fontSize: 14,
-                      color: AppTheme.textTertiaryColor,
+                      color: Theme.of(context).colorScheme.textTertiaryColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -688,14 +688,14 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                     value,
                     style: const TextStyle(
                       fontSize: 16,
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                     ),
                   ),
                 ],
               ),
             ),
             if (onTap != null)
-              Icon(Icons.open_in_new, size: 16, color: AppTheme.primaryColor),
+              Icon(Icons.open_in_new, size: 16, color: Theme.of(context).colorScheme.primaryColor),
           ],
         ),
       ),
@@ -707,7 +707,7 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
       children: [
         CircleAvatar(
           radius: 20,
-          backgroundColor: AppTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primaryColor,
           child: Text(
             person.displayInitials,
             style: const TextStyle(
@@ -726,14 +726,14 @@ class _AppointmentDetailPageState extends State<AppointmentDetailPage>
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.textPrimaryColor,
+                  color: Theme.of(context).colorScheme.textPrimaryColor,
                 ),
               ),
               Text(
                 role,
                 style: TextStyle(
                   fontSize: 14,
-                  color: AppTheme.textTertiaryColor,
+                  color: Theme.of(context).colorScheme.textTertiaryColor,
                 ),
               ),
             ],

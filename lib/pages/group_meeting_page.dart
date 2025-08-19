@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/group_model.dart';
 import '../models/person_model.dart';
 import '../services/groups_firebase_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class GroupMeetingPage extends StatefulWidget {
   final GroupModel group;

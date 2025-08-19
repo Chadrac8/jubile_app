@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import '../services/tasks_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskCommentsWidget extends StatefulWidget {
   final TaskModel task;
@@ -49,7 +49,7 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Commentaire ajouté'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -58,7 +58,7 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -85,7 +85,7 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.error, size: 64, color: AppTheme.errorColor),
+                      Icon(Icons.error, size: 64, color: Theme.of(context).colorScheme.errorColor),
                       const SizedBox(height: 16),
                       Text('Erreur: ${snapshot.error}'),
                     ],
@@ -154,13 +154,13 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
         ),
         child: Card(
           color: isCurrentUser 
-              ? AppTheme.primaryColor.withOpacity(0.1)
+              ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.1)
               : Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
             side: BorderSide(
               color: isCurrentUser 
-                  ? AppTheme.primaryColor.withOpacity(0.3)
+                  ? Theme.of(context).colorScheme.primaryColor.withOpacity(0.3)
                   : Colors.grey[300]!,
             ),
           ),
@@ -175,8 +175,8 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
                     CircleAvatar(
                       radius: 16,
                       backgroundColor: isCurrentUser 
-                          ? AppTheme.primaryColor
-                          : AppTheme.secondaryColor,
+                          ? Theme.of(context).colorScheme.primaryColor
+                          : Theme.of(context).colorScheme.secondaryColor,
                       child: Text(
                         comment.authorId.substring(0, 1).toUpperCase(),
                         style: const TextStyle(
@@ -196,8 +196,8 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               color: isCurrentUser 
-                                  ? AppTheme.primaryColor
-                                  : AppTheme.textPrimaryColor,
+                                  ? Theme.of(context).colorScheme.primaryColor
+                                  : Theme.of(context).colorScheme.textPrimaryColor,
                             ),
                           ),
                           Text(
@@ -250,7 +250,7 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(24),
-                    borderSide: BorderSide(color: AppTheme.primaryColor),
+                    borderSide: BorderSide(color: Theme.of(context).colorScheme.primaryColor),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -274,7 +274,7 @@ class _TaskCommentsWidgetState extends State<TaskCommentsWidget> {
                       )
                     : const Icon(Icons.send),
                 style: IconButton.styleFrom(
-                  backgroundColor: AppTheme.primaryColor,
+                  backgroundColor: Theme.of(context).colorScheme.primaryColor,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.all(12),
                 ),

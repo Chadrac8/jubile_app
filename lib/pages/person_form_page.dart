@@ -9,7 +9,7 @@ import '../services/roles_firebase_service.dart';
 import '../widgets/custom_fields_widget.dart';
 import '../image_upload.dart';
 import '../services/image_storage_service.dart' as ImageStorage;
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'firebase_storage_diagnostic_page.dart';
 
 class PersonFormPage extends StatefulWidget {

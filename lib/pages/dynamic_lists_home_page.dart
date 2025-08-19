@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/dynamic_list_model.dart';
 import '../services/dynamic_lists_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/custom_card.dart';
 import 'dynamic_list_builder_page.dart';
 import 'dynamic_list_detail_page.dart';
@@ -119,7 +119,7 @@ class _DynamicListsHomePageState extends State<DynamicListsHomePage> with Ticker
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       appBar: _buildAppBar(),
       body: _isLoading ? _buildLoadingView() : _buildTabView(),
       floatingActionButton: _buildFloatingActionButton(),
@@ -322,7 +322,7 @@ class _DynamicListsHomePageState extends State<DynamicListsHomePage> with Ticker
             icon: const Icon(Icons.add),
             label: const Text('Créer une liste'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryColor,
+              backgroundColor: Theme.of(context).colorScheme.primaryColor,
               foregroundColor: Colors.white,
             ),
           ),
@@ -336,10 +336,10 @@ class _DynamicListsHomePageState extends State<DynamicListsHomePage> with Ticker
       margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+          backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
           child: Icon(
             _getIconForSourceModule(list.sourceModule),
-            color: AppTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primaryColor,
           ),
         ),
         title: Text(
@@ -456,7 +456,7 @@ class _DynamicListsHomePageState extends State<DynamicListsHomePage> with Ticker
   Widget _buildFloatingActionButton() {
     return FloatingActionButton.extended(
       onPressed: _createNewList,
-      backgroundColor: AppTheme.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primaryColor,
       foregroundColor: Colors.white,
       icon: const Icon(Icons.add),
       label: const Text('Nouvelle liste'),
@@ -565,7 +565,7 @@ class _DynamicListsHomePageState extends State<DynamicListsHomePage> with Ticker
             children: [
               AppBar(
                 title: const Text('Templates de listes'),
-                backgroundColor: AppTheme.primaryColor,
+                backgroundColor: Theme.of(context).colorScheme.primaryColor,
                 foregroundColor: Colors.white,
                 automaticallyImplyLeading: false,
                 actions: [

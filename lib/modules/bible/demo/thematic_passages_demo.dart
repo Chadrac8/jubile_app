@@ -4,8 +4,8 @@ import '../widgets/thematic_passages_home_widget.dart';
 import '../views/thematic_passages_view.dart';
 import '../widgets/theme_creation_dialog.dart';
 import '../widgets/add_passage_dialog.dart';
-import '../services/thematic_passage_service.dart';
-import '../services/predefined_themes.dart';
+import '../../services/thematic_passage_service.dart';
+import '../../services/predefined_themes.dart';
 
 /// Fichier de démonstration des passages thématiques
 /// 
@@ -68,7 +68,7 @@ class DemoHomePage extends StatelessWidget {
               context,
               'Créer un nouveau thème',
               Icons.add_circle_outline,
-              AppTheme.successColor,
+              Theme.of(context).colorScheme.successColor,
               () => _showCreateThemeDialog(context)),
             
             const SizedBox(height: 12),
@@ -77,7 +77,7 @@ class DemoHomePage extends StatelessWidget {
               context,
               'Ajouter un passage',
               Icons.add,
-              AppTheme.warningColor,
+              Theme.of(context).colorScheme.warningColor,
               () => _showAddPassageDialog(context)),
             
             const SizedBox(height: 12),
@@ -106,7 +106,7 @@ class DemoHomePage extends StatelessWidget {
               'Fonctionnalités',
               'Création, édition, suppression, ajout de passages',
               Icons.build,
-              AppTheme.successColor),
+              Theme.of(context).colorScheme.successColor),
             
             const SizedBox(height: 12),
             
@@ -114,7 +114,7 @@ class DemoHomePage extends StatelessWidget {
               'Support des plages',
               'Versets individuels ou plages (ex: Matthieu 5:3-12)',
               Icons.view_agenda,
-              AppTheme.warningColor),
+              Theme.of(context).colorScheme.warningColor),
             
             const SizedBox(height: 32),
             
@@ -148,7 +148,7 @@ class DemoHomePage extends StatelessWidget {
         label: Text(title),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          foregroundColor: AppTheme.surfaceColor,
+          foregroundColor: Theme.of(context).colorScheme.surfaceColor,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12)))));
@@ -203,9 +203,9 @@ class DemoHomePage extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 8),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppTheme.textTertiaryColor)),
+            border: Border.all(color: Theme.of(context).colorScheme.textTertiaryColor)),
           child: Row(
             children: [
               Container(
@@ -233,7 +233,7 @@ class DemoHomePage extends StatelessWidget {
                       '${passages.length} passages',
                       style: const TextStyle(
                         fontSize: 12,
-                        color: AppTheme.textTertiaryColor)),
+                        color: Theme.of(context).colorScheme.textTertiaryColor)),
                   ])),
             ]));
       }).toList());
@@ -269,14 +269,14 @@ class DemoHomePage extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Thèmes par défaut initialisés (simulation)'),
-            backgroundColor: AppTheme.successColor));
+            backgroundColor: Theme.of(context).colorScheme.successColor));
       }
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur : $e'),
-            backgroundColor: AppTheme.errorColor));
+            backgroundColor: Theme.of(context).colorScheme.errorColor));
       }
     }
   }

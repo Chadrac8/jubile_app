@@ -81,7 +81,7 @@ Source : www.branham.org
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        backgroundColor: AppTheme.surfaceColor,
+        backgroundColor: Theme.of(context).colorScheme.surfaceColor,
         elevation: 0,
         shadowColor: Colors.black.withOpacity(0.1),
         leading: IconButton(
@@ -89,7 +89,7 @@ Source : www.branham.org
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              color: AppTheme.textSecondaryColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.textSecondaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8)),
             child: Icon(
               Icons.arrow_back_ios,
@@ -111,11 +111,11 @@ Source : www.branham.org
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8)),
                 child: Icon(
                   Icons.share,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 16)),
               onPressed: _shareContent),
           const SizedBox(width: 8),
@@ -127,7 +127,7 @@ Source : www.branham.org
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.error_outline, size: 64, color: AppTheme.errorColor),
+                      Icon(Icons.error_outline, size: 64, color: Theme.of(context).colorScheme.errorColor),
                       const SizedBox(height: 16),
                       Text(_error!, style: TextStyle(color: theme.colorScheme.onSurface)),
                       const SizedBox(height: 16),
@@ -153,7 +153,7 @@ Source : www.branham.org
                               margin: const EdgeInsets.only(bottom: 32),
                               padding: const EdgeInsets.all(24),
                               decoration: BoxDecoration(
-                                color: AppTheme.surfaceColor,
+                                color: Theme.of(context).colorScheme.surfaceColor,
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
                                   BoxShadow(
@@ -167,11 +167,11 @@ Source : www.branham.org
                                     width: 60,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: AppTheme.primaryColor.withOpacity(0.1),
+                                      color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(16)),
                                     child: Icon(
                                       Icons.today_rounded,
-                                      color: AppTheme.primaryColor,
+                                      color: Theme.of(context).colorScheme.primaryColor,
                                       size: 28)),
                                   const SizedBox(height: 16),
                                   Text(
@@ -185,7 +185,7 @@ Source : www.branham.org
                                   Text(
                                     _quote!.date.isNotEmpty ? _quote!.date : _getFormattedDate(),
                                     style: TextStyle(
-                                      color: AppTheme.textSecondaryColor,
+                                      color: Theme.of(context).colorScheme.textSecondaryColor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500)),
                                 ])),
@@ -213,7 +213,7 @@ Source : www.branham.org
                             width: double.infinity,
                             padding: const EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              color: AppTheme.surfaceColor,
+                              color: Theme.of(context).colorScheme.surfaceColor,
                               borderRadius: BorderRadius.circular(16),
                               boxShadow: [
                                 BoxShadow(
@@ -238,7 +238,7 @@ Source : www.branham.org
                                 Text(
                                   'Source : www.branham.org',
                                   style: TextStyle(
-                                    color: AppTheme.textSecondaryColor,
+                                    color: Theme.of(context).colorScheme.textSecondaryColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: 0.2)),
@@ -255,7 +255,7 @@ Source : www.branham.org
       margin: const EdgeInsets.only(bottom: 24),
       padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -273,11 +273,11 @@ Source : www.branham.org
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryColor.withOpacity(0.1),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(14)),
                 child: const Icon(
                   Icons.auto_stories_rounded,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 24)),
               const SizedBox(width: 16),
               Column(
@@ -294,7 +294,7 @@ Source : www.branham.org
                   Text(
                     'Méditation quotidienne',
                     style: TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w500)),
                 ]),
@@ -313,7 +313,7 @@ Source : www.branham.org
                 // Citation mark
                 Icon(
                   Icons.format_quote,
-                  color: AppTheme.primaryColor.withOpacity(0.3),
+                  color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
                   size: 32),
                 const SizedBox(height: 12),
                 Text(
@@ -334,12 +334,12 @@ Source : www.branham.org
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12)),
               child: Text(
                 reference,
                 style: const TextStyle(
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.3),
@@ -357,7 +357,7 @@ Source : www.branham.org
       margin: const EdgeInsets.only(bottom: 24),
       padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        color: AppTheme.surfaceColor,
+        color: Theme.of(context).colorScheme.surfaceColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -396,7 +396,7 @@ Source : www.branham.org
                   Text(
                     'Réflexion spirituelle',
                     style: TextStyle(
-                      color: AppTheme.textSecondaryColor,
+                      color: Theme.of(context).colorScheme.textSecondaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w500)),
                 ]),
@@ -437,7 +437,7 @@ Source : www.branham.org
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.05),
+                color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.05),
                 borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
@@ -447,12 +447,12 @@ Source : www.branham.org
                       Icon(
                         Icons.headphones_rounded,
                         size: 16,
-                        color: AppTheme.primaryColor),
+                        color: Theme.of(context).colorScheme.primaryColor),
                       const SizedBox(width: 6),
                       Text(
                         'Prédication',
                         style: TextStyle(
-                          color: AppTheme.primaryColor,
+                          color: Theme.of(context).colorScheme.primaryColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.5)),
@@ -477,7 +477,7 @@ Source : www.branham.org
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [
-                  AppTheme.primaryColor,
+                  Theme.of(context).colorScheme.primaryColor,
                   Color(0xFF764BA2),
                 ],
                 begin: Alignment.topLeft,
@@ -488,13 +488,13 @@ Source : www.branham.org
               children: [
                 Icon(
                   Icons.person_rounded,
-                  color: AppTheme.surfaceColor,
+                  color: Theme.of(context).colorScheme.surfaceColor,
                   size: 16),
                 const SizedBox(width: 8),
                 const Text(
                   'William Marrion Branham',
                   style: TextStyle(
-                    color: AppTheme.surfaceColor,
+                    color: Theme.of(context).colorScheme.surfaceColor,
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.3)),

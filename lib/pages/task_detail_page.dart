@@ -3,7 +3,7 @@ import '../models/task_model.dart';
 import '../services/tasks_firebase_service.dart';
 import '../widgets/task_comments_widget.dart';
 import 'task_form_page.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 
 class TaskDetailPage extends StatefulWidget {
   final TaskModel task;
@@ -60,7 +60,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du rafraîchissement: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -91,7 +91,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Statut mis à jour: ${_getStatusLabel(newStatus)}'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -100,7 +100,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -119,7 +119,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Tâche dupliquée avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -128,7 +128,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la duplication: $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -140,26 +140,26 @@ class _TaskDetailPageState extends State<TaskDetailPage>
   Color get _priorityColor {
     switch (_currentTask?.priority) {
       case 'high':
-        return AppTheme.errorColor;
+        return Theme.of(context).colorScheme.errorColor;
       case 'medium':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'low':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       default:
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
     }
   }
 
   Color get _statusColor {
     switch (_currentTask?.status) {
       case 'completed':
-        return AppTheme.successColor;
+        return Theme.of(context).colorScheme.successColor;
       case 'in_progress':
-        return AppTheme.warningColor;
+        return Theme.of(context).colorScheme.warningColor;
       case 'cancelled':
         return Colors.grey;
       default:
-        return AppTheme.primaryColor;
+        return Theme.of(context).colorScheme.primaryColor;
     }
   }
 
@@ -435,7 +435,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
                 children: _currentTask!.tags.map((tag) {
                   return Chip(
                     label: Text(tag),
-                    backgroundColor: AppTheme.primaryColor.withOpacity(0.1),
+                    backgroundColor: Theme.of(context).colorScheme.primaryColor.withOpacity(0.1),
                   );
                 }).toList(),
               ),
@@ -511,13 +511,13 @@ class _TaskDetailPageState extends State<TaskDetailPage>
           children: [
             Row(
               children: [
-                Icon(icon, color: AppTheme.primaryColor),
+                Icon(icon, color: Theme.of(context).colorScheme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: AppTheme.primaryColor,
+                    color: Theme.of(context).colorScheme.primaryColor,
                   ),
                 ),
               ],
@@ -566,14 +566,14 @@ class _TaskDetailPageState extends State<TaskDetailPage>
         onPressed: () => _updateTaskStatus('todo'),
         icon: const Icon(Icons.undo),
         label: const Text('Rouvrir'),
-        backgroundColor: AppTheme.warningColor,
+        backgroundColor: Theme.of(context).colorScheme.warningColor,
       );
     } else {
       return FloatingActionButton.extended(
         onPressed: () => _updateTaskStatus('completed'),
         icon: const Icon(Icons.check),
         label: const Text('Terminer'),
-        backgroundColor: AppTheme.successColor,
+        backgroundColor: Theme.of(context).colorScheme.successColor,
       );
     }
   }
@@ -591,7 +591,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
           ),
           ElevatedButton(
             onPressed: () => Navigator.pop(context, true),
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.errorColor),
+            style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.errorColor),
             child: const Text('Supprimer'),
           ),
         ],
@@ -606,7 +606,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Tâche supprimée'),
-              backgroundColor: AppTheme.successColor,
+              backgroundColor: Theme.of(context).colorScheme.successColor,
             ),
           );
         }
@@ -615,7 +615,7 @@ class _TaskDetailPageState extends State<TaskDetailPage>
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Erreur lors de la suppression: $e'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }

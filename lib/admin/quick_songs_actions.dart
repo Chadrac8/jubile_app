@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Widget pour des actions rapides sur les chants
@@ -36,7 +36,7 @@ class QuickSongsActions extends StatelessWidget {
             icon: Icons.publish,
             title: 'Publier tous les brouillons',
             subtitle: 'Rendre tous les chants en "draft" visibles aux membres',
-            color: AppTheme.successColor,
+            color: Theme.of(context).colorScheme.successColor,
             onPressed: () => _publishAllDrafts(context)),
           
           const SizedBox(height: 12),
@@ -46,7 +46,7 @@ class QuickSongsActions extends StatelessWidget {
             icon: Icons.edit_note,
             title: 'Mettre en brouillon tous les publiés',
             subtitle: 'Masquer temporairement tous les chants publiés',
-            color: AppTheme.warningColor,
+            color: Theme.of(context).colorScheme.warningColor,
             onPressed: () => _draftAllPublished(context)),
           
           const SizedBox(height: 12),
@@ -56,7 +56,7 @@ class QuickSongsActions extends StatelessWidget {
             icon: Icons.archive,
             title: 'Archiver les chants anciens',
             subtitle: 'Archiver les chants non utilisés depuis 6 mois',
-            color: AppTheme.textTertiaryColor,
+            color: Theme.of(context).colorScheme.textTertiaryColor,
             onPressed: () => _archiveOldSongs(context)),
         ]));
   }
@@ -108,7 +108,7 @@ class QuickSongsActions extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${snapshot.docs.length} chants ont été publiés'),
-          backgroundColor: AppTheme.successColor));
+          backgroundColor: Theme.of(context).colorScheme.successColor));
 
     } catch (e) {
       // Fermer le dialog de chargement
@@ -118,7 +118,7 @@ class QuickSongsActions extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la publication: $e'),
-          backgroundColor: AppTheme.errorColor));
+          backgroundColor: Theme.of(context).colorScheme.errorColor));
     }
   }
 
@@ -165,14 +165,14 @@ class QuickSongsActions extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${snapshot.docs.length} chants ont été mis en brouillon'),
-          backgroundColor: AppTheme.warningColor));
+          backgroundColor: Theme.of(context).colorScheme.warningColor));
 
     } catch (e) {
       Navigator.of(context).pop();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la mise en brouillon: $e'),
-          backgroundColor: AppTheme.errorColor));
+          backgroundColor: Theme.of(context).colorScheme.errorColor));
     }
   }
 
@@ -223,14 +223,14 @@ class QuickSongsActions extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('${snapshot.docs.length} chants anciens ont été archivés'),
-          backgroundColor: AppTheme.textTertiaryColor));
+          backgroundColor: Theme.of(context).colorScheme.textTertiaryColor));
 
     } catch (e) {
       Navigator.of(context).pop();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de l\'archivage: $e'),
-          backgroundColor: AppTheme.errorColor));
+          backgroundColor: Theme.of(context).colorScheme.errorColor));
     }
   }
 
@@ -250,8 +250,8 @@ class QuickSongsActions extends StatelessWidget {
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.errorColor,
-              foregroundColor: AppTheme.surfaceColor),
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
+              foregroundColor: Theme.of(context).colorScheme.surfaceColor),
             child: const Text('Confirmer')),
         ])) ?? false;
   }
@@ -290,7 +290,7 @@ class _QuickActionButton extends StatelessWidget {
               decoration: BoxDecoration(
                 color: color,
                 borderRadius: BorderRadius.circular(6)),
-              child: Icon(icon, color: AppTheme.surfaceColor)),
+              child: Icon(icon, color: Theme.of(context).colorScheme.surfaceColor)),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -306,7 +306,7 @@ class _QuickActionButton extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppTheme.textTertiaryColor)),
+                      color: Theme.of(context).colorScheme.textTertiaryColor)),
                 ])),
             Icon(Icons.arrow_forward_ios, size: 16, color: color),
           ])));

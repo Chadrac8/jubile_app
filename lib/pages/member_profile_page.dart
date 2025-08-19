@@ -10,7 +10,7 @@ import '../services/firebase_service.dart';
 import '../services/user_profile_service.dart';
 import '../services/roles_firebase_service.dart';
 import '../auth/auth_service.dart';
-import '../theme.dart';
+import '../../compatibility/app_theme_bridge.dart';
 import '../widgets/custom_page_app_bar.dart';
 import '../extensions/datetime_extensions.dart';
 
@@ -143,7 +143,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Impossible de charger votre profil'),
-              backgroundColor: AppTheme.errorColor,
+              backgroundColor: Theme.of(context).colorScheme.errorColor,
             ),
           );
         }
@@ -161,7 +161,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors du chargement du profil'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -269,7 +269,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sélection de l\'image : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -305,7 +305,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Profil mis à jour avec succès'),
-            backgroundColor: AppTheme.successColor,
+            backgroundColor: Theme.of(context).colorScheme.successColor,
           ),
         );
       }
@@ -314,7 +314,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Erreur lors de la sauvegarde : $e'),
-            backgroundColor: AppTheme.errorColor,
+            backgroundColor: Theme.of(context).colorScheme.errorColor,
           ),
         );
       }
@@ -324,7 +324,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.backgroundColor,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : FadeTransition(
@@ -370,7 +370,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
       expandedHeight: 300,
       floating: false,
       pinned: true,
-      backgroundColor: AppTheme.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primaryColor,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           _currentPerson?.fullName ?? 'Mon Profil',
@@ -385,8 +385,8 @@ class _MemberProfilePageState extends State<MemberProfilePage>
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                AppTheme.primaryColor,
-                AppTheme.primaryColor.withOpacity(0.8),
+                Theme.of(context).colorScheme.primaryColor,
+                Theme.of(context).colorScheme.primaryColor.withOpacity(0.8),
               ],
             ),
           ),
@@ -462,7 +462,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: const BoxDecoration(
-                  color: AppTheme.secondaryColor,
+                  color: Theme.of(context).colorScheme.secondaryColor,
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -493,7 +493,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => Container(
-        color: AppTheme.primaryColor.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
         child: const Icon(
           Icons.person,
           size: 60,
@@ -501,7 +501,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
         ),
       ),
       errorWidget: (context, url, error) => Container(
-        color: AppTheme.primaryColor.withOpacity(0.3),
+        color: Theme.of(context).colorScheme.primaryColor.withOpacity(0.3),
         child: const Icon(
           Icons.person,
           size: 60,
@@ -632,7 +632,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                 const Text(
                   'Aucune famille associée',
                   style: TextStyle(
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -682,7 +682,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                     const Text(
                       'Aucun rôle assigné',
                       style: TextStyle(
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                   ],
@@ -707,13 +707,13 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                 'Inscription à l\'église',
                 _currentPerson?.createdAt ?? DateTime.now(),
                 Icons.church,
-                AppTheme.primaryColor,
+                Theme.of(context).colorScheme.primaryColor,
               ),
               _buildHistoryItem(
                 'Dernière mise à jour du profil',
                 _currentPerson?.updatedAt ?? DateTime.now(),
                 Icons.edit,
-                AppTheme.secondaryColor,
+                Theme.of(context).colorScheme.secondaryColor,
               ),
               // TODO: Ajouter plus d'historique depuis les logs d'activité
             ],
@@ -740,7 +740,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
               children: [
                 Icon(
                   icon,
-                  color: AppTheme.primaryColor,
+                  color: Theme.of(context).colorScheme.primaryColor,
                   size: 24,
                 ),
                 const SizedBox(width: 12),
@@ -749,7 +749,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -828,8 +828,8 @@ class _MemberProfilePageState extends State<MemberProfilePage>
               : 'Non renseignée',
           style: TextStyle(
             color: _birthDate != null
-                ? AppTheme.textPrimaryColor
-                : AppTheme.textSecondaryColor,
+                ? Theme.of(context).colorScheme.textPrimaryColor
+                : Theme.of(context).colorScheme.textSecondaryColor,
           ),
         ),
       ),
@@ -848,7 +848,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
           Icon(
             icon,
             size: 16,
-            color: AppTheme.textSecondaryColor,
+            color: Theme.of(context).colorScheme.textSecondaryColor,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -859,7 +859,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                   label,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
                 Text(
@@ -867,7 +867,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
               ],
@@ -901,7 +901,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                   member.fullName,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 if (_family?.headOfFamilyId == member.id)
@@ -909,7 +909,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                     'Chef de famille',
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primaryColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -958,7 +958,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                     role.name,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.textPrimaryColor,
+                      color: Theme.of(context).colorScheme.textPrimaryColor,
                     ),
                   ),
                   if (role.description.isNotEmpty)
@@ -966,7 +966,7 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                       role.description,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: AppTheme.textSecondaryColor,
+                        color: Theme.of(context).colorScheme.textSecondaryColor,
                       ),
                     ),
                 ],
@@ -1004,14 +1004,14 @@ class _MemberProfilePageState extends State<MemberProfilePage>
                   title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: AppTheme.textPrimaryColor,
+                    color: Theme.of(context).colorScheme.textPrimaryColor,
                   ),
                 ),
                 Text(
                   date.mediumDate,
                   style: const TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondaryColor,
+                    color: Theme.of(context).colorScheme.textSecondaryColor,
                   ),
                 ),
               ],
