@@ -1,0 +1,60 @@
+name: Auto Backup & CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Sauvegarde automatique tous les jours à 02:00 UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  backup-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Récupère tout l'historique
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.0'
+        channel: 'stable'
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Analyze project source
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts-${{ github.sha }}
+        path: |
+          build/app/outputs/flutter-apk/
+          build/web/
+        retention-days: 30
+
+    - name: Create backup branch
+      if: github.event_name == 'schedule'
+      run: |
+        BACKUP_BRANCH="backup-$(date +'%Y-%m-%d-%H%M%S')"
+        git checkout -b $BACKUP_BRANCH
+        git push origin $BACKUP_BRANCH
+        echo "✅ Backup branch created: $BACKUP_BRANCH"
+
+    - name: Send notification
+      if: failure()
+      run: |
+        echo "❌ Backup or build failed"
+        # Ici vous pouvez ajouter une notification (Slack, Discord, email, etc.)

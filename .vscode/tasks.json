@@ -11,6 +11,57 @@
 			"problemMatcher": [
 				"$dart-analyze"
 			]
+		},
+		{
+			"label": "Sauvegarde rapide",
+			"type": "shell",
+			"command": "./scripts/auto_backup.sh",
+			"args": ["Sauvegarde depuis VS Code"],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Sauvegarde avec message personnalisé",
+			"type": "shell",
+			"command": "./scripts/auto_backup.sh",
+			"args": ["${input:commitMessage}"],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Voir l'historique des sauvegardes",
+			"type": "shell",
+			"command": "git",
+			"args": ["log", "--oneline", "-10", "--graph", "--decorate"],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		}
+	],
+	"inputs": [
+		{
+			"id": "commitMessage",
+			"description": "Message de commit personnalisé",
+			"default": "Sauvegarde manuelle",
+			"type": "promptString"
 		}
 	]
 }

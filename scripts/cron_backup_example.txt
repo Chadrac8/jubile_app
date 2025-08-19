@@ -1,0 +1,11 @@
+# Tâche cron pour sauvegarde automatique
+# Éditer avec: crontab -e
+
+# Sauvegarde automatique tous les jours à 18h00
+0 18 * * * cd "/Users/chadracntsouassouani/Downloads/perfect 17" && ./scripts/auto_backup.sh "Sauvegarde automatique quotidienne" >> /tmp/churchflow_backup.log 2>&1
+
+# Sauvegarde automatique toutes les 4 heures (pendant les heures de travail)
+0 9,13,17,21 * * * cd "/Users/chadracntsouassouani/Downloads/perfect 17" && ./scripts/auto_backup.sh "Sauvegarde automatique - $(date '+%H:%M')" >> /tmp/churchflow_backup.log 2>&1
+
+# Sauvegarde hebdomadaire le dimanche à 20h avec message spécial
+0 20 * * 0 cd "/Users/chadracntsouassouani/Downloads/perfect 17" && ./scripts/auto_backup.sh "Sauvegarde hebdomadaire - Semaine $(date '+%U')" >> /tmp/churchflow_backup.log 2>&1
